@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التفكيك النقدي لنظرية مارك سافيكاس - النسخة التحليلية المعمقة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #c8b273;
+            --accent: #2980b9;
+            --critic: #c0392b;
+            --text: #34495e;
+            --bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .main-card {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: white;
+            padding: 45px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 4px solid var(--secondary);
+            padding-bottom: 20px;
+        }
+
+        h1 { color: var(--primary); font-size: 2.2rem; margin-bottom: 10px; }
+        
+        details {
+            margin-bottom: 25px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        summary {
+            padding: 20px 25px;
+            background: #f1f5f9;
+            font-weight: 700;
+            cursor: pointer;
+            list-style: none;
+            color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            border-radius: 10px;
+        }
+
+        summary:hover { background: #e2e8f0; }
+
+        .content { padding: 30px; text-align: justify; font-size: 1.05rem; }
+
+        .more-link {
+            color: white;
+            background-color: var(--accent);
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .more-link:hover { background-color: #1c5980; }
+
+        /* الحاويات الموسعة */
+        .extended-section {
+            display: none;
+            margin-top: 25px;
+            padding: 30px;
+            background: #fdfdfd;
+            border-right: 5px solid var(--accent);
+            border-radius: 5px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* تنسيقات البطاقات التحليلية */
+        .analysis-card {
+            background: white;
+            border: 1px solid #edf2f7;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .card-title {
+            color: var(--primary);
+            font-weight: 700;
+            display: block;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            font-size: 1.15rem;
+        }
+
+        .example-box {
+            background: #fdfaf3;
+            border-right: 4px solid var(--secondary);
+            padding: 15px;
+            margin-top: 15px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .critic-title { color: var(--critic); border-bottom-color: #fadbd8; }
+        .critic-section { border-right-color: var(--critic); background: #fffdfd; }
+        
+        .academic-conclusion {
+            margin-top: 50px;
+            padding: 40px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--secondary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .action-bar {
+            margin-top: 50px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn-print { background: var(--primary); color: white; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media print {
+            .action-bar, .more-link, .copy-btn { display: none; }
+            .extended-section { display: block !important; border: none; padding: 0; box-shadow: none; }
+            body { background: white; padding: 0; }
+            .main-card { box-shadow: none; width: 100%; padding: 0; }
+            details { border: none; display: block !important; margin-bottom: 40px; }
+            summary { font-size: 1.6rem; border-bottom: 2px solid #000; background: none; color: black; padding: 0 0 10px 0; }
+            .analysis-card { border: none; border-bottom: 1px dashed #ccc; box-shadow: none; border-radius: 0; page-break-inside: avoid; }
+            .academic-conclusion { background: none !important; color: black !important; border: 2px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-card" id="academic-study">
+    <header>
+        <h1>نظرية البناء المهني (مارك سافيكاس)</h1>
+        <p>دراسة تحليلية معمقة: من القطيعة الإبستمولوجية إلى التدخل المجسد</p>
+    </header>
+
+    <details>
+        <summary>المحور الأول: الأطروحة المركزية والقطيعة مع الكلاسيكيات</summary>
+        <div class="content">
+            لم يأتِ مارك سافيكاس ليقوم بمجرد "تحديث" لنظريات التوجيه الكلاسيكية، بل أسس لقطيعة إبستمولوجية جزرية مع المقاربات الوضعية (Positivism) التي سادت طيلة القرن العشرين، مقدماً أطروحة تتمركز حول مفهوم "البناء الذاتي" و"التكيف".
+            <span class="more-link" onclick="toggleView('sec-1', this)">قراءة التحليل المعمق ⬇️</span>
+            
+            <div id="sec-1" class="extended-section">
+                <div class="analysis-card">
+                    <span class="card-title">1. تجاوز نموذج "السمات والعوامل" (بارسونز وهولاند)</span>
+                    لعقود، هيمنت فكرة "التطابق الموضوعي" التي أسس لها فرانك بارسونز وطورها جون هولاند (نموذج RIASEC). كانت الفرضية تقول: نكتشف سمات الفرد بالروائز، وندرس متطلبات المهن، ثم نقوم بعملية "تطابق" رياضية. 
+                    <br><br><strong>مناقشة سافيكاس:</strong> يهدم سافيكاس هذه الفكرة، معتبراً أن "الذات المهنية" ليست حفريات نكتشفها، بل بناية نشيدها. المهن في نظره ليست قوالب جاهزة، بل مساحات فارغة نستخدمها للتعبير عن هويتنا السردية.
+                    <div class="example-box">
+                        <strong>مثال تبسيطي:</strong> حسب المقاربة الكلاسيكية، التلميذ الذي يحصل على درجات عالية في الرياضيات والحساب يُوجه آلياً لمهنة "محاسب". أما مقاربة سافيكاس فتبحث في "لماذا" يحب الحساب؟ قد نكتشف أن هذا التلميذ عاش طفولة فوضوية، ووجد في الرياضيات وسيلة لـ "فرض النظام على الفوضى". هذه هي "تيمته"، ويمكنه تحقيقها كمحاسب، أو كمبرمج، أو حتى كقائد أوركسترا!
+                    </div>
+                </div>
+
+                <div class="analysis-card">
+                    <span class="card-title">2. إحلال "التكيف المهني" محل "النضج المهني" (دونالد سوبر)</span>
+                    كان أستاذه "دونالد سوبر" يرى التطور المهني كسلم خطي (نمو، استكشاف، تأسيس، احتفاظ، انحدار)، وسَمّى القدرة على صعود هذا السلم بـ "النضج المهني".
+                    <br><br><strong>مناقشة سافيكاس:</strong> يرى سافيكاس أن مفهوم "النضج" صالح لمجتمع صناعي مستقر. أما في عصر "السيولة"، حيث تندثر المهن وتظهر أخرى، فإن الفرد لا يحتاج إلى نضج لانتظار مرحلة معروفة، بل يحتاج إلى "التكيف المهني" (Adaptability) للتعامل مع المفاجآت والصدمات.
+                </div>
+
+                <div class="analysis-card">
+                    <span class="card-title">3. تغيير هوية الموجه: من "خبير مشخّص" إلى "محرر مساعد"</span>
+                    في الطرح التقليدي، الموجه التربوي هو خبير يمتلك أدوات القياس (الروائز) ليصدر حكماً (التشخيص). أما في نظرية البناء المهني، فالموجه هو "محرر مساعد" (Co-author). دوره هو الاستماع لقصص العميل المبعثرة، ومساعدته على نسجها في "سردية متماسكة" تمنح المعنى لمساره المستقبلي.
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary>المحور الثاني: الإشكال المعرفي والأزمات الثلاث</summary>
+        <div class="content">
+            ظهرت نظرية سافيكاس كطوق نجاة لإنقاذ علم النفس المهني من أزمة وجودية خانقة ضربته أواخر القرن العشرين، وتتجلى هذه الأزمة في ثلاثة مستويات متشابكة.
+            <span class="more-link" onclick="toggleView('sec-2', this)">قراءة التحليل المعمق ⬇️</span>
+
+            <div id="sec-2" class="extended-section">
+                <div class="analysis-card">
+                    <span class="card-title">1. أزمة السياق (السيولة وانهيار السرديات الكبرى)</span>
+                    <strong>الإشكال:</strong> في عصر "السيولة" (كما يسميه زيجمونت باومان)، انهارت فكرة "الوظيفة مدى الحياة". الشاب اليوم قد يغير مساره المهني 5 مرات في حياته. كيف نوجه فرداً نحو واقع مجهول؟
+                    <br><strong>الحل المعرفي لسافيكاس:</strong> تحويل الهدف من "التنبؤ" (إيجاد مهنة العمر) إلى تجهيز الفرد بموارد نفسية (الاهتمام، التحكم، الفضول، الثقة) تمكنه من اختراع مساره كلما تطلب الأمر ذلك.
+                </div>
+
+                <div class="analysis-card">
+                    <span class="card-title">2. أزمة الذات (خطر تشظي الهوية)</span>
+                    <strong>الإشكال:</strong> قديماً، كانت الهوية تُستمد من المهنة الدائمة (أنا حداد، أنا معلم). مع تقلب الوظائف (مثلاً: معلم صباحاً، مسوق شبكي مساءً، وسائق أوبر في العطل)، يشعر الفرد بالتمزق وفقدان المعنى.
+                    <br><strong>الحل المعرفي لسافيكاس:</strong> الاستمرارية لم تعد في "المهنة الخارجية" بل في "القصة الداخلية". عبر اكتشاف "تيمة الحياة"، يدرك الفرد أن كل هذه الوظائف المبعثرة تخدم غاية واحدة.
+                    <div class="example-box">
+                        <strong>مثال تبسيطي:</strong> شخص تنقل بين وظائف: مسعف، ثم أستاذ دعم، ثم موظف في جمعية خيرية. ظاهرياً مساره مشتت، لكن بالتحليل السردي نكتشف أن "تيمة حياته" هي (إنقاذ الآخرين). هذه التيمة تمنحه إحساساً بوحدة الهوية رغم تنوع الوظائف.
+                    </div>
+                </div>
+
+                <div class="analysis-card">
+                    <span class="card-title">3. الأزمة الإبستمولوجية (توحيد المدارس المتناحرة)</span>
+                    <strong>الإشكال:</strong> كان الميدان ممزقاً بين المدرسة الفروقية (ماذا تفضل؟ - هولاند)، والنمائية (كيف تنمو؟ - سوبر)، والدينامية (لماذا تعمل؟ - أدلر).
+                    <br><strong>الحل المعرفي لسافيكاس:</strong> صهرها في نظرية كبرى عبر هندسة عبقرية: دمج السمات (كاستراتيجيات تكيفية)، ومراحل النمو (كمهام يفرضها المجتمع)، والدوافع (كمعنى يحرك السردية).
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary>المحور الثالث: التثليث الحججي للنظرية</summary>
+        <div class="content">
+            لإقناع المجتمع العلمي بنظريته، بنى سافيكاس طروحاته على هندسة متينة تستمد أدلتها من ثلاث حقول معرفية مختلفة، مشكلاً ما يشبه "التثليث الحججي".
+            <span class="more-link" onclick="toggleView('sec-3', this)">قراءة التحليل المعمق ⬇️</span>
+
+            <div id="sec-3" class="extended-section">
+                <div class="analysis-card">
+                    <span class="card-title">1. الحجة السوسيولوجية والاقتصادية</span>
+                    يستند سافيكاس إلى تحليلات الاقتصاد ما بعد الصناعي الذي تحول من "الإنتاج الصلب" إلى "اقتصاد المعرفة والخدمات". يجادل بأنه من الاستحالة علمياً تطبيق نظريات "التطابق" (Matching) الكلاسيكية في سوق عمل ممزق بالعقود المؤقتة والعمل المستقل (Freelance). 
+                    <br><strong>النتيجة:</strong> ولادة مفهوم "المهن بلا حدود" (Boundaryless Careers).
+                </div>
+
+                <div class="analysis-card">
+                    <span class="card-title">2. الحجة السيكولوجية (علم النفس السردي والأدلري)</span>
+                    يستلهم سافيكاس تراث ألفريد أدلر ليؤكد أن الإنسان كائن "صانع للمعنى". لا يقبل سافيكاس فكرة أن الميول هي "موروث جيني"، بل يحاجج بأنها "حلول واستراتيجيات" ابتكرها الطفل للتعامل مع بيئته الأسرية والاجتماعية.
+                    <div class="example-box">
+                        <strong>مثال تبسيطي:</strong> الطفل الذي عانى من تهميش صوته داخل الأسرة، قد يطور اهتماماً بالغاً بـ "المسرح" أو "المحاماة". هذا الميل ليس سمة فطرية، بل هو آلية سردية لمحاولة "إسماع صوته" وعلاج نقص طفولي.
+                    </div>
+                </div>
+
+                <div class="analysis-card">
+                    <span class="card-title">3. الحجة الفلسفية (البنائية الاجتماعية)</span>
+                    يرفض سافيكاس الفلسفة الوضعية التي تفترض أن الواقع موجود خارج ذواتنا ننتظر اكتشافه. مستنداً للبنائية، يرى أننا نبني هويتنا من خلال تفاعلنا مع محيطنا واستخدامنا للغة. "الذات المهنية" هي مشروع قيد الإنجاز (Self-making) وليست كنزاً مدفوناً.
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary>المحور الرابع: الفرضيات الضمنية (المسكوت عنه)</summary>
+        <div class="content">
+            رغم تماسك النظرية، إلا أنها تخفي خلفها فرضيات فلسفية وثقافية غير مصرح بها تماماً، وهي فرضيات تشكل نقطة الانطلاق لأي نقد إبستمولوجي.
+            <span class="more-link" onclick="toggleView('sec-4', this)">قراءة التحليل المعمق ⬇️</span>
+
+            <div id="sec-4" class="extended-section">
+                <div class="analysis-card">
+                    <span class="card-title">1. فرضية الوكالة المفرطة وتهميش الحتمية (Hyper-Agency)</span>
+                    يفترض سافيكاس بقوة أن الفرد هو "المؤلف والفاعل المطلق" في قصة حياته. هذه الفرضية تبالغ في تمجيد حرية الفرد (الفعل الذاتي)، وتكاد تغض الطرف عن القيود الهيكلية القاهرة كالانتماء الطبقي أو التمييز المؤسساتي.
+                </div>
+
+                <div class="analysis-card">
+                    <span class="card-title">2. المركزية الغربية وقيم الفردانية (Western-Centrism)</span>
+                    النظرية مشبعة بالقيم الليبرالية الغربية القائمة على "الاستقلالية" (Autonomy) و"تحقيق الذات الفردية". 
+                    <div class="example-box">
+                        <strong>مناقشة ثقافية:</strong> في بيئاتنا السوسيو-ثقافية (ذات الطابع الجمعي)، قد لا يكون القرار المهني مجرد سردية فردية، بل هو "سردية أسرية". اختيار التلميذ لمهنة الطب قد لا يكون تحقيقاً لـ "تيمته الخاصة"، بل استجابة لـ "تيمة الأسرة" ورغبتها في الارتقاء الاجتماعي. تجاهل هذا البعد يضعف تطبيق النظرية في سياقاتنا.
+                    </div>
+                </div>
+
+                <div class="analysis-card">
+                    <span class="card-title">3. فرضية الاستمرارية الكامنة رغم السيولة</span>
+                    هناك مفارقة إبستمولوجية؛ فسافيكاس يدعو لفهم العالم على أنه "سائل ومتغير"، لكنه يفترض أن داخل هذا الفرد السائل توجد "تيمة حياة" صلبة ومستمرة تشكل بوصلته. هذا الدمج بين البنائية وجوهرانية الذات يشكل توتراً فلسفياً في النظرية.
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <details open>
+        <summary>المحور الخامس: الحدود والنقاط العمياء (جسر التدخل البحثي)</summary>
+        <div class="content">
+            أي عمل أكاديمي رصين يجب أن ينتهي بتشريح قصور النظرية. في حالة سافيكاس، توجد انحيازات عميقة تفتح الباب على مصراعيه لتدخلات بحثية جديدة لمعالجتها.
+            <span class="more-link" style="background-color: var(--critic);" onclick="toggleView('sec-5', this)">قراءة التحليل النقدي المعمق ⬇️</span>
+
+            <div id="sec-5" class="extended-section critic-section">
+                <div class="analysis-card">
+                    <span class="card-title critic-title">1. العمى الجسدي (Somatic Blindness) والمركزية اللغوية</span>
+                    <strong>النقد:</strong> نظرية سافيكاس هي نظرية (Logocentric)، أي تتمركز حول "الكلمة واللغة". تفترض أن القرار يطبخ في العقل الواعي ويصاغ بالكلام. لكنها تتجاهل تماماً دور "الجسد" والانفعالات الفسيولوجية العميقة.
+                    <br><br><strong>المناقشة العلمية:</strong> علم الأعصاب (أنطونيو دامازيو) أثبت عبر فرضية "العلامات الجسدية" أن الجسد يطلق إشارات (انقباض معدة، تسارع نبض) توجه قراراتنا قبل أن يعيها العقل اللغوي. التلميذ الذي يحكي قصة مبهرة عن رغبته في أن يصبح جراحاً، قد يفقد وعيه عند أول رؤية لغرفة العمليات. الجسد أصدق من السرد!
+                    <div class="research-bridge">
+                        🎯 جسر التدخل البحثي: هنا يتدخل بحثك. دمج الإدراك المجسد والوعي بالحس الجسدي (MAIA) والمحاكاة ولعب الأدوار، لكسر احتكار اللغة والسماح للجسد باختبار المهنة على الركح.
+                    </div>
+                </div>
+
+                <div class="analysis-card">
+                    <span class="card-title critic-title">2. النخبوية المعرفية وصعوبة التطبيق الميداني</span>
+                    <strong>النقد:</strong> المقابلة السردية التي صممها سافيكاس تتطلب أن يمتلك التلميذ ثروة لغوية، ومهارة في التفكير المجرد واستخدام "المجازات". هذا يجعل المقاربة شبه عاجزة أمام المراهقين الأقل تعليماً، أو ذوي الاحتياجات الخاصة، أو حتى المراهقين الذين يمرون بمرحلة انغلاق عاطفي وصمت. التدخل المجسد (السيكودراما) يحل هذه المعضلة لأنه يعتمد على "الفعل" وليس "القول".
+                </div>
+
+                <div class="analysis-card">
+                    <span class="card-title critic-title">3. أزمة القياس والذاتية التأويلية</span>
+                    <strong>النقد:</strong> رغم نجاح سافيكاس في صياغة مقياس التكيف المهني (CAAS)، إلا أن الشق السردي (تيمة الحياة) يستحيل تكميمه. استخراج القصة يظل خاضعاً لذاتية المرشد (Counselor Bias) وفهمه الخاص، مما يقلل من الصرامة العلمية (Empirical Rigor) وقابلية النظرية للتعميم.
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <div class="academic-conclusion">
+        <button class="copy-btn" onclick="copyText()">نسخ الخاتمة لمستندك</button>
+        <h3 style="color: var(--secondary); margin-top:0;">🎓 الخاتمة الأكاديمية المقترحة للفصل النظري:</h3>
+        <p id="conclusion-text" style="font-size: 1.15rem; line-height: 2;">
+            "على الرغم من الثورة المفاهيمية التي أحدثها 'مارك سافيكاس' بنقله التوجيه من حتمية 'السمات والعوامل' إلى مرونة 'التكيف المهني'، إلا أن مقاربته السردية تظل حبيسة 'المركزية اللغوية' (Logocentrism)؛ حيث تفترض أن المتعلم يمتلك النضج المعرفي والقدرة البلاغية لصياغة معنى حياته عبر اللغة حصراً. لقد همشت هذه المقاربة دور 'الجسد' كفاعل أساسي في اتخاذ القرار، متجاهلة ما أثبتته العلوم المعرفية الحديثة حول دور 'العلامات الجسدية' (Somatic Markers) والانفعالات الفسيولوجية اللاواعية في توجيه الخيارات الحاسمة. ومن هذا المنطلق المعرفي والنقدي، يتجاوز البحث الحالي حدود الإرشاد اللغوي الكلاسيكي، ليقترح إدماج 'الإدراك المجسد' كآلية لكسر هذه النخبوية اللغوية. إننا نسعى من خلال التدخل الميداني المقترح إلى تحويل مسار التوجيه من 'سرد تخيلي' إلى 'تجربة جسدية معاشة'، مما يسمح للمتعلم باختبار ملاءمته للمهنة بشكل ملموس وصادق."
+        </p>
+    </div>
+
+    <div class="action-bar">
+        <button class="btn btn-print" onclick="window.print()">🖨️ طباعة الدليل منسقاً للبحث</button>
+    </div>
+</div>
+
+<script>
+    function toggleView(id, btn) {
+        var el = document.getElementById(id);
+        if (el.style.display === "block") {
+            el.style.display = "none";
+            btn.innerHTML = "قراءة التحليل المعمق ⬇️";
+        } else {
+            el.style.display = "block";
+            btn.innerHTML = "إغلاق التحليل ⬆️";
+        }
+    }
+
+    function copyText() {
+        var text = document.getElementById("conclusion-text").innerText;
+        navigator.clipboard.writeText(text).then(function() {
+            alert("تم نسخ الخاتمة الأكاديمية بنجاح! جاهزة للصق في رسالتك.");
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحليل الأكاديمي الموجه: براديغم تصميم الحياة لبول هارتونغ</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-color: #FAF9F6;
+            --text-color: #333333;
+            --primary-color: #2c3e50;
+            --accent-color: #8e44ad;
+            --danger-color: #c0392b;
+            --danger-bg: #fdf2f1;
+            --sidebar-bg: #ffffff;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            font-size: 18px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cairo', sans-serif;
+            color: var(--primary-color);
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        /* تخطيط الصفحة والقائمة الجانبية */
+        .layout-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        aside.sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding: 20px;
+            border-left: 1px solid var(--border-color);
+            box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        aside.sidebar h3 {
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        aside.sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        aside.sidebar li {
+            margin-bottom: 10px;
+        }
+
+        aside.sidebar a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95rem;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        aside.sidebar a:hover, aside.sidebar a.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        main.content {
+            flex-grow: 1;
+            max-width: 800px;
+            padding: 40px;
+            margin: 0 auto;
+        }
+
+        /* رأس الصفحة الأكاديمي */
+        .academic-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .academic-header h1 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+        }
+
+        .academic-meta {
+            color: #555;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .target-group-badge {
+            background: var(--accent-color);
+            color: white;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95em;
+            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(142, 68, 173, 0.2);
+        }
+
+        /* البطاقة التعريفية للعالم */
+        .profile-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .profile-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 20px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .profile-bio h3 {
+            margin: 0 0 10px 0;
+        }
+
+        .profile-bio p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* الصندوق البارز - الأطروحة المركزية */
+        .hero-box {
+            background: linear-gradient(135deg, var(--primary-color), #8e44ad);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .hero-box h2 {
+            color: white;
+            margin-top: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 15px;
+        }
+
+        /* الإشكال المعرفي */
+        .problem-card {
+            border: 2px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fdfafec9;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .problem-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .problem-title svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--accent-color);
+        }
+
+        /* القوائم والحجج */
+        ol.arguments-list {
+            padding-right: 20px;
+        }
+        
+        ol.arguments-list li {
+            margin-bottom: 20px;
+            padding-right: 10px;
+        }
+
+        /* الفرضيات الضمنية */
+        details {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        summary {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--primary-color);
+            outline: none;
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* حدود الطرح */
+        .critiques-section {
+            background-color: var(--danger-bg);
+            border-right: 5px solid var(--danger-color);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+
+        .critiques-section h2 {
+            color: var(--danger-color);
+            margin-top: 0;
+        }
+
+        /* الهندسة التطبيقية (Timeline) */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-right: 30px;
+            border-right: 3px solid var(--accent-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -39px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 3px solid white;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        /* الاقتباسات */
+        blockquote {
+            position: relative;
+            background: white;
+            margin: 40px 0;
+            padding: 30px 40px 30px 30px;
+            border-right: 5px solid var(--primary-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-style: italic;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        blockquote::before {
+            content: '\201D';
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            font-size: 150px;
+            color: rgba(44, 62, 80, 0.05);
+            font-family: Georgia, serif;
+            z-index: -1;
+            line-height: 1;
+        }
+
+        blockquote footer {
+            display: block;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #666;
+            font-family: 'Cairo', sans-serif;
+            font-style: normal;
+        }
+
+        /* التفاعلية: المفاهيم والإحالات */
+        .concept-link {
+            color: var(--accent-color);
+            font-weight: bold;
+            cursor: pointer;
+            border-bottom: 1px dashed var(--accent-color);
+            transition: all 0.2s;
+        }
+
+        .concept-link:hover {
+            background-color: rgba(142, 68, 173, 0.1);
+        }
+
+        /* نظام الإحالات التفاعلية (Tooltips) مع التوثيق المباشر */
+        .citation {
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.85em;
+            color: #7f8c8d;
+            cursor: help;
+            border-bottom: 1px dotted #7f8c8d;
+            margin: 0 4px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .citation:hover::after {
+            content: attr(data-full-ref);
+            position: absolute;
+            bottom: 150%;
+            right: 50%;
+            transform: translateX(50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.85rem;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            pointer-events: none;
+        }
+
+        .citation:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            right: 50%;
+            transform: translateX(50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: var(--primary-color) transparent transparent transparent;
+            z-index: 10;
+        }
+
+        /* النافذة المنبثقة (Modal) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            font-family: 'Amiri', serif;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--danger-color);
+        }
+
+        .modal-title {
+            font-family: 'Cairo', sans-serif;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .modal-case-study {
+            background: #fdfafec9;
+            border-right: 3px solid var(--accent-color);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
+            font-size: 0.95em;
+        }
+
+        /* استجابة الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .layout-container {
+                flex-direction: column;
+            }
+            aside.sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-left: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            main.content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layout-container">
+        <aside class="sidebar">
+            <h3>محتويات البحث</h3>
+            <ul id="toc-list">
+                <li><a href="#intro">التمهيد والتعريف</a></li>
+                <li><a href="#thesis">الأطروحة المركزية</a></li>
+                <li><a href="#problem">الإشكال المعرفي</a></li>
+                <li><a href="#arguments">الحجج الأساسية</a></li>
+                <li><a href="#hypotheses">الفرضيات الضمنية</a></li>
+                <li><a href="#critiques">التحليل النقدي والحدود</a></li>
+                <li><a href="#map">الخريطة المفاهيمية</a></li>
+                <li><a href="#engineering">الهندسة التطبيقية</a></li>
+                <li><a href="#quotes">اقتباسات مرجعية</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <header class="academic-header">
+                <h1>التأطير النظري: أنسنة المسار المهني عبر براديغم "تصميم الحياة" لبول هارتونغ</h1>
+                <div class="academic-meta">
+                    <strong>إعداد:</strong> الطالب الباحث عبد الله العميري<br>
+                    <strong>إشراف:</strong> ذ. حمزة شينبو<br>
+                    <strong>المؤسسة:</strong> كلية علوم التربية بالرباط، سلك الماستر في علم النفس التربوي (2025-2026)
+                </div>
+                <div class="target-group-badge">
+                    التأطير النظري لبحث نيل دبلوم الماستر
+                </div>
+            </header>
+
+            <section id="intro">
+                <div class="profile-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/No_image_available.svg/120px-No_image_available.svg.png" alt="صورة تمثيلية للباحث بول هارتونغ">
+                    <div class="profile-bio">
+                        <h3>بول هارتونغ (Paul Hartung)</h3>
+                        <p>عالم نفس وباحث بارز في مجال التوجيه وعلم النفس المهني. شارك في تحرير وصياغة مراجع أساسية مثل "كتيب علم النفس المهني" و"علم نفس المسار المهني: نماذج ومفاهيم للعمل ذي المعنى" <span class="citation" data-full-ref="Hartung, P. J. (2023). Career psychology: Models, concepts, and counseling for meaningful employment. American Psychological Association.">(Hartung, 2023)</span>. يمثل الجناح الإنساني-البنائي في علم النفس المهني الحديث، حيث أسهم في نقل التوجيه من مجرد "هندسة الأفراد" إلى <span class="concept-link" data-title="تصميم الحياة (Life Design)" data-def="براديغم إرشادي شمولي يهدف إلى مساعدة الأفراد على بناء ذواتهم وتصميم حياتهم المهنية بشكل مرن في عالم يتسم بالسيولة." data-details="يتجاوز البحث عن مجرد وظيفة ليجعل من العمل وسيلة لتحقيق المعنى وبناء الذات." data-case="مساعدة التلميذ على صياغة مشروع شخصي لا يعتمد فقط على النقط المحصلة، بل على المعنى الذي يريد تحقيقه في مجتمعه.">تصميم الحيوات (Life Design)</span>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="thesis">
+                <div class="hero-box">
+                    <h2>الأطروحة المركزية: العمل كأداة لأنسنة المسار المهني</h2>
+                    <p>تتمحور أطروحة هارتونغ حول الانتقال من التوجيه الوظيفي الكلاسيكي إلى براديغم "تصميم الحياة". يدافع هارتونغ عن أن العمل ليس مجرد مطابقة ميكانيكية بين سمات الفرد ومتطلبات الوظيفة (كما في النظريات الوضعية لبارسونز)، بل هو وسيلة حيوية لبناء الذات وتوسيع أفقها <span class="citation" data-full-ref="Hartung, P. J. (2023).">(Hartung, 2023)</span>.</p>
+                    <p>في عالم يتسم بالسيولة وعدم الاستقرار، لا ينبغي أن يتركز البحث على إيجاد "الوظيفة المثالية الثابتة"، بل على مساعدة الفرد في صياغة <span class="concept-link" data-title="العمل ذو المعنى (Meaningful Work)" data-def="الغاية النهائية التي يتحقق فيها التوافق بين تيمة الحياة الشخصية والمساهمة الاجتماعية." data-details="العمل الذي يشعر فيه الفرد أن حياته لها هدف وقيمة تتجاوز المردود المادي البحت." data-case="تلميذ يطمح لمهنة التمريض ليس فقط للحصول على راتب، بل استجابة لـ 'تيمة حياة' داخلية مرتبطة بالرغبة في العناية بالآخرين.">المعنى (Meaning)</span> من خلال عمله، مما يجعل مساره المهني سردية ذاتية مستمرة تسعى لتحقيق التوازن بين الهوية الفردية الفريدة، والمساهمة الاجتماعية الفاعلة.</p>
+                </div>
+            </section>
+
+            <section id="problem">
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                        <h2 style="margin: 0;">الإشكال المعرفي النظري: أزمة الملاءمة والسياق</h2>
+                    </div>
+                    <p>يحاول هارتونغ حل ما يمكن تسميته بأزمة الملاءمة (Fit) في علم النفس المهني، والتي تتجسد في التساؤل التالي:</p>
+                    <p style="font-weight: bold; font-size: 1.1em; text-align: center; color: var(--primary-color); margin: 20px 0;">
+                        كيف يمكن سد الفجوة بين النظريات الفردانية التي تفترض "حرية الاختيار" وبين الواقع السوسيولوجي المليء بالإكراهات، ليظل التوجيه المهني أداة للتمكين وصناعة المعنى حتى بالنسبة لأولئك الذين يعيشون في سياقات اقتصادية هشة؟ <span class="citation" data-full-ref="Hartung, P. J. (2023).">(Hartung, 2023)</span>
+                    </p>
+                </div>
+            </section>
+
+            <section id="arguments">
+                <h2>الحجج الأساسية لدعم براديغم تصميم الحياة</h2>
+                <ol class="arguments-list">
+                    <li>
+                        <strong>حجة سيولة سوق الشغل (Market Liquidity):</strong> استناداً للواقع السوسيولوجي، وظائف اليوم لم تعد دائمة، والمسارات المهنية أصبحت بلا حدود. المرونة والقدرة على إعادة التشكل هي الاستجابة العقلانية الوحيدة لـ "اللايقين" الاقتصادي.
+                    </li>
+                    <li>
+                        <strong>حجة الموارد النفسية للتكيف (The 4 C's Argument):</strong> للنجاح في الانتقالات، يحتاج الفرد للموارد الأربعة: الاهتمام (Concern)، التحكم (Control)، الفضول (Curiosity)، والثقة (Confidence). هذه تشكل <span class="concept-link" data-title="التكيف المهني (Career Adaptability)" data-def="المورد النفسي والسيكوسوسيولوجي الأهم لمواجهة المهام النمائية والانتقالات المهنية." data-details="لا يهم ما تعرفه، بل مدى قدرتك على إعادة تشكيل ما تعرفه لتتلاءم مع الأدوار الجديدة." data-case="بدلاً من تقييم ذكاء التلميذ فقط، نقيس قدرته على التأقلم في لعب أدوار مهنية متعددة ومتناقضة أحياناً على خشبة المسرح.">التكيف المهني</span> <span class="citation" data-full-ref="Hartung, P. J. (2023).">(Hartung, 2023)</span>.
+                    </li>
+                    <li>
+                        <strong>حجة التماسك السردي كمعيار للحقيقة:</strong> "الحقيقة" في الحياة المهنية ليست رقماً في روائز القدرات، بل هي قصة متماسكة. تماسك سردية الفرد وربط ماضيه بحاضره ومستقبله هو الحجة الكافية لاتخاذ القرار.
+                    </li>
+                    <li>
+                        <strong>حجة الاحتياجات الإنسانية والعدالة الاجتماعية:</strong> دمج "سيكولوجية العمل" يؤكد أن العمل ضرورة للارتباط وتقرير المصير. التوجيه الذي يتجاهل المهمشين هو نظرية ناقصة معرفياً؛ فالعمل ذو المعنى هو حق إنساني <span class="citation" data-full-ref="Walsh, W. B., et al. (Eds.). (2023). Career psychology: Models, concepts, and counseling for meaningful employment. American Psychological Association.">(Walsh et al., 2023)</span>.
+                    </li>
+                </ol>
+            </section>
+
+            <section id="hypotheses">
+                <h2>الفرضيات الإبستمولوجية الضمنية (القواعد الخفية للنظرية)</h2>
+                
+                <details>
+                    <summary>1. فرضية الحداثة السائلة (Liquid Modernity Assumption)</summary>
+                    <p>يفترض هارتونغ متأثراً بباومان أن العالم غادر مرحلة "الاستقرار". عدم الاستقرار المهني ليس أزمة عارضة بل حالة طبيعية دائمة، مما يجعل "اللايقين" هو اليقين الوحيد <span class="citation" data-full-ref="Hartung, P. J. (2023).">(Hartung, 2023)</span>.</p>
+                </details>
+                
+                <details>
+                    <summary>2. فرضية الذات كقصة مفتوحة (The Self as an Open Narrative)</summary>
+                    <p>هوية الإنسان ليست "جوهرًا ثابتاً" نكتشفه، بل هي "نص أدبي" يُكتب باستمرار. الفرد ليس كتاباً مطبوعاً انتهى في الطفولة، بل "مدونة" (Blog) تُحدَّث يومياً <span class="citation" data-full-ref="McIlveen, P., & Luke, J. (2023). Life development and life designing for career construction. In Career psychology.">(McIlveen & Luke, 2023, p. 128)</span>.</p>
+                </details>
+
+                <details>
+                    <summary>3. فرضية أسبقية المعنى على النجاح الموضوعي</summary>
+                    <p>يفترض هارتونغ أن الرضا عن الحياة يأتي من التوافق مع <span class="concept-link" data-title="تيمة الحياة (Life Theme)" data-def="الخيوط السردية الذاتية التي تفسر لماذا يختار الفرد مساراً معيناً، وتربط الماضي بالحاضر والمستقبل." data-details="هي المعنى الكامن والوحدة الأساسية للمعنى في بناء المسار." data-case="تلميذ يستنتج من تجاربه في حل مشاكل أصدقائه أن 'تيمة حياته' هي تقديم الدعم، فيميل لاختيار مهن الرعاية.">تيمات الحياة</span> وليس من المؤشرات الخارجية كالراتب أو المنصب <span class="citation" data-full-ref="Hartung, P. J. (2023).">(Hartung, 2023)</span>.</p>
+                </details>
+                
+                <details>
+                    <summary>4. فرضية الوكالة الكونية (Universal Agency)</summary>
+                    <p>الافتراض بأن كل إنسان يمتلك "القدرة والحرية" لإعادة تأليف قصته المهنية وتوجيه حياته مهما كان واقعه مأزوماً، إذا زُوِّد بالموارد المناسبة <span class="citation" data-full-ref="McIlveen, P., & Luke, J. (2023). p. 134">(McIlveen & Luke, 2023, p. 134)</span>.</p>
+                </details>
+            </section>
+
+            <section id="critiques" class="critiques-section">
+                <h2>التحليل النقدي: حدود الطرح ونقاط الضعف الإبستمولوجية</h2>
+                <p>تصطدم مثالية هارتونغ البنائية ببعض الصخور الواقعية التي تفتح الباب لتبرير منهجيتنا المعتمدة على السيكودراما والإدراك المجسد:</p>
+                <ul>
+                    <li>
+                        <strong>المبالغة في الذاتية وفقدان المعيارية (Subjective Relativism):</strong> الاعتماد المفرط على "التماسك السردي" كمعيار قد يعيق وضع مقاييس إمبريقية صلبة، وقد يخلط بين الطموح الواقعي والأوهام.
+                    </li>
+                    <li>
+                        <strong>فخ النيوليبرالية وتحميل الفرد عبء النظام:</strong> التركيز الشديد على "التكيف" كمسؤولية فردية قد يبرئ السياسات الاقتصادية والتعليمية الهشة، محولاً الأزمات الهيكلية إلى "فشل سيكولوجي فردي" في التأقلم <span class="citation" data-full-ref="استنتاج نقدي للباحث">(تحليل نقدي)</span>.
+                    </li>
+                    <li>
+                        <strong>"النخبوية السردية" (The Narrative Privilege):</strong> تفترض النظرية قدرة بلاغية ولغوية عالية لدى كل متعلم ليصبح "مؤلفاً". ماذا عن المراهقين الذين يواجهون صعوبات لغوية أو يعيشون حرمانًا يمنع التعبير اللفظي العميق؟ 
+                        <br><em>التدخل المنهجي:</em> هنا تبرز أصالة دراستنا؛ فمن يعجز عن حكي تيمة حياته لغوياً، سيعبر عنها جسدياً على ركح السيكودراما، متجاوزاً زيف البلاغة نحو الفاعلية المتجسدة.
+                    </li>
+                </ul>
+            </section>
+
+            <section id="map">
+                <h2>الخريطة المفاهيمية (البنية الدائرية لنظرية هارتونغ وسافيكاس)</h2>
+                <p>توضح الخطاطة مسار بناء الهوية بدءاً من الموارد التكيفية وصولاً إلى العمل ذي المعنى.</p>
+                <div class="mermaid">
+                    graph TD;
+                        A[تصميم الحياة Life Design] --> B(التكيف المهني Career Adaptability);
+                        B -->|تفاعل مع| C(الهوية السردية Narrative Identity);
+                        C --> D[المعالجة: تيمات الحياة Life Themes];
+                        D --> E((العمل ذو المعنى Meaningful Work));
+                        E -.->|يغذي| A;
+                        
+                        F[الموارد الأربعة 4 Cs] -.-> B;
+                        F1(الاهتمام Concern) -.-> F;
+                        F2(التحكم Control) -.-> F;
+                        F3(الفضول Curiosity) -.-> F;
+                        F4(الثقة Confidence) -.-> F;
+                        
+                        style A fill:#2c3e50,stroke:#333,stroke-width:2px,color:#fff
+                        style E fill:#8e44ad,stroke:#333,stroke-width:2px,color:#fff
+                </div>
+            </section>
+
+            <section id="engineering">
+                <h2>الهندسة التطبيقية: ورشة تصميم الحياة باللعب الدرامي</h2>
+                <p>كيف نترجم مفاهيم هارتونغ وسافيكاس الإجرائية في سياق المراهق المغربي بالثانوي عبر السيكودراما؟</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>1. مرحلة الاستثارة (Dramatization)</h4>
+                            <p>يُطلب من التلميذ تمثيل صراع مهني (كالتوتر بين شغفه الشخصي وتوقعات أسرته). نُفعل هنا بعد "التحكم" و"الفضول" لاستكشاف الخيارات عملياً <span class="citation" data-full-ref="McIlveen, P., & Luke, J. (2023). p. 128">(McIlveen & Luke, 2023, p. 128)</span>.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>2. مرحلة المرآة (Mirroring)</h4>
+                            <p>تقنية مراقبة الزميل وهو يمثل دوره. يبدأ التلميذ في استخراج تيمة حياته من خلال تفاعله وملاحظته؛ ليحدد ما يثير اهتمامه الفعلي.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>3. المحادثات التي تُفسر (Conversations that explain) وإعادة الصياغة السردية</h4>
+                            <p>الانتقال من "الركح" إلى "الورقة". يقوم المراهق بـ <span class="concept-link" data-title="إعادة الصياغة السردية (Narrative Reframing)" data-def="العملية المعرفية-العاطفية لمراجعة وربط الأحداث والمشاعر التي عاشها في المحاكاة مع معتقداته وخبراته." data-details="تؤدي لتوليد رؤية متماسكة عن الذات المهنية الممكنة." data-case="بعد تمثيل دور المهندس، يعيد التلميذ صياغة قصة حول قدرته على التغلب على صعوبات الرياضيات بدلاً من التهرب منها.">إعادة الصياغة السردية</span> بناءً على المشاعر التي اختبرها، ليحول التجربة اللحظية إلى سردية مستمرة <span class="citation" data-full-ref="McIlveen, P., & Luke, J. (2023). p. 128">(McIlveen & Luke, 2023, p. 128)</span>.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>4. السياقلة السوسيوثقافية للمراهق المغربي</h4>
+                            <p>اعتماد "الدارجة" كحامل للسرد العفوي الأصيل، ودمج تقنية "تبادل الأدوار" مع الوالدين لإدراج البعد الجماعي في صنع القرار بعيداً عن الفردانية الغربية الصرفة.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quotes">
+                <h2>اقتباسات مرجعية دالة</h2>
+                
+                <blockquote>
+                    <p>تصميم الحياة هو نموذج لنظرية وممارسة بناء المسار المهني في القرن الحادي والعشرين، ويهدف إلى مساعدة الأشخاص في توليد معنى شخصي حول عملهم والحفاظ بشكل فاعل على تكيفاتهم مع التغيرات المجتمعية والصناعية.</p>
+                    <footer>&mdash; <span class="citation" data-full-ref="McIlveen, P., & Luke, J. (2023). Life development and life designing for career construction. In Career psychology. p. 121">(McIlveen & Luke, 2023, p. 121)</span></footer>
+                </blockquote>
+
+                <blockquote>
+                    <p>في إطار نظرية بناء المسار المهني، يُنظر إلى التكيف على أنه نتيجة لسلسلة مفترضة من التأثيرات: المرونة ← القدرة على التكيف ← الاستجابات التكيفية ← التكيف.</p>
+                    <footer>&mdash; <span class="citation" data-full-ref="McIlveen, P., & Luke, J. (2023). p. 126">(McIlveen & Luke, 2023, p. 126)</span></footer>
+                </blockquote>
+            </section>
+
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="conceptModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h3 class="modal-title" id="modalTitle">اسم المفهوم</h3>
+            <p><strong>التعريف الأكاديمي:</strong> <span id="modalDef">...</span></p>
+            <p><strong>الامتداد النظري:</strong> <span id="modalDetails">...</span></p>
+            <div class="modal-case-study">
+                <strong>💡 حالة تطبيقية (سياق التوجيه المدرسي وبناء المسار):</strong>
+                <p id="modalCase" style="margin-bottom: 0;">...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تهيئة مكتبة Mermaid
+        mermaid.initialize({ startOnLoad: true, theme: 'default', fontFamily: 'Cairo' });
+
+        // تفاعلية القائمة الجانبية (ScrollSpy)
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('#toc-list a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // نظام النوافذ المنبثقة (Modals)
+            const conceptLinks = document.querySelectorAll('.concept-link');
+            const modal = document.getElementById('conceptModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDef = document.getElementById('modalDef');
+            const modalDetails = document.getElementById('modalDetails');
+            const modalCase = document.getElementById('modalCase');
+
+            conceptLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalTitle.textContent = link.getAttribute('data-title');
+                    modalDef.textContent = link.getAttribute('data-def');
+                    modalDetails.textContent = link.getAttribute('data-details');
+                    modalCase.textContent = link.getAttribute('data-case');
+                    
+                    modal.classList.add('active');
+                });
+            });
+
+            // إغلاق النافذة
+            closeModalBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            // إغلاق عند النقر خارج المحتوى
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

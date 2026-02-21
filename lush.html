@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحليل الإبستيمولوجي: التحكم الظاهراتي ونضح الهوية</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+
+    <style>
+        /* المتغيرات التصميمية */
+        :root {
+            --bg-color: #FAF9F6;
+            --text-main: #333333;
+            --text-light: #555555;
+            --primary: #2c3e50;
+            --secondary: #e67e22;
+            --accent: #2980b9;
+            --danger-bg: #fdf2f2;
+            --danger-border: #e74c3c;
+            --sidebar-width: 280px;
+            --content-max-width: 800px;
+            --font-serif: 'Amiri', serif;
+            --font-sans: 'Tajawal', sans-serif;
+            --shadow-sm: 0 2px 10px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        /* الإعدادات الأساسية */
+        body {
+            font-family: var(--font-serif);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .sans-font {
+            font-family: var(--font-sans);
+            color: var(--primary);
+        }
+
+        /* الهيكلة العامة للصفحة (Flexbox لتجنب تداخل القائمة مع النص) */
+        .layout-wrapper {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            gap: 40px;
+            position: relative;
+        }
+
+        /* 1. القائمة الجانبية العائمة (Sticky TOC) */
+        .sidebar {
+            width: var(--sidebar-width);
+            flex-shrink: 0;
+        }
+
+        .toc-container {
+            position: sticky;
+            top: 40px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e0e6ed;
+        }
+
+        .toc-container h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 12px;
+        }
+
+        .toc-list a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-right: 3px solid transparent;
+        }
+
+        .toc-list a:hover, .toc-list a.active {
+            background-color: #f4f7f9;
+            color: var(--accent);
+            border-right-color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* 2. المحتوى الرئيسي */
+        .main-content {
+            flex: 1;
+            max-width: var(--content-max-width);
+        }
+
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 40px; /* لتعويض مسافة التمرير */
+        }
+
+        /* بطاقة التعريف بالعالم */
+        .profile-card {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-sm);
+            gap: 30px;
+            border-right: 6px solid var(--primary);
+        }
+
+        .profile-img-placeholder {
+            width: 120px;
+            height: 120px;
+            background-color: #e0e6ed;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-sans);
+            color: #7f8c8d;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        
+        .profile-img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info h1 {
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+        }
+
+        /* الصندوق البارز (Hero Box) */
+        .hero-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #34495e 100%);
+            color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-box h2 {
+            color: #f1c40f;
+            font-size: 2.2rem;
+            margin-top: 0;
+        }
+
+        .hero-box p {
+            font-size: 1.25rem;
+            margin-bottom: 0;
+            opacity: 0.95;
+        }
+
+        /* الإشكال المعرفي */
+        .problem-card {
+            background: #ffffff;
+            border: 2px dashed var(--accent);
+            padding: 30px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .problem-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .problem-header svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--accent);
+        }
+
+        .problem-questions {
+            background: #f4f7f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-right: 4px solid var(--accent);
+        }
+
+        /* الحجج الأساسية (القوائم) */
+        .arguments-list ol {
+            padding-right: 25px;
+        }
+
+        .arguments-list li {
+            margin-bottom: 25px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border: 1px solid #e0e6ed;
+        }
+
+        .arguments-list li strong {
+            color: var(--primary);
+            font-family: var(--font-sans);
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .arg-example {
+            display: block;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #fcf8e3;
+            border-right: 4px solid #f1c40f;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #8a6d3b;
+        }
+
+        /* الفرضيات الضمنية */
+        details {
+            background: #ffffff;
+            border: 1px solid #e0e6ed;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            transition: all 0.3s ease;
+        }
+
+        details[open] {
+            box-shadow: var(--shadow-sm);
+            border-color: var(--secondary);
+        }
+
+        summary {
+            font-family: var(--font-sans);
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--primary);
+            cursor: pointer;
+            outline: none;
+            list-style: none; /* إخفاء السهم الافتراضي */
+            position: relative;
+            padding-right: 25px;
+        }
+
+        summary::before {
+            content: '+';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary);
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        details[open] summary::before {
+            content: '−';
+        }
+
+        details p {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #e0e6ed;
+            color: var(--text-light);
+        }
+
+        /* حدود الطرح */
+        .limitations {
+            background-color: var(--danger-bg);
+            border-right: 5px solid var(--danger-border);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .limitations h2 {
+            color: var(--danger-border);
+            margin-top: 0;
+        }
+
+        /* خريطة المفاهيم */
+        .mermaid-wrapper {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        /* الهندسة التطبيقية (Timeline) */
+        .timeline {
+            position: relative;
+            padding-right: 40px;
+            margin-top: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 14px;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -36px;
+            top: 25px;
+            width: 20px;
+            height: 20px;
+            background: #ffffff;
+            border: 4px solid var(--secondary);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-item h4 {
+            margin-top: 0;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* الاقتباسات */
+        .academic-quote {
+            position: relative;
+            background: #ffffff;
+            padding: 40px 50px 30px 50px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            margin: 40px 0;
+            z-index: 1;
+        }
+
+        .academic-quote::before {
+            content: '”';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-size: 10rem;
+            color: rgba(44, 62, 80, 0.05);
+            font-family: serif;
+            line-height: 1;
+            z-index: -1;
+        }
+
+        .academic-quote p {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--primary);
+            text-align: justify;
+        }
+
+        .quote-citation {
+            display: block;
+            margin-top: 20px;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            color: var(--secondary);
+            font-weight: bold;
+            text-align: left;
+        }
+
+        /* =========================================
+           التفاعلية: الروابط، التوثيق، والنوافذ 
+           ========================================= */
+        
+        /* الروابط المفاهيمية */
+        .concept-link {
+            color: var(--accent);
+            font-weight: bold;
+            border-bottom: 1px dashed var(--accent);
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        .concept-link:hover {
+            background-color: rgba(41, 128, 185, 0.1);
+            color: var(--primary);
+            border-bottom-style: solid;
+        }
+
+        /* التوثيق الأكاديمي (Tooltip) */
+        .citation {
+            color: var(--secondary);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+        }
+
+        .citation::after {
+            content: attr(data-ref);
+            position: absolute;
+            bottom: 130%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            background-color: var(--primary);
+            color: #fff;
+            text-align: right;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: normal;
+            font-family: var(--font-serif);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .citation::before {
+            content: '';
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--primary) transparent transparent transparent;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+
+        .citation:hover::after, .citation:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* النافذة المنبثقة (Modal) */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(44, 62, 80, 0.8);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 15px;
+            padding: 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            background: var(--primary);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--secondary);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-def {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 15px;
+            border-right: 4px solid var(--accent);
+            padding-right: 15px;
+        }
+
+        .modal-details {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .modal-example {
+            background: #f4f7f9;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e6ed;
+            font-size: 0.95rem;
+        }
+
+        .modal-example strong {
+            color: var(--secondary);
+            font-family: var(--font-sans);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* التجاوب (Responsive) */
+        @media (max-width: 992px) {
+            .layout-wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                position: static;
+            }
+            .toc-container {
+                position: static;
+                margin-bottom: 30px;
+            }
+            .main-content {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layout-wrapper">
+        <aside class="sidebar">
+            <nav class="toc-container">
+                <h3 class="sans-font">البنية الإبستيمولوجية</h3>
+                <ul class="toc-list" id="tocList">
+                    <li><a href="#section-profile" class="active">1. بيتر لاش والسياق الأكاديمي</a></li>
+                    <li><a href="#section-hero">2. الأطروحة المركزية</a></li>
+                    <li><a href="#section-problem">3. الإشكال المعرفي الأساسي</a></li>
+                    <li><a href="#section-arguments">4. الحجج المعرفية والتجريبية</a></li>
+                    <li><a href="#section-hypotheses">5. الفرضيات الضمنية للتوجيه</a></li>
+                    <li><a href="#section-limits">6. القصور المنهجي وحدود الطرح</a></li>
+                    <li><a href="#section-map">7. خريطة بناء الهوية</a></li>
+                    <li><a href="#section-applied">8. الهندسة التطبيقية الميدانية</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+
+            <section id="section-profile">
+                <div class="profile-card">
+                    <div class="profile-img-placeholder">
+                        <img src="https://via.placeholder.com/120x120.png?text=Peter+Lush" alt="Peter Lush">
+                    </div>
+                    <div class="profile-info">
+                        <h1 class="sans-font">بيتر لاش (Peter Lush)</h1>
+                        <p>باحث في علم النفس المعرفي بجامعة ساسكس، يركز في أبحاثه على الإيحاء، التوقع، والظواهر التي كانت تُعزى سابقاً للتنويم المغناطيسي. تكمن أهمية أبحاثه بالنسبة لمجال <strong>التوجيه المهني</strong> في تفكيكه لآلية <span class="concept-link" data-title="التحكم الظاهراتي (Phenomenological Control)" data-def="القدرة الإرادية (وإن كانت غير واعية أحياناً) على تعديل التجربة الذاتية والفسيولوجية لتتطابق مع التوقعات الاجتماعية أو المهنية المطلوبة." data-details="يقترح لاش أن ما نعتبره اندماجاً عفوياً في دور مهني هو في الحقيقة عملية نشطة يقوم بها الدماغ لتوليد تجربة تتوافق مع السيناريو المفروض، مما يلغي التمييز بين (التظاهر) و(الشعور الحقيقي)." data-example="عندما يطلب الموجه من المراهق أداء دور (طبيب جراح) في ورشة محاكاة، فإن التلميذ ذو القدرة العالية على التحكم الظاهراتي سيبدأ فعلياً بالشعور بثقل المسؤولية، تسارع النبض، وتغير نبرة الصوت، وكأنه طبيب حقيقي وليس مجرد ممثل.">التحكم الظاهراتي</span>، وهي الآلية العصبية والنفسية التي تشرح كيف تتحول (المحاكاة السردية) ولعب الأدوار على خشبة المسرح إلى تجربة بيولوجية ومعرفية تغير قناعات المراهق حول ذاته الممكنة.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-hero">
+                <div class="hero-box">
+                    <h2 class="sans-font">الأطروحة المركزية: هندسة التجربة الذاتية</h2>
+                    <p>
+                        يدافع النص بقوة عن أطروحة ثورية مفادها أن الأفراد يمتلكون قدرة متفاوتة كسمة شخصية تتيح لهم "تعديل تجاربهم الذاتية بقصد لتتوافق مع التوقعات والأهداف السياقية"، مع الحفاظ على هذا التحريف الإدراكي لدرجة يُعاش فيها كواقع فسيولوجي ونفسي حقيقي، وليس مجرد ادعاء سطحي <cite class="citation" data-ref="Dienes, Z., & Lush, P. (2023). The role of phenomenological control in experience. Current Directions in Psychological Science, 32(3), 55-63.">(Dienes & Lush, 2023, p. 55)</cite>. هذا يعني أن <strong>الجسد يصدق السردية التي يمثلها العقل</strong>.
+                    </p>
+                </div>
+            </section>
+
+            <p>
+                <em>ملاحظة توضيحية: تتوافق هذه الأطروحة مع نماذج المعالجة التنبؤية في الدماغ، حيث يتم تحديث النموذج الداخلي بناءً على معطيات المحاكاة.</em>
+            </p>
+
+            <section id="section-problem">
+                <div class="problem-card">
+                    <div class="problem-header">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2ZM13,19H11V17H13V19ZM15.07,11.25L14.17,12.17C13.45,12.9 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7C10.9,7 10,7.89 10,9H8C8,6.79 9.79,5 12,5C14.21,5 16,6.79 16,9C16,9.88 15.64,10.68 15.07,11.25Z"/>
+                        </svg>
+                        <h2 class="sans-font">الإشكال المعرفي والتربوي</h2>
+                    </div>
+                    <p>يحاول الباحث تفكيك اللغز الإبستيمولوجي والتربوي المتمثل في كيفية تحول أداء دور خارجي (مهني) مؤقت في سياق محاكاة درامية إلى هوية ذاتية راسخة ودائمة لدى المراهق المتمدرس.</p>
+                    <div class="problem-questions">
+                        <ul style="margin:0; padding-right: 20px;">
+                            <li>كيف يعبر المراهق من حالة <strong>"الادعاء" (Pretense)</strong> المسرحي إلى حالة <strong>"الاعتقاد" (Belief)</strong> اليقيني بامتلاكه لخصائص تلك الهوية المهنية؟</li>
+                            <li>ما هو الدور الذي تلعبه العمليات العصبية اللاواعية في ترسيخ مسار مهني بدأ كلعبة وانتهى كقناعة وجودية؟</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-arguments" class="arguments-list">
+                <h2 class="sans-font">الحجج المعرفية والتجريبية للدراسة</h2>
+                <ol>
+                    <li>
+                        <strong>حجج إمبريقية (عصبية وفسيولوجية)</strong>
+                        يستند النص إلى أبحاث التصوير العصبي التي تثبت أن التجارب المبنية عبر التحكم الظاهراتي تترافق مع نشاط عصبي حقيقي يطابق التجربة المبلغ عنها، كنشاط "مصفوفة الألم" أو تغيرات التوصيل الجلدي <cite class="citation" data-ref="Lush, P., Dienes, Z., & Seth, A. (2024). Phenomenological Control and the creation of reality. Trends in Cognitive Sciences.">(Lush, Dienes, & Seth, 2024)</cite>.
+                        <span class="arg-example"><strong>مثال في التوجيه:</strong> إذا طُلب من التلميذ محاكاة مقابلة عمل فاشلة، فإن دماغه لا يدرك أنها "لعبة" فقط، بل يفرز هرمونات التوتر استجابة للسيناريو التخيلي.</span>
+                    </li>
+                    <li>
+                        <strong>التكامل مع نظرية المعالجة التنبؤية (Predictive Processing)</strong>
+                        يشير الباحثون إلى أن <span class="concept-link" data-title="نظرية التحكم البارد (Cold Control Theory)" data-def="نظرية تفترض أن الأفراد يمكنهم أداء أفعال إرادية معقدة، لكنهم يبنون بشكل نشط وهادف حالة من (عدم الوعي) بهذه الإرادة، مما يجعل الفعل يبدو وكأنه يحدث من تلقاء نفسه." data-details="تفسر هذه النظرية كيف يندمج التلميذ في الدور؛ فهو يقرر بوعي أن يمثل شخصية (المهندس)، لكنه يستخدم (التحكم البارد) لنسيان أنه يمثل، مما يمنحه إحساساً عميقاً وأصيلاً بالتجربة المهنية." data-example="تماما كما ينغمس القارئ في رواية وينسى أنه يقرأ ورقاً وحبراً ليبكي على البطل، ينغمس المراهق في السيكودراما وينسى أنه طالب، ليتصرف بمسؤولية المهنة الوهمية.">التحكم البارد</span> يمكن صياغته ضمن المعالجة التنبؤية، حيث تنشأ الأفعال الإرادية عن "توقعات حسية-حركية تتحقق ذاتياً" (Self-fulfilling predictions). الدماغ يفشل عمداً في توليد "التمثيل الواعي" للقصدية ليعيش التجربة بعمق.
+                        <span class="arg-example"><strong>مثال:</strong> التلميذ يتصرف بشجاعة في دور (رجل إطفاء) ويتفاجأ هو نفسه بقدرته، لأن دماغه ألغى وعيه بـ "أنا أمثل" ليحقق التوقع السياقي.</span>
+                    </li>
+                    <li>
+                        <strong>حجج منطقية تطورية وتكيفية</strong>
+                        يقدم الباحث حجة مستمدة من علم النفس التطوري تفيد بأن القدرة على تطويع التجربة الذاتية لخدمة سياق جماعي أو سردية اجتماعية هي ميزة بقاء.
+                        <span class="arg-example"><strong>مثال:</strong> المرونة في تقمص أدوار مهنية متعددة تساعد المراهق على التكيف السريع مع سوق العمل السائل والمتغير باستمرار.</span>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="section-hypotheses">
+                <h2 class="sans-font">الفرضيات الضمنية والموجهات البيداغوجية</h2>
+                
+                <details>
+                    <summary>أولوية الإدراك المتجسد (Embodied Cognition) على اللفظي</summary>
+                    <p>يفترض النص ضمناً أن المعرفة التي يكتسبها المراهق عن مهنة ما عبر الاستبيانات الورقية أو المقابلات اللفظية هي معرفة "باردة" لا تغير الهوية. التغيير الحقيقي يتطلب انخراطاً حسياً-حركياً (محاكاة متجسدة) يُفعّل آليات التحكم الظاهراتي ويخلق <span class="concept-link" data-title="نضح الهوية (Identity Bleed)" data-def="انتقال السمات، المشاعر، والمهارات المكتسبة خلال أداء دور مسرحي (متخيل) إلى الهوية الواقعية واليومية للفرد." data-details="يعتبر نضح الهوية الهدف الأسمى لتقنيات السيكودراما في التوجيه المهني، حيث لا يغادر التلميذ خشبة المسرح كما صعد إليها، بل يأخذ معه أجزاء من ثقة وإمكانات الشخصية التي أداها لتدمج في (مفهوم الذات) الخاص به." data-example="طالب خجول يؤدي دور (محامٍ مدافع) في محكمة صورية. يضطر للحديث بصوت عالٍ ومحاججة خصمه. بعد انتهاء الورشة، يلاحظ الأساتذة زيادة في قدرته على المشاركة وارتفاع ثقته بنفسه (الهوية المهنية نضحت إلى الهوية الشخصية).">نضح الهوية</span>.</p>
+                </details>
+
+                <details>
+                    <summary>قوة السياق (The Power of Context)</summary>
+                    <p>يفترض الطرح أن "التحكم الظاهراتي" لا يعمل في فراغ. يحتاج الدماغ إلى سياق اجتماعي منظم وقوي (مثل ورشة سيكودراما موجهة، سيناريو مهني دقيق، إيحاءات من المستشار التوجيهي) لكي يسمح لنفسه بالتخلي عن الواقع المباشر وبناء واقع مهني جديد وتصديقه.</p>
+                </details>
+
+            </section>
+
+            <section id="section-limits">
+                <div class="limitations">
+                    <h2 class="sans-font">التحليل النقدي: حدود الطرح وقصوره</h2>
+                    <p>رغم الثورية المعرفية لطرح (Lush)، إلا أن استنبات هذا المفهوم في حقل <strong>علم النفس التربوي والتوجيه المهني</strong>، وتحديداً في السياق الثقافي المغربي، يصطدم بعدة عوائق أبستيمولوجية وتطبيقية:</p>
+                    <ul>
+                        <li><strong>مركزية التقرير الذاتي (Self-Report Bias):</strong> قياس "التحكم الظاهراتي" يعتمد بكثافة على مقاييس ذاتية. في مرحلة المراهقة، قد يميل التلميذ إلى إعطاء إجابات ترضي الباحث (Social Desirability) مما يطرح شكوكاً حول هل التجربة عاشها فسيولوجياً أم أنه يتحدث عنها فقط لإرضاء السياق المدرسي؟</li>
+                        <li><strong>التجاهل الثقافي:</strong> هل استجابة التلميذ الغربي لـ "لعب الأدوار" تماثل استجابة التلميذ المغربي المثقل بسرديات مجتمعية تحدد مسبقاً المهن "المقبولة" والمهن "المنبوذة"؟ التحكم الظاهراتي قد يصطدم بصلابة <span class="concept-link" data-title="الهوية السردية (Narrative Identity)" data-def="القصة الداخلية والمتطورة التي يبنيها الفرد عن نفسه، لدمج ماضيه المتبلور بحاضره المشتت ومستقبله المأمول في كلٍّ ذي معنى." data-details="في سياق التوجيه المهني (كما يرى سافيكاس)، الفرد لا يكتشف مهنته، بل يكتبها سردياً. لكن هذه السردية مقيدة بثقافة المجتمع ومعاييره." data-example="تلميذة قد تمتلك قدرة عالية على محاكاة دور (مهندسة ميكانيكية)، لكن سرديتها الثقافية المكتسبة تخبرها أن هذه المهنة غير ملائمة جنسياً، مما يعيق عملية (نضح الهوية) رغم نجاح المحاكاة العصبية.">الهوية السردية</span> الموروثة.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="section-map">
+                <h2 class="sans-font">الخريطة المفاهيمية لتقاطع النظريات</h2>
+                <p>توضح هذه الخريطة كيف يعمل التحكم الظاهراتي كمحرك خفي بين التوجيه السردي (بناء المسار) والتأثير المادي الملموس (نضح الهوية).</p>
+                <div class="mermaid-wrapper">
+                    <div class="mermaid">
+                        graph TD
+                        A[النموذج التوليدي المسبق / المعتقدات المهنية] -->|تدخل بيداغوجي| B(المحاكاة السردية ولعب الأدوار)
+                        B --> C{التحكم الظاهراتي / Phenomenological Control}
+                        C -->|تفعيل نظرية التحكم البارد| D[إسكات الوعي بالتمثيل]
+                        C -->|تفعيل المعالجة التنبؤية| E[خلق واقع عصبي/فسيولوجي مطابق للدور]
+                        D --> F[نضح الهوية المهنية / Identity Bleed]
+                        E --> F
+                        F --> G((إعادة بناء الهوية السردية وتصحيح المسار))
+                        
+                        style B fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff
+                        style C fill:#e67e22,stroke:#d35400,stroke-width:4px,color:#fff
+                        style F fill:#2ecc71,stroke:#27ae60,stroke-width:2px,color:#fff
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-applied">
+                <h2 class="sans-font">الهندسة التطبيقية: مسار التدخل في التوجيه</h2>
+                <p>كيف نحول هذه المبادئ المعرفية المعقدة إلى ورشة توجيه مهني فعالة؟</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4 class="sans-font">الخطوة 1: تقييم النماذج التوليدية السابقة (The Priors)</h4>
+                        <p>استكشاف السرديات والمسلمات التي يحملها التلميذ عن المهنة المستهدفة (عبر تقنيات بناء المسار لـ Savickas) قبل صعوده لخشبة المحاكاة.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 class="sans-font">الخطوة 2: صياغة المحفز الإيكولوجي (The Trigger)</h4>
+                        <p>تصميم سيناريو لعب أدوار غني بالتفاصيل الحسية والإكراهات الواقعية، يجبر التلميذ على تفعيل قدراته في <em>التحكم الظاهراتي</em> لتلبية متطلبات الموقف.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 class="sans-font">الخطوة 3: تفعيل "التحكم البارد"</h4>
+                        <p>استخدام توجيهات المستشار لتعميق الاندماج، مما يساعد المراهق على تعليق أحكامه الواعية حول "كونه يمثل" وترك الجسد يستجيب تلقائياً للتوقعات المهنية.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 class="sans-font">الخطوة 4: التقاط واستثمار "نضح الهوية"</h4>
+                        <p>جلسة الاستخلاص (Debriefing) بعد المحاكاة: تحويل المشاعر الجسدية العابرة والمهارات المكتشفة على المسرح إلى لغة، ودمجها في الهوية السردية الدائمة للمراهق لدعم قراره المهني.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-quotes">
+                <div class="academic-quote">
+                    <p>
+                        إن الأفراد يمتلكون قدرة استثنائية على هندسة تجاربهم الذاتية لخدمة سياقات محددة. في بيئة التوجيه الفعالة، لا يعتبر تقمص الدور المهني هروباً من الذات، بل هو الآلية العصبية الدقيقة التي من خلالها يختبر الدماغ إمكانية وجود هذه الذات الممكنة، ويحولها عبر التحكم الظاهراتي من مجرد خيال بارد إلى واقع بيولوجي معاش يعيد تشكيل الهوية.
+                    </p>
+                    <span class="quote-citation">— بناءً على أطروحة Lush et al., في التحليل الإبستيمولوجي للظاهرة.</span>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="conceptModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modalTitle" class="sans-font">اسم المفهوم</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-def" id="modalDef">
+                    تعريف المفهوم يظهر هنا.
+                </div>
+                <div class="modal-details" id="modalDetails">
+                    تفاصيل وشروحات إضافية للمفهوم وارتباطه بالنظريات المجاورة.
+                </div>
+                <div class="modal-example">
+                    <strong class="sans-font">مثال تطبيقي:</strong>
+                    <span id="modalExample">مثال من واقع التوجيه التربوي والممارسة السيكولوجية.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. نظام ScrollSpy للقائمة الجانبية
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.toc-list a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // تفعيل الرابط عندما نصل للقسم (مع تعويض الهامش العلوي)
+                    if (window.scrollY >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // 2. إدارة النوافذ المنبثقة (Modals) للمفاهيم التفاعلية
+            const conceptLinks = document.querySelectorAll('.concept-link');
+            const modal = document.getElementById('conceptModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDef = document.getElementById('modalDef');
+            const modalDetails = document.getElementById('modalDetails');
+            const modalExample = document.getElementById('modalExample');
+            const closeModal = document.getElementById('closeModal');
+
+            // فتح النافذة عند النقر على المفهوم
+            conceptLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // استخراج البيانات من العنصر
+                    const title = link.getAttribute('data-title');
+                    const def = link.getAttribute('data-def');
+                    const details = link.getAttribute('data-details');
+                    const example = link.getAttribute('data-example');
+
+                    // تعبئة النافذة
+                    modalTitle.textContent = title;
+                    modalDef.textContent = def;
+                    modalDetails.textContent = details;
+                    modalExample.textContent = example;
+
+                    // إظهار النافذة
+                    modal.classList.add('active');
+                });
+            });
+
+            // إغلاق النافذة من زر (X)
+            closeModal.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            // إغلاق النافذة عند النقر خارج البطاقة
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+
+            // إغلاق النافذة باستخدام زر ESC في لوحة المفاتيح
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    modal.classList.remove('active');
+                }
+            });
+            
+            // تهيئة الخريطة المفاهيمية
+            mermaid.initialize({ startOnLoad: true, theme: 'default' });
+        });
+    </script>
+</body>
+</html>

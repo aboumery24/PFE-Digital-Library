@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحليل الأكاديمي الموجه: الإدراك الفاعل والمضمن لغالاغر</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-color: #FAF9F6;
+            --text-color: #333333;
+            --primary-color: #2c3e50;
+            --accent-color: #d35400;
+            --danger-color: #c0392b;
+            --danger-bg: #fdf2f1;
+            --sidebar-bg: #ffffff;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            font-size: 18px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cairo', sans-serif;
+            color: var(--primary-color);
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        /* تخطيط الصفحة والقائمة الجانبية */
+        .layout-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        aside.sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding: 20px;
+            border-left: 1px solid var(--border-color);
+            box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        aside.sidebar h3 {
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        aside.sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        aside.sidebar li {
+            margin-bottom: 10px;
+        }
+
+        aside.sidebar a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95rem;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        aside.sidebar a:hover, aside.sidebar a.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        main.content {
+            flex-grow: 1;
+            max-width: 800px;
+            padding: 40px;
+            margin: 0 auto;
+        }
+
+        /* رأس الصفحة الأكاديمي */
+        .academic-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .academic-header h1 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+        }
+
+        .academic-meta {
+            color: #555;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .target-group-badge {
+            background: var(--accent-color);
+            color: white;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95em;
+            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(211, 84, 0, 0.2);
+        }
+
+        /* البطاقة التعريفية للعالم */
+        .profile-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .profile-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 20px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .profile-bio h3 {
+            margin: 0 0 10px 0;
+        }
+
+        .profile-bio p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* الصندوق البارز - الأطروحة المركزية */
+        .hero-box {
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .hero-box h2 {
+            color: white;
+            margin-top: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 15px;
+        }
+
+        /* الإشكال المعرفي */
+        .problem-card {
+            border: 2px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fffaf6;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .problem-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .problem-title svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--accent-color);
+        }
+
+        /* القوائم والحجج */
+        ol.arguments-list {
+            padding-right: 20px;
+        }
+        
+        ol.arguments-list li {
+            margin-bottom: 20px;
+            padding-right: 10px;
+        }
+
+        /* الفرضيات الضمنية */
+        details {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        summary {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--primary-color);
+            outline: none;
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* حدود الطرح */
+        .critiques-section {
+            background-color: var(--danger-bg);
+            border-right: 5px solid var(--danger-color);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+
+        .critiques-section h2 {
+            color: var(--danger-color);
+            margin-top: 0;
+        }
+
+        /* الهندسة التطبيقية (Timeline) */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-right: 30px;
+            border-right: 3px solid var(--accent-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -39px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 3px solid white;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        /* الاقتباسات */
+        blockquote {
+            position: relative;
+            background: white;
+            margin: 40px 0;
+            padding: 30px 40px 30px 30px;
+            border-right: 5px solid var(--primary-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-style: italic;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        blockquote::before {
+            content: '\201D';
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            font-size: 150px;
+            color: rgba(44, 62, 80, 0.05);
+            font-family: Georgia, serif;
+            z-index: -1;
+            line-height: 1;
+        }
+
+        blockquote footer {
+            display: block;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #666;
+            font-family: 'Cairo', sans-serif;
+            font-style: normal;
+        }
+
+        /* التفاعلية: المفاهيم والإحالات */
+        .concept-link {
+            color: var(--accent-color);
+            font-weight: bold;
+            cursor: pointer;
+            border-bottom: 1px dashed var(--accent-color);
+            transition: all 0.2s;
+        }
+
+        .concept-link:hover {
+            background-color: rgba(211, 84, 0, 0.1);
+        }
+
+        /* نظام الإحالات التفاعلية (Tooltips) مع التوثيق المباشر */
+        .citation {
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.85em;
+            color: #7f8c8d;
+            cursor: help;
+            border-bottom: 1px dotted #7f8c8d;
+            margin: 0 4px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .citation:hover::after {
+            content: attr(data-full-ref);
+            position: absolute;
+            bottom: 150%;
+            right: 50%;
+            transform: translateX(50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.85rem;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            pointer-events: none;
+        }
+
+        .citation:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            right: 50%;
+            transform: translateX(50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: var(--primary-color) transparent transparent transparent;
+            z-index: 10;
+        }
+
+        /* النافذة المنبثقة (Modal) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            font-family: 'Amiri', serif;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--danger-color);
+        }
+
+        .modal-title {
+            font-family: 'Cairo', sans-serif;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .modal-case-study {
+            background: #fffaf6;
+            border-right: 3px solid var(--accent-color);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
+            font-size: 0.95em;
+        }
+
+        /* استجابة الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .layout-container {
+                flex-direction: column;
+            }
+            aside.sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-left: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            main.content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layout-container">
+        <aside class="sidebar">
+            <h3>محتويات البحث</h3>
+            <ul id="toc-list">
+                <li><a href="#intro">التمهيد والتعريف</a></li>
+                <li><a href="#thesis">الأطروحة المركزية</a></li>
+                <li><a href="#problem">الإشكال المعرفي</a></li>
+                <li><a href="#arguments">الحجج الأساسية</a></li>
+                <li><a href="#hypotheses">الفرضيات الضمنية</a></li>
+                <li><a href="#critiques">التحليل النقدي والحدود</a></li>
+                <li><a href="#map">الخريطة المفاهيمية</a></li>
+                <li><a href="#engineering">الهندسة التطبيقية</a></li>
+                <li><a href="#quotes">اقتباسات مرجعية</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <header class="academic-header">
+                <h1>التأطير النظري: توظيف المقاربة الإنائية والإدراك المتجسد لـ Shaun Gallagher في بناء الهوية المهنية</h1>
+                <div class="academic-meta">
+                    <strong>إعداد:</strong> الطالب الباحث عبد الله العميري<br>
+                    <strong>إشراف:</strong> ذ. حمزة شينبو<br>
+                    <strong>المؤسسة:</strong> سلك الماستر في علم النفس التربوي - كلية علوم التربية بالرباط (السنة الجامعية: 2025-2026)
+                </div>
+                <div class="target-group-badge">
+                    التأطير النظري لبحث نيل دبلوم الماستر
+                </div>
+            </header>
+
+            <section id="intro">
+                <div class="profile-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/No_image_available.svg/120px-No_image_available.svg.png" alt="صورة تمثيلية للعالم شون غالاغر">
+                    <div class="profile-bio">
+                        <h3>شون غالاغر (Shaun Gallagher)</h3>
+                        <p>فيلسوف وعالم إدراك أمريكي بارز، يُعد من مؤسسي مقاربة <span class="concept-link" data-title="الإدراك المتجسد (4E Cognition)" data-def="إطار نظري يعتبر أن الإدراك ليس محصوراً في الدماغ، بل هو متجسد (Embodied)، مضمن (Embedded)، ممتد (Extended)، وفاعل (Enactive)." data-details="هذا الإطار ينسف النموذج الحسابي الكلاسيكي، مؤكداً أن الجسد والبيئة يشكلان جزءاً تأسيسياً من عملية التفكير نفسها." data-case="في بحثنا، التلميذ لا 'يفكر' في المهنة بعقله فقط، بل 'يدركها' جسدياً عبر تفاعله اللحظي على خشبة المسرح.">الإدراك المتجسد (4E Cognition)</span>. في أعماله، يدعو إلى تجاوز "النزعة الداخلية" التي تعزل العقل في الدماغ، مقترحاً أن الإدراك هو "صناعة للمعنى" تنبثق من التفاعل الدينامي المباشر بين الجسد والبيئة <span class="citation" data-full-ref="Gallagher, S. (2017). Enactivist interventions: Rethinking the mind. Oxford University Press.">(Gallagher, 2017)</span>. يشكل هذا الطرح الإبستمولوجي الركيزة الأساسية لتبرير استخدام "السيكودراما" كبيئة محاكاة تفاعلية في التوجيه المهني.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="thesis">
+                <div class="hero-box">
+                    <h2>الأطروحة المركزية: الانتقال إلى الإدراك الفاعل (Enactivism)</h2>
+                    <p>يطرح غالاغر أطروحة راديكالية تتجاوز القول المبتذل "الجسد يؤثر على العقل". يدافع عن <span class="concept-link" data-title="المقاربة الإنائية / الفاعلة (Enactivism)" data-def="مقاربة ترى أن الإدراك ليس عملية استقبال ومعالجة للمعلومات تحدث داخل الدماغ، بل هو تفاعل مستمر ومباشر (Coupling) بين الكائن والبيئة." data-details="الإدراك هو 'صناعة للمعنى' (Sense-making) ولا يسبق الفعل، بل يخلق أثناءه." data-case="التلميذ على خشبة السيكودراما لا يتخذ القرار المهني داخل جمجمته، بل يتخذه عبر 'الفعل'. التمثيل ليس نتيجة للتفكير، بل هو التفكير ذاته.">المقاربة الفاعلة (Enactivism)</span>، مؤكداً أن الإدراك ليس عملية معالجة معلومات معزولة تنتهي بإصدار أمر حركي، بل هو صناعة للمعنى (Sense-making) تحدث في نقطة التقاطع بين جسد الكائن وبيئته المحيطة <span class="citation" data-full-ref="Gallagher, S. (2023). Embodied and enactive approaches to cognition. Cambridge University Press.">(Gallagher, 2023)</span>.</p>
+                    <p>في سياق بحثنا، التلميذ لا يتخذ قراره المهني داخل جمجمته، بل يتخذه عبر الفعل والتفاعل. عندما يُوضع التلميذ في فضاء المحاكاة المهنية (خشبة المسرح)، فإن الإدراك (القرار المهني) يُخلق <em>أثناء</em> الفعل؛ فالمهنة تُبنى كمعنى متجسد لحظة التفاعل مع أدوات وأشخاص المهنة.</p>
+                </div>
+            </section>
+
+            <section id="problem">
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                        <h2 style="margin: 0;">الإشكال المعرفي النظري: أزمة الانعزال المعرفي</h2>
+                    </div>
+                    <p>ورث علم النفس المعرفي والتوجيه المهني إشكالية عميقة متمثلة في "النزعة الداخلية" (Internalism)، حيث ساد الاعتقاد بأن العقل يقف عند حدود الجمجمة كـ"سجين" يحلل استبيانات ورقية مجردة <span class="citation" data-full-ref="Gallagher, S. (2017).">(Gallagher, 2017)</span>. يمكن صياغة التساؤل الإبستمولوجي كالتالي:</p>
+                    <p style="font-weight: bold; font-size: 1.1em; text-align: center; color: var(--primary-color); margin: 20px 0;">
+                        إذا كانت الحدود البيولوجية للإنسان ليست هي الحدود المعرفية لعقله، فكيف نستمر في توجيه المتعلم مهنياً باختباره داخل قاعة صامتة ومنعزلة، متجاهلين أن الإدراك الفعلي "مضمن" (Embedded) و"ممتد" (Extended) في البيئة؟
+                    </p>
+                </div>
+            </section>
+
+            <section id="arguments">
+                <h2>الحجج الإبستمولوجية لدعم التدخل التجريبي (السيكودراما)</h2>
+                <ol class="arguments-list">
+                    <li>
+                        <strong>حجة "الميسرات البيئية" (Affordances):</strong> نحن لا ندرك الأشياء كموضوعات مجردة، بل ندركها بناءً على ما تتيحه لنا من أفعال. الورقة المكتوب عليها "مهنة الطب" لا تقدم ميسراً بيئياً؛ أما سماعة الطبيب على خشبة المسرح فتُدرك كإمكانية متجسدة تدعو لـ "أداء الفعل" <span class="citation" data-full-ref="Gallagher, S. (2017).">(Gallagher, 2017)</span>.
+                    </li>
+                    <li>
+                        <strong>حجة "التبعية الحسية-الحركية":</strong> الإدراك ليس استقبالاً سلبياً كالكاميرا، بل هو استباق حركي. لا يمكن للمتعلم فهم المهنة بمعزل عما يستطيع فعله بجسده لتقمصها ومحاكاتها.
+                    </li>
+                    <li>
+                        <strong>حجة "الدماغ التنبؤي والاستدلال النشط" (Active Inference):</strong> الكائن الحي يرسل تنبؤات للبيئة. عندما تعطي التلميذ موقفاً مفاجئاً على المسرح، فإنك تخلق <span class="concept-link" data-title="خطأ تنبؤ (Prediction Error)" data-def="التفاوت بين ما يتوقعه الدماغ بناءً على نماذجه الداخلية، وبين الإشارات الحسية القادمة من البيئة." data-details="لتقليل هذا الخطأ، يقوم الجسد بـ 'استدلال نشط'، أي يتدخل جسدياً في البيئة لتغييرها أو يعدل حركته للتكيف معها." data-case="عندما يتفاجأ التلميذ (الذي يلعب دور ممرض) بتوقف قلب المريض الوهمي، فإن استجابته الجسدية (ارتباك أو اندماج) هي الاستدلال النشط الذي يعكس حقيقة تكيفه المهني بعيداً عن العقلنة الواعية.">خطأ تنبؤ (Prediction Error)</span>، ويقوم نظامه المعرفي بتقليله جسدياً، إما عبر التماهي أو الانسحاب. هذا يُشكل المؤشر الأصدق للتكيف المهني <span class="citation" data-full-ref="Gallagher, S. (2023).">(Gallagher, 2023)</span>.
+                    </li>
+                </ol>
+            </section>
+
+            <section id="hypotheses">
+                <h2>الفرضيات الإبستمولوجية الضمنية (وتفكيكها)</h2>
+                
+                <details>
+                    <summary>1. هدم "نموذج الشطيرة" المعرفي (The Sandwich Model)</summary>
+                    <p>يرفض غالاغر النموذج الكلاسيكي الذي يقسم الإدراك إلى: استقبال حسي ← معالجة ذهنية ← أمر حركي. في الإدراك الفاعل، الفعل هو التفكير نفسه، ولا يوجد فاصل بين الإحساس والتفكير والحركة <span class="citation" data-full-ref="Gallagher, S. (2005). How the body shapes the mind.">(Gallagher, 2005)</span>.</p>
+                </details>
+                
+                <details>
+                    <summary>2. اللا-تمثيلية الراديكالية (Anti-Representationalism)</summary>
+                    <p>يفترض تيار المقاربة الإنائية أننا لا نحتاج لبناء خرائط ذهنية معقدة أو "سرديات مجردة" للتفاعل مع العالم، لأن الإدراك يتم عبر الاتصال المباشر. (وهذه الفرضية تحدٍ حقيقي عندما يتعلق الأمر بالتوجيه لمستقبل غير موجود) <span class="citation" data-full-ref="Gallagher, S. (2017).">(Gallagher, 2017)</span>.</p>
+                </details>
+
+                <details>
+                    <summary>3. أسبقية "مخطط الجسد" (Body Schema) على "صورة الجسد" (Body Image)</summary>
+                    <p>يميز غالاغر بين <span class="concept-link" data-title="مخطط الجسد (Body Schema)" data-def="نظام من العمليات الحسية الحركية غير الواعية التي تنظم الحركة والوضعية بشكل آلي." data-details="هو الأداء الخفي للجسد، ويتفاعل مع البيئة بتكامل، مما يولد إحساساً بالفعل (Sense of Agency) على المستوى ما قبل الشعوري." data-case="أثناء المحاكاة السردية (Role-playing)، ينشط 'مخطط جسد' المتعلم ليجسد تفاعلات المهنة آلياً. هذا التنشيط الجسدي هو اللبنة الأولى لظاهرة 'نضح الهوية'.">مخطط الجسد</span> كعمليات حسية حركية لا واعية، وصورة الجسد كتمثيل واع. الوعي ما قبل الانعكاسي الناتج عن مخطط الجسد هو ما يمنحنا "الإحساس بالفعل" <span class="citation" data-full-ref="Gallagher, S. (2005). p. 24">(Gallagher, 2005, p. 24)</span>.</p>
+                </details>
+            </section>
+
+            <section id="critiques" class="critiques-section">
+                <h2>حدود الطرح الإبستمولوجي: مأزق الغياب والتبرير المنهجي للسيكودراما</h2>
+                <p>رغم القوة الهائلة للمقاربة الإنائية، إلا أن تطبيقها الحرفي في "التوجيه المهني" يصطدم بحدود قاسية، وهي المساحة التي يثبت فيها تصميمنا المنهجي أصالته:</p>
+                <ul>
+                    <li>
+                        <strong>مأزق "المشكلات المتعطشة للتمثيل" (Representation-Hungry Problems):</strong> الإدراك الفاعل ممتاز في تفسير التقاط كرة حاضرة، لكن كيف يفسر جسدك مهنة ستحدث بعد سنوات؟ القرار المهني يتعامل مع مستقبل غائب وبيئة غير موجودة <span class="citation" data-full-ref="Gallagher, S. (2017).">(Gallagher, 2017)</span>. 
+                        <br><em>التدخل:</em> السيكودراما هي الحل الإبستمولوجي! إنها "تُحضر" المستقبل الغائب إلى قاعة الدرس، مما يوفر بيئة مادية حاضرة تسمح للجسد بالتفاعل معها فاعلياً (Enactive).
+                    </li>
+                    <li>
+                        <strong>فجوة السرد والمعنى (The Meaning-Narrative Gap):</strong> غالاغر يفسر الرجفة الجسدية والارتباك اللحظي، لكنه يفتقر لأدوات تحويلها إلى هوية سردية طويلة الأمد.
+                        <br><em>التدخل:</em> لذلك ندمج نظريات غالاغر مع المقاربة البنائية لسافيكاس (Savickas)؛ لنترجم <span class="concept-link" data-title="صنع المعنى التشاركي (Participatory Sense-making)" data-def="العملية الجماعية التي يقوم خلالها المشاركون بشكل ديناميكي ببناء وتفاوض معاني وتصورات حول مهنة معينة." data-details="تتجلى في التفاعل الثانوي بين الذوات، وتؤدي لتوليد رؤى لم تكن موجودة لدى الأفراد بشكل منفرد." data-case="النقاش الجسدي واللغوي الذي يدور بين المتعلمين أثناء وبعد أداء مشهد يمثل مستشفى، حيث يتم بناء فهم مشترك وواقعي لمهنة الطب.">صنع المعنى التشاركي</span> إلى سرديات مهنية وتكيف مهني قابل للقياس <span class="citation" data-full-ref="Gallagher, S. (2023). p. 50">(Gallagher, 2023, p. 50)</span>.
+                    </li>
+                </ul>
+            </section>
+
+            <section id="map">
+                <h2>الخريطة المفاهيمية: من الإدراك الفاعل إلى نضح الهوية</h2>
+                <p>توضح الخطاطة كيف يتم استغلال البيئة المضمنة (المحاكاة المسرحية) لكسر العزلة المعرفية، وتوليد إدراك متجسد يؤدي لاستقرار الهوية.</p>
+                <div class="mermaid">
+                    graph TD;
+                        A[النموذج الكلاسيكي المرفوض] -->|انعزال| B(نموذج الشطيرة / استبيان مجرد);
+                        C[المقاربة الإنائية الفاعلة Enactivism] --> D[فضاء السيكودراما Embedded Environment];
+                        D --> E[الميسرات البيئية Affordances];
+                        D --> F[مواقف ضاغطة Triggers];
+                        E --> G(تنشيط مخطط الجسد Body Schema);
+                        F --> H(خطأ تنبؤ Prediction Error);
+                        H --> I(استدلال نشط Active Inference);
+                        G --> J[صنع معنى تشاركي PSM];
+                        I --> J;
+                        J --> K((نضح الهوية Identity Bleed));
+                        K --> L[بناء ذات مهنية ممكنة Savickas];
+                        
+                        style C fill:#2c3e50,stroke:#333,stroke-width:2px,color:#fff
+                        style K fill:#d35400,stroke:#333,stroke-width:2px,color:#fff
+                        style L fill:#2980b9,stroke:#333,stroke-width:2px,color:#fff
+                </div>
+            </section>
+
+            <section id="engineering">
+                <h2>الهندسة التطبيقية: ترجمة "الإدراك الفاعل" ميدانياً</h2>
+                <p>الخطوات الإجرائية التي توضح كيف تعمل المحاكاة المسرحية كتدخل إبستمولوجي متجسد.</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>1. كسر العزلة (Embedding)</h4>
+                            <p>نقل المتعلم من المقعد الدراسي إلى ركح السيكودراما وتزويده بأدوات حقيقية أو رمزية. البيئة هنا تصبح جزءاً تأسيسياً من نظامه الإدراكي (Extended Cognition) <span class="citation" data-full-ref="Gallagher, S. (2017).">(Gallagher, 2017)</span>.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>2. تنشيط مخطط الجسد (Body Schema Activation)</h4>
+                            <p>عندما يبدأ المتعلم في أداء الدور المهني، يتم تفعيل قدراته الحسية-الحركية بشكل لا واعٍ، ويبدأ في استشعار إمكانيات الفعل المتاحة دون حاجة لتحليل لفظي <span class="citation" data-full-ref="Gallagher, S. (2005). p. 24">(Gallagher, 2005, p. 24)</span>.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>3. الاستدلال النشط التشاركي (Active Inference)</h4>
+                            <p>تدخل الباحث بمحفز مفاجئ (Trigger) يُربك السياق المتوقع. استجابة التلميذ الجسدية العفوية للتكيف مع الموقف تمثل "تفكيراً متجسداً" و"صنع معنى تشاركي" مع أقرانه <span class="citation" data-full-ref="Gallagher, S. (2023). p. 50">(Gallagher, 2023, p. 50)</span>.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>4. نضح الهوية (Identity Bleed)</h4>
+                            <p>يتسرب الإحساس بالفاعلية (Sense of Agency) المتولد أثناء الأداء الجسدي، من اللحظة المسرحية العابرة ليتحول إلى إدراك انعكاسي ضمن الهوية الواقعية للمراهق، مما يشكل "ذاتاً مهنية ممكنة" قابلة للسرد.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quotes">
+                <h2>اقتباسات مرجعية دالة</h2>
+                
+                <blockquote>
+                    <p>تتكون صورة الجسد من نظام من التصورات والاتجاهات والمعتقدات المتعلقة بجسد الفرد. على النقيض من ذلك، فإن مخطط الجسد هو نظام من القدرات الحسية-الحركية التي تعمل بدون وعي أو ضرورة للمراقبة الإدراكية.</p>
+                    <footer>&mdash; <span class="citation" data-full-ref="Gallagher, S. (2005). How the body shapes the mind. Oxford University Press. p. 24">(Gallagher, 2005, p. 24)</span></footer>
+                </blockquote>
+
+                <blockquote>
+                    <p>السمة المميزة للتفاعل الثانوي بين الذوات هي أن شيئاً أو حدثاً ما يمكن أن يصبح محوراً للتركيز بين الأشخاص... يتولد المعنى ويتحول في التفاعل المتبادل بين عملية التفاعل المتطورة والأفراد المنخرطين فيها.</p>
+                    <footer>&mdash; <span class="citation" data-full-ref="Gallagher, S. (2023). Embodied and enactive approaches to cognition. Cambridge University Press. pp. 46, 50">(Gallagher, 2023, pp. 46, 50)</span></footer>
+                </blockquote>
+            </section>
+
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="conceptModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h3 class="modal-title" id="modalTitle">اسم المفهوم</h3>
+            <p><strong>التعريف الأكاديمي:</strong> <span id="modalDef">...</span></p>
+            <p><strong>الامتداد النظري:</strong> <span id="modalDetails">...</span></p>
+            <div class="modal-case-study">
+                <strong>💡 حالة تطبيقية (سياق التوجيه المدرسي وبناء المسار):</strong>
+                <p id="modalCase" style="margin-bottom: 0;">...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تهيئة مكتبة Mermaid
+        mermaid.initialize({ startOnLoad: true, theme: 'default', fontFamily: 'Cairo' });
+
+        // تفاعلية القائمة الجانبية (ScrollSpy)
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('#toc-list a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // نظام النوافذ المنبثقة (Modals)
+            const conceptLinks = document.querySelectorAll('.concept-link');
+            const modal = document.getElementById('conceptModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDef = document.getElementById('modalDef');
+            const modalDetails = document.getElementById('modalDetails');
+            const modalCase = document.getElementById('modalCase');
+
+            conceptLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalTitle.textContent = link.getAttribute('data-title');
+                    modalDef.textContent = link.getAttribute('data-def');
+                    modalDetails.textContent = link.getAttribute('data-details');
+                    modalCase.textContent = link.getAttribute('data-case');
+                    
+                    modal.classList.add('active');
+                });
+            });
+
+            // إغلاق النافذة
+            closeModalBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            // إغلاق عند النقر خارج المحتوى
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

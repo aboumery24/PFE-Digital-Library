@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المكتبة الرقمية: السردية المتجسدة والهوية المهنية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* المتغيرات اللونية والتصميمية */
+        :root {
+            --bg-color: #f4f7fb;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --primary: #1e3799; 
+            --secondary: #e58e26; 
+            --accent: #4a69bd;
+            --card-bg: #ffffff;
+            --axis1-color: #079992; 
+            --axis2-color: #b71540; 
+            --axis3-color: #8e44ad; 
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 20px rgba(0,0,0,0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Amiri', serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden; /* لمنع ظهور شريط التمرير الأفقي بسبب المعجم */
+        }
+
+        h1, h2, h3, .sans-font { font-family: 'Tajawal', sans-serif; }
+
+        /* ================================================== */
+        /* 1. رأس الصفحة (Header & Hero) */
+        /* ================================================== */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 40px 20px 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 25px auto;
+            opacity: 0.9;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-nav {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+        }
+
+        .btn-nav:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* زر المعجم المميز */
+        .btn-glossary {
+            background: var(--secondary);
+            border: none;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(229, 142, 38, 0.3);
+        }
+        .btn-glossary:hover { 
+            background: #d35400; 
+            color: white; 
+            box-shadow: 0 6px 15px rgba(229, 142, 38, 0.5);
+        }
+
+        /* ================================================== */
+        /* 2. شريط البحث */
+        /* ================================================== */
+        .search-wrapper {
+            max-width: 700px;
+            margin: -30px auto 40px auto;
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 18px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            box-shadow: var(--shadow-lg);
+            font-family: 'Tajawal', sans-serif;
+            outline: none;
+            transition: var(--transition);
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 10px 30px rgba(30, 55, 153, 0.2);
+            transform: scale(1.02);
+        }
+
+        /* ================================================== */
+        /* 3. العناوين الفاصلة للمحاور */
+        /* ================================================== */
+        .axis-header {
+            max-width: 1200px;
+            margin: 50px auto 20px auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .axis-header h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .axis-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: bold;
+        }
+
+        .bg-axis1 { background-color: var(--axis1-color); }
+        .bg-axis2 { background-color: var(--axis2-color); }
+        .bg-axis3 { background-color: var(--axis3-color); }
+
+        /* ================================================== */
+        /* 4. شبكة البطاقات */
+        /* ================================================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #edf2f7;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            transition: var(--transition);
+        }
+
+        .card.c-axis1::before { background-color: var(--axis1-color); }
+        .card.c-axis2::before { background-color: var(--axis2-color); }
+        .card.c-axis3::before { background-color: var(--axis3-color); }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        .card:hover::before { width: 10px; }
+
+        .card h3 {
+            margin: 0 0 15px 0;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .author-tag {
+            display: inline-block;
+            background: #f1f2f6;
+            color: var(--text-muted);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-family: 'Tajawal', sans-serif;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .card p { color: var(--text-muted); font-size: 1rem; margin: 0; }
+
+        /* ================================================== */
+        /* 5. القارئ المدمج (Iframe Viewer) */
+        /* ================================================== */
+        .viewer-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .viewer-container {
+            width: 95%; height: 95%;
+            background: white;
+            border-radius: 15px;
+            display: flex; flex-direction: column;
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .viewer-overlay.active { opacity: 1; }
+        .viewer-overlay.active .viewer-container { transform: translateY(0); }
+
+        .viewer-header {
+            background: #f8f9fa;
+            padding: 15px 25px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .viewer-title { font-family: 'Tajawal', sans-serif; font-weight: bold; color: var(--primary); margin: 0; }
+
+        .viewer-actions button {
+            padding: 8px 20px; border: none; border-radius: 8px;
+            font-family: 'Tajawal', sans-serif; font-weight: bold;
+            cursor: pointer; margin-right: 10px; transition: var(--transition);
+        }
+
+        .btn-print { background: var(--secondary); color: white; }
+        .btn-close { background: #e74c3c; color: white; }
+        iframe { width: 100%; height: 100%; border: none; background: white; }
+
+        /* ================================================== */
+        /* 6. تصميم المعجم الإبستمولوجي (Off-Canvas Drawer) */
+        /* ================================================== */
+        .glossary-overlay {
+            display: none;
+            position: fixed;
+            top: 0; right: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1500;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glossary-drawer {
+            position: absolute;
+            top: 0; right: -500px; /* مخفي خارج الشاشة */
+            width: 100%;
+            max-width: 500px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .glossary-overlay.active { opacity: 1; }
+        .glossary-overlay.active .glossary-drawer { right: 0; }
+
+        .glossary-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .glossary-header h2 { margin: 0; font-size: 1.5rem; }
+        .close-glossary {
+            background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; transition: 0.2s;
+        }
+        .close-glossary:hover { color: var(--secondary); transform: scale(1.1); }
+
+        .glossary-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        /* تنسيق حروف المعجم */
+        .letter-section { margin-bottom: 20px; }
+        .letter-title {
+            background: #f1f2f6;
+            color: var(--primary);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-right: 4px solid var(--secondary);
+            font-weight: bold;
+        }
+
+        /* تصميم الأكورديون للمفاهيم */
+        .accordion-item {
+            border: 1px solid #eee;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .accordion-btn {
+            width: 100%;
+            text-align: right;
+            padding: 12px 15px;
+            background: white;
+            border: none;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-btn:hover { background: #fafafa; color: var(--secondary); }
+        .accordion-btn.active { background: #fdf3ea; color: var(--secondary); border-bottom: 1px solid #eee;}
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #fafafa;
+        }
+        .accordion-content p {
+            padding: 15px;
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+        .term-author {
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: var(--primary);
+            background: #eef2f5;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="sans-font">المكتبة السريرية: السردية المتجسدة</h1>
+        <p>مكتبة رقمية تفاعلية للبحث الميداني حول دور السردية المتجسدة والمحاكاة في بناء الهوية المهنية للمراهق في السياق المغربي.</p>
+        
+        <div class="top-nav">
+            <a href="#axis1" class="btn-nav">المحور 1: التوجيه المهني</a>
+            <a href="#axis2" class="btn-nav">المحور 2: المعرفة المتجسدة</a>
+            <a href="#axis3" class="btn-nav">المحور 3: السرد والصدمة</a>
+            <button class="btn-nav btn-glossary" onclick="openGlossary()">المعجم الإبستمولوجي 📖</button>
+        </div>
+    </header>
+
+    <div class="search-wrapper">
+        <input type="text" id="searchInput" class="search-input" placeholder="ابحث عن عالم، نظرية، أو مفهوم (مثال: سافيكاس، المحاكاة، التنبؤ)..." onkeyup="filterCards()">
+    </div>
+
+    <div class="container">
+        
+        <div class="axis-header" id="axis1">
+            <span class="axis-badge bg-axis1">المحور الأول</span>
+            <h2 class="sans-font">نظريات التوجيه والمسار المهني</h2>
+        </div>
+        <div class="grid">
+            <div class="card c-axis1" onclick="openViewer('savickas.html', 'نظرية بناء المسار المهني')">
+                <span class="author-tag">Mark Savickas</span>
+                <h3 class="sans-font">نظرية بناء المسار المهني</h3>
+                <p>كيف يبني المراهق سرديته المهنية، وتحويل "الذوات الممكنة" إلى سرديات وقرارات قابلة للتطبيق.</p>
+            </div>
+            <div class="card c-axis1" onclick="openViewer('Paul hartung1.html', 'تصميم الحياة')">
+                <span class="author-tag">Paul Hartung</span>
+                <h3 class="sans-font">تصميم الحياة (Life Design)</h3>
+                <p>الانتقال من التوجيه الكلاسيكي إلى هندسة المسار عبر المعنى، السرد، والاهتمام بالسياق السيكولوجي.</p>
+            </div>
+            <div class="card c-axis1" onclick="openViewer('Donald Super.html', 'دورة الحياة وفضاء الحياة')">
+                <span class="author-tag">Donald Super</span>
+                <h3 class="sans-font">دورة الحياة وفضاء الحياة</h3>
+                <p>تطور النضج المهني عبر مراحل الحياة، وكيف تتشكل الهوية المهنية كتطبيق لمفهوم الذات.</p>
+            </div>
+        </div>
+
+        <div class="axis-header" id="axis2">
+            <span class="axis-badge bg-axis2">المحور الثاني</span>
+            <h2 class="sans-font">المعرفة المتجسدة والدماغ التنبؤي</h2>
+        </div>
+        <div class="grid">
+            <div class="card c-axis2" onclick="openViewer('hohwy.html', 'نظرية الدماغ التنبؤي')">
+                <span class="author-tag">Jakob Hohwy</span>
+                <h3 class="sans-font">نظرية الدماغ التنبؤي</h3>
+                <p>كيف يعالج الدماغ والجسد المفاجآت (Triggers) على خشبة المسرح باستخدام آلية "تقليل خطأ التنبؤ".</p>
+            </div>
+            <div class="card c-axis2" onclick="openViewer('Chaun Gallagher.html', 'الإدراك المجسد والفاعل')">
+                <span class="author-tag">Shaun Gallagher</span>
+                <h3 class="sans-font">الإدراك المجسد والفاعل</h3>
+                <p>أولوية "الجسد الفاعل" في إنتاج المعنى واستكشاف البيئة المهنية مقارنة بالعمليات الذهنية المجردة.</p>
+            </div>
+            <div class="card c-axis2" onclick="openViewer('Varela.html', 'المقاربة التفاعلية')">
+                <span class="author-tag">Francisco Varela</span>
+                <h3 class="sans-font">المقاربة التفاعلية (Enactivism)</h3>
+                <p>الإدراك ليس تمثيلاً سلبياً، بل هو "فعل متبادل" يخلق الهوية من خلال الاحتكاك الحي بالبيئة.</p>
+            </div>
+            <div class="card c-axis2" onclick="openViewer('Mark johnson.html', 'المعنى المتجسد والاستعارة')">
+                <span class="author-tag">Mark Johnson</span>
+                <h3 class="sans-font">المعنى المتجسد والاستعارة</h3>
+                <p>كيف تنشأ المفاهيم والسرديات المهنية من أساس التجارب الحسية-الحركية والبيولوجية.</p>
+            </div>
+            <div class="card c-axis2" onclick="openViewer('Antonio damazio.html', 'فرضية العلامة الجسدية')">
+                <span class="author-tag">António Damásio</span>
+                <h3 class="sans-font">فرضية العلامة الجسدية</h3>
+                <p>لا يوجد قرار مهني عقلاني محض؛ الانفعالات والجسد هما البوصلة الحقيقية لتوجيه العقل.</p>
+            </div>
+            <div class="card c-axis2" onclick="openViewer('lush.html', 'التحكم الظاهراتي والتوقع')">
+                <span class="author-tag">Lush, Dienes, & Seth</span>
+                <h3 class="sans-font">التحكم الظاهراتي والتوقع</h3>
+                <p>الآلية العصبية التي تفسر كيف يولد لعب الأدوار تجارب جسدية تغير الهوية (آلية نضح الهوية).</p>
+            </div>
+            <div class="card c-axis2" onclick="openViewer('Mesquita_Barrett.html', 'العواطف المبنية ثقافياً')">
+                <span class="author-tag">Mesquita & Barrett</span>
+                <h3 class="sans-font">العواطف المبنية ثقافياً</h3>
+                <p>العواطف ليست ردود فعل بيولوجية خام، بل هي مبنية ضمن سياقات ثقافية توجه سلوك المراهق.</p>
+            </div>
+        </div>
+
+        <div class="axis-header" id="axis3">
+            <span class="axis-badge bg-axis3">المحور الثالث</span>
+            <h2 class="sans-font">علم النفس السردي، الصدمة، والسرد</h2>
+        </div>
+        <div class="grid">
+            <div class="card c-axis3" onclick="openViewer('Bessel van der kolk.html', 'الذاكرة الجسدية والصدمة')">
+                <span class="author-tag">Bessel van der Kolk</span>
+                <h3 class="sans-font">الذاكرة الجسدية والصدمة</h3>
+                <p>الجسد يحتفظ بالخبرات. توظيف السيكودراما لتحرير التوتر وإعادة صياغة السردية النفسية المهنية.</p>
+            </div>
+            <div class="card c-axis3" onclick="openViewer('Janos Laszlo.html', 'علم النفس السردي التاريخي')">
+                <span class="author-tag">János László</span>
+                <h3 class="sans-font">علم النفس السردي التاريخي</h3>
+                <p>الهوية تتشكل عبر استيعاب السرديات الاجتماعية والتاريخية والثقافية، مما ينعكس على الخيارات.</p>
+            </div>
+            <div class="card c-axis3" onclick="openViewer('Roy Dings.html', 'الهوية واللايقين الظاهراتي')">
+                <span class="author-tag">Roy Dings</span>
+                <h3 class="sans-font">الهوية واللايقين الظاهراتي</h3>
+                <p>التفاعل الحركي بين الذات والبيئة في حالات الغموض وتأثيرها المباشر على بناء ودينامية الهوية.</p>
+            </div>
+            <div class="card c-axis3" onclick="openViewer('McAdams.html', 'نموذج الهوية السردية')">
+                <span class="author-tag">Dan McAdams</span>
+                <h3 class="sans-font">نموذج الهوية السردية</h3>
+                <p>كيف يبني الأفراد قصة حياة متماسكة (ماضٍ، حاضر، ومستقبل) لإضفاء معنى على مسارهم وهويتهم.</p>
+            </div>
+            <div class="card c-axis3" onclick="openViewer('Hubert J. M. Hermans, Thorsten Gieser).html', 'نظرية الذات الحوارية')">
+                <span class="author-tag">Hermans & Gieser</span>
+                <h3 class="sans-font">نظرية الذات الحوارية</h3>
+                <p>الذات تعددية من الأصوات والمواقف (I-positions) التي تتفاوض داخلياً وتتأثر بالمجتمع.</p>
+            </div>
+            <div class="card c-axis3" onclick="openViewer('Jean cottraux.html', 'العلاج المعرفي والمخططات')">
+                <span class="author-tag">Jean Cottraux</span>
+                <h3 class="sans-font">العلاج المعرفي والمخططات</h3>
+                <p>دور المخططات المعرفية (Schemas) في تشكيل المعتقدات، وإعادة هيكلة السرديات السلبية.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="viewer-overlay" id="viewerOverlay">
+        <div class="viewer-container">
+            <div class="viewer-header">
+                <h3 class="viewer-title" id="viewerTitle">اسم النظرية</h3>
+                <div class="viewer-actions">
+                    <button class="btn-print" onclick="printFile()">طباعة أكاديمية 🖨️</button>
+                    <button class="btn-close" onclick="closeViewer()">إغلاق ❌</button>
+                </div>
+            </div>
+            <iframe id="fileIframe" src=""></iframe>
+        </div>
+    </div>
+
+    <div class="glossary-overlay" id="glossaryOverlay">
+        <div class="glossary-drawer">
+            <div class="glossary-header">
+                <h2 class="sans-font">المعجم الإبستمولوجي</h2>
+                <button class="close-glossary" onclick="closeGlossary()">×</button>
+            </div>
+            <div class="glossary-body" id="glossaryBody">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. نظام الفلترة والبحث
+            window.filterCards = function() {
+                let input = document.getElementById('searchInput').value.toLowerCase();
+                let cards = document.getElementsByClassName('card');
+                for (let i = 0; i < cards.length; i++) {
+                    let cardText = cards[i].innerText.toLowerCase();
+                    cards[i].style.display = cardText.includes(input) ? "" : "none";
+                }
+            };
+
+            // 2. نظام فتح وإغلاق الملفات (القارئ)
+            const viewerOverlay = document.getElementById('viewerOverlay');
+            const fileIframe = document.getElementById('fileIframe');
+            const viewerTitle = document.getElementById('viewerTitle');
+
+            window.openViewer = function(fileName, title) {
+                viewerTitle.innerText = title;
+                fileIframe.src = fileName; 
+                viewerOverlay.style.display = "flex";
+                setTimeout(() => { viewerOverlay.classList.add('active'); }, 10);
+                document.body.style.overflow = "hidden";
+            };
+
+            window.closeViewer = function() {
+                viewerOverlay.classList.remove('active');
+                setTimeout(() => {
+                    viewerOverlay.style.display = "none";
+                    fileIframe.src = ""; 
+                }, 300); 
+                document.body.style.overflow = "auto";
+            };
+
+            window.printFile = function() {
+                fileIframe.contentWindow.focus();
+                fileIframe.contentWindow.print();
+            };
+
+            // 3. قاعدة بيانات المعجم الإبستمولوجي (مرتبة أبجدياً)
+            const glossaryData = [
+                {
+                    letter: "أ",
+                    terms: [
+                        { term: 'أخطاء التنبؤ المهني', en: 'Vocational Prediction Error', def: 'الفجوة المعرفية بين توقعات التلميذ المسبقة والخبرة الحسية الفعلية على الركح؛ وهي المحرك الأساسي للتعلم وإعادة التوجيه.', author: 'Hohwy' },
+                        { term: 'أنسنة المسار المهني', en: 'Humanizing Career', def: 'رؤية التوجيه كبناء للهوية والمعنى الوجودي بدلاً من مجرد مطابقة تقنية للميول والوظائف.', author: 'Hartung' },
+                        { term: 'الأشياء السير-ذاتية', en: 'Biographical Objects', def: 'مقتنيات مادية تعمل كـ "سقالات" تثبت الهوية السردية المكتسبة في البيئة الواقعية.', author: 'Dings' },
+                        { term: 'الأنا', en: 'The I', def: 'الفاعل الديناميكي الذي يتنقل بين مواقع الذات المختلفة ويقيم حوارات بينها لتنظيم الهوية.', author: 'Hermans' },
+                        { term: 'الإدراك المتجسد', en: 'Embodied Cognition', def: 'المبدأ القائل بأن العمليات العقلية تتشكل بجوهرها من خلال بنية الجسد وتفاعلاته الحس-حركية.', author: 'Gallagher' },
+                        { term: 'الإدراك الفاعل', en: 'Enactivism', def: 'رؤية الإدراك كفعل متجسد ينتج عالماً؛ فالمعنى يُخلق عبر التفاعل النشط بين الكائن والبيئة.', author: 'Varela' },
+                        { term: 'الإدراك الموقعي', en: 'Situated Cognition', def: 'الإدراك كعملية مرتبطة بالسياق المادي والاجتماعي، وليس معالجة رمزية مجردة.', author: 'Mesquita' },
+                        { term: 'الاستتباب', en: 'Homeostasis', def: 'الميل البيولوجي للحفاظ على توازن الحياة، وهو المحرك الأصلي خلف البحث عن الاستقرار المهني.', author: 'Damasio' },
+                        { term: 'الاستدلال الفاعل', en: 'Active Inference', def: 'التحرك لتغيير الواقع أو السلوك ليطابق التوقعات والهوية الداخلية.', author: 'Hohwy' },
+                        { term: 'الاستعارة التصورية', en: 'Conceptual Metaphor', def: 'فهم مجال تجريدي (كالمهنة) عبر إسقاط بنية من مجال جسدي ملموس (كالمسار).', author: 'Johnson' },
+                        { term: 'الاستجابة التكيفية', en: 'Adapting Response', def: 'السلوكيات النشطة لاستكشاف الأدوار المهنية الجديدة أثناء المحاكاة.', author: 'Hartung' },
+                        { term: 'الإسقاط الاستعاري', en: 'Metaphorical Projection', def: 'آلية نقل بنية "مخطط تصويري" لفهم المفاهيم المجردة وتنظيمها.', author: 'Johnson' },
+                        { term: 'الإحساس بالوكالة', en: 'Sense of Agency', def: 'الشعور الذاتي بأنني أنا مصدر الفعل والمتحكم فيه، وهو أساس القرار المستقل.', author: 'Gallagher' },
+                        { term: 'الإغلاق العملياتي', en: 'Operational Closure', def: 'قدرة النظام النفسي على تحديد حالاته الداخلية ذاتياً.', author: 'Varela' }
+                    ]
+                },
+                {
+                    letter: "ب",
+                    terms: [
+                        { term: 'برمجة ذاتية سردية', en: 'Narrative Self-Programming', def: 'العملية التي تقوم فيها القصص الشخصية ببرمجة استجابات الجسد وحركاته المستقبلية.', author: 'Dings' },
+                        { term: 'بصمة سلوكية', en: 'Behavioral Signature', def: 'نمط ثابت من التباين في السلوك عبر المواقف يعكس استقرار الشخصية سياقياً.', author: 'Mesquita' },
+                        { term: 'بناء المسار المهني', en: 'Career Construction', def: 'رؤية المسار كبناء سردي مستمر يهدف لربط تجارب الفرد في هوية متماسكة.', author: 'Savickas' },
+                        { term: 'بناء المعنى التعاوني', en: 'Collaborative Construction', def: 'المبدأ القائل بأن الهوية تُبنى عبر التفاعل بين "الراوي" و"المستمع" (الباحث/الأقران).', author: 'McAdams' },
+                        { term: 'بروتو-ذات', en: 'Proto-self', def: 'القاعدة البيولوجية الدنيا للوعي؛ تمثيل عصبي لا واعي للحالة الحيوية للجسد.', author: 'Damasio' }
+                    ]
+                },
+                {
+                    letter: "ت",
+                    terms: [
+                        { term: 'تبلور مهني', en: 'Vocational Crystallization', def: 'صياغة وتكامل السمات لتصبح أسساً ثابتة للفعل المهني.', author: 'Super' },
+                        { term: 'تجارب ما وراء معرفية', en: 'Metacognitive Experiences', def: 'المشاعر الذاتية المصاحبة للعمليات المعرفية والتي تُستخدم كمصدر للأحكام.', author: 'Schwarz' },
+                        { term: 'تجسيد مزدوج', en: 'Double Embodiment', def: 'رؤية الجسد كموضوع فيزيائي ومركز خبرة معاشة في آن واحد.', author: 'Varela' },
+                        { term: 'تصميم الحياة', en: 'Life Design', def: 'براديغم بناء الذات وتصميم المسار عبر صناعة المعنى في عالم سائل.', author: 'Savickas' },
+                        { term: 'تطور مهني', en: 'Vocational Development', def: 'عملية مستمرة يمر خلالها الفرد بمراحل تطورية لاتخاذ قراراته المهنية.', author: 'Super' },
+                        { term: 'تتابع فدائي', en: 'Redemption Sequence', def: 'نمط سردي يتم فيه تحويل التجارب السلبية إلى نتائج إيجابية وبناءة للهوية.', author: 'McAdams' },
+                        { term: 'تتابع تلوثي', en: 'Contamination Sequence', def: 'نمط سردي تتحول فيه الأحداث الإيجابية إلى نهايات سلبية، مما يعيق بناء الهوية.', author: 'McAdams' },
+                        { term: 'تفعيل', en: 'Enaction', def: 'إنتاج المعنى والواقع عبر الفعل المتجسد والتفاعل مع البيئة.', author: 'Varela' },
+                        { term: 'تكيف مهني', en: 'Career Adaptability', def: 'الموارد النفسية (اهتمام، تحكم، فضول، ثقة) لمواجهة الصدمات المهنية.', author: 'Savickas' },
+                        { term: 'تماسك سردي', en: 'Narrative Coherence', def: 'المقياس العلمي لمدى ترابط واتساق قصة الفرد عن نفسه.', author: 'László' },
+                        { term: 'تيمات الحياة', en: 'Life Themes', def: 'الأنماط السردية المتكررة التي تمنح المعنى لتجارب الفرد المهنية.', author: 'Savickas' },
+                        { term: 'التنظيم من أسفل', en: 'Bottom-up Regulation', def: 'استهداف الجهاز العصبي عبر الحركة (سيكودراما) لاستعادة التوازن قبل المعالجة المعرفية.', author: 'Van der Kolk' },
+                        { term: 'التنظيم من أعلى', en: 'Top-down Regulation', def: 'تغيير المعتقدات والهوية عبر السرد والوعي المعرفي.', author: 'Van der Kolk' }
+                    ]
+                },
+                {
+                    letter: "ج",
+                    terms: [
+                        { term: 'جسد حي', en: 'Lived Body', def: 'الجسد كمركز للخبرة والمنظور المعاش من الداخل.', author: 'Gallagher' },
+                        { term: 'جماليات الفهم', en: 'Aesthetics of Meaning', def: 'الأبعاد الشعورية التي تسبق اللغة وتمنح الإحساس بصدق الخيار المهني.', author: 'Johnson' },
+                        { term: 'جوهرانية', en: 'Essentialism', def: 'الافتراض الخاطئ بوجود "جوهر" ثابت للظواهر النفسية بعيداً عن السياق.', author: 'Mesquita' }
+                    ]
+                },
+                {
+                    letter: "ح",
+                    terms: [
+                        { term: 'حبكة', en: 'Emplotment', def: 'تحويل أحداث الحياة المتناثرة إلى قصة منطقية هادفة.', author: 'Sarbin' },
+                        { term: 'حقيقة سردية', en: 'Narrative Truth', def: 'المعنى الشخصي الذي يمتلك قوة إقناع وتأثير داخلي يتجاوز الدقة التاريخية.', author: 'Savickas' },
+                        { term: 'حلقة "كما لو"', en: 'As-if Body Loop', def: 'محاكاة الحالة الجسدية لمهنة ما ذهنياً دون فعل فيزيائي.', author: 'Damasio' }
+                    ]
+                },
+                {
+                    letter: "خ",
+                    terms: [
+                        { term: 'خلفية سردية', en: 'Narrative Background', def: 'المحيط الذي يعدله الفرد ليتوافق مع قصته المهنية الجديدة.', author: 'Dings' },
+                        { term: 'خيال تكويني', en: 'Constitutive Imagination', def: 'القدرة على ربط التجربة الجسدية بالمعنى التجريدي.', author: 'Johnson' }
+                    ]
+                },
+                {
+                    letter: "د",
+                    terms: [
+                        { term: 'دماغ تنبؤي', en: 'Predictive Mind', def: 'الدماغ كـ "آلة تنبؤ" تستبق الأحداث لتقليل المفاجآت.', author: 'Hohwy' }
+                    ]
+                },
+                {
+                    letter: "ذ",
+                    terms: [
+                        { term: 'ذاكرة جسدية', en: 'Somatic Memory', def: 'البصمة الفيزيولوجية والحركية التي تتركها التجارب على الجهاز العصبي.', author: 'Van der Kolk' },
+                        { term: 'ذات سير-ذاتية', en: 'Autobiographical Self', def: 'الوعي المبني على الذاكرة والتاريخ، وهو موطن الهوية المستقرة.', author: 'Damasio' },
+                        { term: 'ذات محورية', en: 'Core Self', def: 'الوعي باللحظة الراهنة الناتج عن تفاعل الجسد مع موضوع ما.', author: 'Damasio' },
+                        { term: 'ذات مهنية ممكنة', en: 'Possible Vocational Self', def: 'تمثيل الفرد لذاته في مستقبل مهني محتمل كـ "توقع مجسد".', author: 'Hartung' },
+                        { term: 'ذات حوارية', en: 'Dialogical Self', def: 'رؤية الذات كـ "مجتمع للعقل" يتكون من أصوات ومواقع متعددة تتحاور.', author: 'Hermans' }
+                    ]
+                },
+                {
+                    letter: "ش",
+                    terms: [
+                        { term: 'الشركة', en: 'Communion', def: 'الدافع السردي للارتباط والاتحاد والاندماج مع الآخرين داخل القصة الشخصية.', author: 'McAdams' }
+                    ]
+                },
+                {
+                    letter: "ص",
+                    terms: [
+                        { term: 'صنع معنى تشاركي', en: 'Participatory Sense-making', def: 'توليد المعنى جماعياً عبر التفاعل الديناميكي.', author: 'Gallagher' },
+                        { term: 'صورة الجسد', en: 'Body Image', def: 'التصورات والمعتقدات الواعية التي يكوّنها الفرد تجاه جسده كموضوع.', author: 'Gallagher' }
+                    ]
+                },
+                {
+                    letter: "ع",
+                    terms: [
+                        { term: 'عقلانية مجسدة', en: 'Embodied Rationality', def: 'الرؤية التي تعتبر المنطق نتاجاً لبنيتنا الجسدية وتفاعلاتنا.', author: 'Johnson' },
+                        { term: 'علم النفس السردي العلمي', en: 'Scientific Narrative Psychology', def: 'التحليل البنيوي للغة السرد كبيانات إمبيريقية.', author: 'László' },
+                        { term: 'العلاقة الحوارية', en: 'Dialogical Relationship', def: 'التفاعل (اتفاق/اختلاف) بين مواقع الأنا المختلفة داخل الذات.', author: 'Hermans' }
+                    ]
+                },
+                {
+                    letter: "ق",
+                    terms: [
+                        { term: 'قلق ديكارتي', en: 'Cartesian Anxiety', def: 'القلق الوجودي الناتج عن انفصال الذات عن العالم.', author: 'Varela' }
+                    ]
+                },
+                {
+                    letter: "ك",
+                    terms: [
+                        { term: 'كليات سردية', en: 'Narrative Universals', def: 'أنماط حبكة كونية تعكس تنظيم أنظمة الانفعال في الدماغ.', author: 'Hogan' }
+                    ]
+                },
+                {
+                    letter: "ل",
+                    terms: [
+                        { term: 'لاتأسس', en: 'Groundlessness', def: 'غياب جوهر ثابت، مما يسمح بمرونة بناء الذات عبر التفاعل.', author: 'Varela' },
+                        { term: 'لعب الأدوار', en: 'Role Playing', def: 'محاكاة تسمح بتجربة القدرات واختبار مفهوم الذات ضد الواقع.', author: 'Super' }
+                    ]
+                },
+                {
+                    letter: "م",
+                    terms: [
+                        { term: 'مبدأ السياق', en: 'Context Principle', def: 'نشوء الظواهر النفسية من التفاعل المستمر مع السياق.', author: 'Mesquita' },
+                        { term: 'محاكاة سردية', en: 'Narrative Simulation', def: '"بروفة وجودية" تسمح باختبار "الذوات الممكنة" في بيئة آمنة.', author: 'Hartung' },
+                        { term: 'مخطط الجسد', en: 'Body Schema', def: 'نظام حركي لا واعي ينظم الحركة آلياً.', author: 'Gallagher' },
+                        { term: 'مخطط تصويري', en: 'Image Schema', def: 'نمط حركي متكرر (كالمسار) يمنح بنية للأفكار المجردة.', author: 'Johnson' },
+                        { term: 'مفهوم الذات', en: 'Self-Concept', def: 'الصورة التي يحملها الفرد عن نفسه والتي يسعى لترجمتها مهنياً.', author: 'Super' },
+                        { term: 'موطن القصدية', en: 'Locus of Intentionality', def: 'الشعور بصدق ملكية القرار المهني وصدوره من الداخل.', author: 'Dings' },
+                        { term: 'مواقع الأنا', en: 'I-positions', def: 'المواقع المختلفة التي تتخذها الأنا في "مجتمع العقل" لتمثيل الذات.', author: 'Hermans' }
+                    ]
+                },
+                {
+                    letter: "ن",
+                    terms: [
+                        { term: 'نضح الهوية', en: 'Identity Bleed', def: 'انتقال المشاعر والمهارات من "الدور التمثيلي" إلى "الهوية الواقعية".', author: 'مستنتج' },
+                        { term: 'نضج مهني', en: 'Vocational Maturity', def: 'درجة التطور المهني ومدى مناسبة السلوك للمرحلة العمرية.', author: 'Super' },
+                        { term: 'نموذج توليدي', en: 'Generative Model', def: 'الخريطة الداخلية التي يستخدمها الدماغ للتنبؤ بالمستقبل المهني.', author: 'Hohwy' }
+                    ]
+                },
+                {
+                    letter: "و",
+                    terms: [
+                        { term: 'وسم جسدي', en: 'Somatic Marker', def: 'علامة انفعالية جسدية توجه الاختيار بسرعة وذكاء فسيولوجي.', author: 'Damasio' },
+                        { term: 'وكالة سردية', en: 'Agency', def: 'الشعور بملكية الأفعال والقدرة على التأثير في مسار القصة المهنية.', author: 'McAdams' }
+                    ]
+                },
+                {
+                    letter: "ي",
+                    terms: [
+                        { term: 'يقظة ذهنية', en: 'Mindfulness', def: 'التواجد الكامل في الخبرة المتجسدة "هنا والآن" لضمان صدق التجربة.', author: 'Varela' }
+                    ]
+                }
+            ];
+
+            // 4. بناء وتشغيل المعجم
+            const glossaryOverlay = document.getElementById('glossaryOverlay');
+            const glossaryBody = document.getElementById('glossaryBody');
+
+            function renderGlossary() {
+                let htmlContent = '';
+                glossaryData.forEach(group => {
+                    htmlContent += `
+                        <div class="letter-section">
+                            <div class="letter-title sans-font">حرف ${group.letter}</div>
+                    `;
+                    group.terms.forEach((item) => {
+                        htmlContent += `
+                            <div class="accordion-item">
+                                <button class="accordion-btn" onclick="toggleAccordion(this)">
+                                    ${item.term} <span style="font-size:0.8em; color:#999; font-weight:normal;">(${item.en})</span>
+                                </button>
+                                <div class="accordion-content">
+                                    <p>${item.def} <br> <span class="term-author">${item.author}</span></p>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    htmlContent += `</div>`;
+                });
+                glossaryBody.innerHTML = htmlContent;
+            }
+
+            window.openGlossary = function() {
+                if(glossaryBody.innerHTML.trim() === '') renderGlossary();
+                glossaryOverlay.style.display = "block"; 
+                setTimeout(() => { glossaryOverlay.classList.add('active'); }, 20);
+                document.body.style.overflow = "hidden";
+            };
+
+            window.closeGlossary = function() {
+                glossaryOverlay.classList.remove('active');
+                setTimeout(() => { glossaryOverlay.style.display = "none"; }, 400);
+                document.body.style.overflow = "auto";
+            };
+
+            window.toggleAccordion = function(btn) {
+                btn.classList.toggle("active");
+                let content = btn.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            };
+
+            // إغلاق النوافذ المنبثقة عند النقر خارجها
+            window.addEventListener('click', function(event) {
+                if (event.target === viewerOverlay) {
+                    closeViewer();
+                }
+                if (event.target === glossaryOverlay) {
+                    closeGlossary();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

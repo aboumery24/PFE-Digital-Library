@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>روي دينغ: التفاعل الديناميكي والتكراري بين التجسيد والهوية السردية</title>
+    <!-- Mermaid.js للخريطة المفاهيمية -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Dubai', 'Tahoma', 'Helvetica', 'Arial', sans-serif;
+            background-color: #FAF9F6;
+            color: #333333;
+            line-height: 1.8;
+            font-size: 18px;
+            padding: 20px;
+            position: relative;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Dubai', 'Helvetica', 'Arial', sans-serif;
+            font-weight: 600;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            color: #222;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.2em;
+        }
+
+        h2 { font-size: 1.8rem; border-bottom: 2px solid #ccc; }
+        h3 { font-size: 1.4rem; border-bottom: 1px dashed #aaa; }
+
+        /* الحاوية الرئيسية مع مساحة للقائمة على اليمين */
+        .container {
+            max-width: 800px;
+            margin-right: 260px; /* مساحة للقائمة */
+            margin-left: auto;
+            padding: 0 15px;
+        }
+
+        /* قائمة التنقل العائمة على اليمين */
+        .toc {
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            width: 220px;
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 1rem 0.8rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            font-family: 'Dubai', 'Helvetica', sans-serif;
+            font-size: 0.9rem;
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc li {
+            margin-bottom: 0.4rem;
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: #444;
+            display: block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .toc a:hover, .toc a.active {
+            background-color: #e0e0e0;
+            color: #000;
+            font-weight: 500;
+        }
+
+        @media (max-width: 1100px) {
+            .container { margin-right: 0; }
+            .toc { display: none; }
+        }
+
+        /* بطاقة تعريف العالم */
+        .profile-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px 25px;
+            margin: 40px 0 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            border: 1px solid #eee;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .profile-desc {
+            flex: 1;
+        }
+
+        .profile-desc p {
+            margin: 0 0 0.5rem;
+        }
+
+        /* صندوق الأطروحة */
+        .hero-box {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 2rem;
+            border-radius: 24px;
+            margin: 40px 0;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .hero-box h2 {
+            color: #f1c40f;
+            border-bottom: none;
+            margin-top: 0;
+        }
+
+        /* أيقونة العنوان */
+        .icon-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .icon-title svg {
+            width: 28px;
+            height: 28px;
+            fill: #2c3e50;
+        }
+
+        /* بطاقة عادية */
+        .card {
+            background: #fff;
+            padding: 1.8rem;
+            border-radius: 24px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.02);
+            margin: 30px 0;
+            border: 1px solid #f0f0f0;
+        }
+
+        /* بطاقة النقد */
+        .critique-card {
+            background: #fff5f5;
+            border-right: 8px solid #c0392b;
+            padding: 1.8rem;
+            border-radius: 16px;
+            margin: 30px 0;
+        }
+
+        /* التفاصيل */
+        details {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            margin: 1rem 0;
+            border: 1px solid #e9ecef;
+        }
+        summary {
+            font-weight: 600;
+            cursor: pointer;
+            color: #2c3e50;
+        }
+
+        /* الاقتباسات */
+        blockquote {
+            background: #f9f9f9;
+            border-right: 8px solid #7f8c8d;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 12px;
+            position: relative;
+            font-style: italic;
+            color: #2c3e50;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        blockquote::before {
+            content: "“";
+            font-size: 6rem;
+            position: absolute;
+            right: 10px;
+            top: -20px;
+            opacity: 0.15;
+            font-family: serif;
+        }
+        .ref {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 1rem;
+            text-align: left;
+            border-top: 1px dotted #ccc;
+            padding-top: 0.5rem;
+        }
+
+        /* المفاهيم التفاعلية */
+        .concept-link {
+            color: #c0392b;
+            border-bottom: 2px dotted #c0392b;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+            padding: 0 2px;
+        }
+        .concept-link:hover {
+            background-color: #ffe6e6;
+        }
+
+        /* نافذة منبثقة */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #fff;
+            max-width: 500px;
+            padding: 2rem;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            position: relative;
+            font-family: 'Dubai', 'Helvetica', sans-serif;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        /* Tooltip للمراجع */
+        .ref-hover {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dashed #999;
+        }
+        .ref-hover:hover::after {
+            content: attr(data-full);
+            position: absolute;
+            background: #2c3e50;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            bottom: 100%;
+            right: 0;
+            margin-bottom: 5px;
+            z-index: 50;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Mermaid */
+        .mermaid {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        /* القوائم */
+        ul, ol {
+            padding-right: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        hr {
+            margin: 3rem 0;
+            border: 0;
+            border-top: 1px solid #eaeaea;
+        }
+        .note {
+            background: #f1f9ff;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- قائمة التنقل العائمة على اليمين -->
+    <nav class="toc" id="toc">
+        <ul>
+            <li><a href="#profile">الباحث</a></li>
+            <li><a href="#thesis">الأطروحة المركزية</a></li>
+            <li><a href="#problem">الإشكال المعرفي</a></li>
+            <li><a href="#arguments">الحجج الأساسية</a></li>
+            <li><a href="#assumptions">الفرضيات الضمنية</a></li>
+            <li><a href="#limits">حدود الطرح</a></li>
+            <li><a href="#conceptmap">الخريطة المفاهيمية</a></li>
+            <li><a href="#methods">الهندسة التطبيقية</a></li>
+            <li><a href="#quotes">اقتباسات</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- تعريف بالباحث -->
+        <section id="profile">
+            <div class="profile-card">
+                <div class="profile-img">🧠</div>
+                <div class="profile-desc">
+                    <p><strong>روي دينغ (Roy Dings)</strong>، باحث في فلسفة العقل وعلم النفس المعرفي، جامعة رادبود نايميخن، هولندا. يركز على التفاعل الديناميكي بين الهوية السردية والتجسيد. ينشر في مجلات مرموقة مثل <em>Phenomenology and the Cognitive Sciences</em>. مقالته "The dynamic and recursive interplay of embodiment and narrative identity" (2018) تقدم آليات ملموسة (البرمجة الذاتية، الدعوات) لفهم كيف يؤثر كل من السرد والجسد في الآخر.</p>
+                    <p style="font-size:0.9rem">أهميته للبحث: يقدم الأدوات النظرية لشرح "نضح الهوية" و"المعرفة المتجسدة" في سياق التوجيه المهني عبر لعب الأدوار.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- الأطروحة المركزية -->
+        <section id="thesis">
+            <div class="hero-box">
+                <h2>📌 الأطروحة المركزية: التفاعل التكراري والديناميكي</h2>
+                <p><span class="concept-link" data-concept="narrative-identity">الهوية السردية</span> و<span class="concept-link" data-concept="embodiment">التجسيد</span> ليسا كيانين منفصلين، بل جانبان ذاتيان (self-aspects) يتفاعلان بشكل ديناميكي وتكراري (recursive). يسعى دينغ إلى سد الفجوة في الأدبيات باقتراح آليتين ملموستين تفسران التأثير المتبادل: <span class="concept-link" data-concept="self-programming">البرمجة الذاتية السردية</span> (من السرد إلى الجسد) والتفاعل مع <span class="concept-link" data-concept="affordances">الدعوات</span> في <span class="concept-link" data-concept="narrative-background">الخلفية السردية</span> (من الجسد إلى السرد).</p>
+                <p><em>أهميتها لدراستنا: تفسر كيف أن لعب الأدوار المهني يعيد برمجة الاستجابات الجسدية للمراهق، وكيف أن التغذية الراجعة الجسدية (الارتياح/النفور) توجه سرديته المهنية.</em></p>
+            </div>
+        </section>
+
+        <!-- الإشكال المعرفي -->
+        <section id="problem" class="card">
+            <div class="icon-title">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                <h3>الإشكال المعرفي</h3>
+            </div>
+            <p>كيف نفسر التداخل الديناميكي بين الهوية السردية والجسد المعاش (lived body)؟ النقاش الدائر حول أولوية أي منهما (السرد أولاً أم الجسد؟) غير كاف. الإشكال الأعمق هو: ما الآليات التي تفسر هذا التفاعل هنا والآن وعلى مدى الزمن؟ يتجاوز دينغ سؤال "من يأتي أولاً؟" إلى سؤال إجرائي: كيف يعمل هذا التفاعل؟</p>
+            <div class="note">
+                <strong>تساؤلات فرعية:</strong>
+                <ul>
+                    <li>كيف تؤثر التأملات السردية (كقرار مهني) على الاستجابات الجسدية التلقائية في المستقبل؟</li>
+                    <li>كيف تنبهنا الإشارات الجسدية (كالتوتر أو الارتياح) إلى وجود خلل في سرديتنا الذاتية؟</li>
+                    <li>ما دور البيئة المادية والاجتماعية (الخلفية السردية) في توسط هذا التفاعل؟</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- الحجج الأساسية -->
+        <section id="arguments">
+            <h3>⚙️ الحجج الأساسية</h3>
+            <ol style="line-height:1.8;">
+                <li><strong>الحجة الأولى (من السرد إلى الجسد – عبر البرمجة الذاتية):</strong> يستعين دينغ بنموذج <span class="concept-link" data-concept="slors">سلورز (2015)</span> عن "السبب البنيوي" (structuring cause). فالتأمل السردي (مثل قرار أن تكون أباً أفضل) لا يسبب الأفعال الآنية مباشرة، بل يبرمج الفرد ليكون مستجيباً بشكل متجسد وغير واع لمثيرات مستقبلية. مثال: جاكوب الذي قرر أن يكون أباً أفضل (سرد) فأصبح جسده يستجيب تلقائياً لنداء مضرب البيسبول بدلاً من مكتبه (هيرمانز وجيسر، 2012، ص. 2). (Dings, 2018, pp. 7-10)</li>
+                <li><strong>الحجة الثانية (من الجسد إلى السرد – عبر الدعوات والخلفية السردية):</strong> بالاستعانة بعلم النفس البيئي (ecological psychology)، يشرح دينغ أن البيئة المحيطة (المشبعة بمعانٍ سردية) تقدم <span class="concept-link" data-concept="solicitations">"دعوات" (solicitations)</span> للفعل. عندما تتوافق هذه الدعوات مع اهتماماتنا السردية (concerns) نختبرها بـ"الملكية" (mineness) والطلاقة. وعندما يختفي هذا الإحساس (كما في حالة الأستاذ كرونجر)، يبعث الجسد إشارة (قلق، تصلب) تستدعي التأمل السردي لإعادة تنظيم المعنى. (Dings, 2018, pp. 11-13)</li>
+            </ol>
+        </section>
+
+        <!-- الفرضيات الضمنية -->
+        <section id="assumptions">
+            <h3>🔍 الفرضيات الضمنية (اضغط للكشف)</h3>
+            <details>
+                <summary>الأسس الإبستيمولوجية لنموذج دينغ</summary>
+                <ul>
+                    <li><strong>الظاهراتية (Phenomenology):</strong> أولوية الخبرة الجسدية المعاشة (الجسد الحي) في بناء المعنى.</li>
+                    <li><strong>الواقعية النقدية (Critical Realism):</strong> الاعتراف بوجود بيئة مادية واجتماعية تؤثر وتتأثر بالسرد.</li>
+                    <li><strong>النظرية السردية (Narrative Theory):</strong> الهوية تُبنى عبر قصص ذات معنى (تماشياً مع سافيكاس).</li>
+                    <li><strong>التفاعلية (Interactionism):</strong> رفض الثنائية (سرد/جسد) واعتماد نموذج تكراري سببي.</li>
+                </ul>
+            </details>
+        </section>
+
+        <!-- حدود الطرح ونقاط ضعفه -->
+        <section id="limits" class="critique-card">
+            <h3>⚠️ حدود الطرح ونقاط ضعفه</h3>
+            <p><strong>الغموض في آليات التغيير:</strong> كيف تتحول "البرمجة الذاتية" إلى استعداد جسدي دائم؟ هل يحتاج التكرار أم يكفي قرار واحد؟ الآلية تحتاج إلى مزيد من التفصيل العصبي-البيولوجي.</p>
+            <p><strong>إهمال البعد الاجتماعي-الثقافي:</strong> التركيز على الفرد والبيئة المباشرة يهمش تأثير البنى الكبرى (كالطبقة، الجنس، الدين). في سياقنا المغربي، الأنساق الثقافية والدينية قد تطغى على الدعوات الفردية.</p>
+            <p><strong>صعوبة القياس:</strong> مفهوم "الإحساس بالملكية" (mineness) دقيق ولكنه صعب القياس كمياً، ويتطلب أدوات كيفيّة عميقة.</p>
+        </section>
+
+        <!-- الخريطة المفاهيمية باستخدام Mermaid -->
+        <section id="conceptmap">
+            <h3>🧠 الخريطة المفاهيمية للنظرية</h3>
+            <pre class="mermaid">
+            graph TD
+                A[الهوية السردية] --> B[التجسيد]
+                B --> A
+                A --> C[البرمجة الذاتية السردية]
+                C --> D[استعدادات جسدية مستقبلية]
+                D --> E[تفاعل مع دعوات البيئة]
+                E --> F[إحساس بالملكية / طلاقة]
+                F -- توافق --> A
+                F -- عدم توافق --> G[إشارة جسدية: قلق/نفور]
+                G --> H[تأمل سردي]
+                H --> I[تعديل السرد / الخلفية السردية]
+                I --> B
+                style A fill:#f9f,stroke:#333,stroke-width:2px
+                style B fill:#bbf,stroke:#33a
+                style C fill:#bfb
+                style F fill:#ffd966
+            </pre>
+            <p class="ref">(مستوحى من Dings, 2018)</p>
+        </section>
+
+        <!-- الهندسة التطبيقية (نموذج بحثي) -->
+        <section id="methods">
+            <h3>📋 الهندسة التطبيقية: نموذج تدخل قائم على لعب الأدوار</h3>
+            <div style="display:flex; flex-direction:column; gap:20px;">
+                <div style="border-right:4px solid #2c3e50; padding-right:20px; margin-right:20px;">
+                    <h4>❶ المدخلات: البرمجة الذاتية السردية الموجهة</h4>
+                    <p>برنامج لعب أدوار مهنية (محام، مهندس، طبيب) يمثل "البرمجة الذاتية" (Dings, 2018, p. 9). الهدف: خلق استعدادات جسدية مستقبلية للتعامل مع بيئة المهنة.</p>
+                </div>
+                <div style="border-right:4px solid #2c3e50; padding-right:20px; margin-right:20px;">
+                    <h4>❷ العملية: المحاكاة المتجسدة</h4>
+                    <p>انخراط المراهق في السيناريو. يتم رصد: تفاعله مع <span class="concept-link" data-concept="affordances">الدعوات</span> (الأدوات، المكان)، تطور <span class="concept-link" data-concept="mineness">شعور الملكية</span> (من التصنع إلى الطبيعة)، والتغذية الراجعة الجسدية (Dings, 2018, pp. 11-13).</p>
+                </div>
+                <div style="border-right:4px solid #2c3e50; padding-right:20px; margin-right:20px;">
+                    <h4>❸ المخرجات: نضح الهوية المهنية المتجسدة</h4>
+                    <p>يقاس من خلال: (أ) السهولة الجسدية في أداء مهام المهنة، (ب) تقارير ذاتية عن شعور "الملكية"، (ج) تغيرات في الخلفية السردية الحقيقية (البيت، المدرسة). (Dings, 2018, p. 14)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- اقتباسات محورية -->
+        <section id="quotes">
+            <h3>📜 اقتباسات محورية من دينغ (2018)</h3>
+            <blockquote>
+                "يرى سلورز أن تشكيل النية البعيدة المدى بوعي، أي البرمجة الذاتية، يشبه نشاط الكهربائي: إنه سبب بنيوي (وليس سببًا مباشرًا أو محفزًا)."
+                <div class="ref">(Dings, 2018, p. 9) <span class="ref-hover" data-full="Dings, R. (2018). The dynamic and recursive interplay of embodiment and narrative identity. Phenomenology and the Cognitive Sciences, 17(3), 1-18.">ⓘ</span></div>
+            </blockquote>
+            <blockquote>
+                "عندما نلزم أنفسنا باهتمام معين أو نتماهى معه، فإن الأفعال التي تُستدعى في سياقه تُختبر على أنها ذات صلة شخصية وثيقة... إنها تُختبر على أنها 'ملكي'... في مثل هذه الحالات، يُختبر 'الموطن المدرك للقصدية السببية' على أنه داخلي وليس خارجياً بالنسبة للذات."
+                <div class="ref">(Dings, 2018, p. 12)</div>
+            </blockquote>
+            <blockquote>
+                "أي فعل من أفعال صنع المعنى السردي يحدث في خلفية سردية، أي في جزء من البيئة تم تعديله مسبقاً ليتناسب مع سرد الفرد أو اهتماماته السردية... هذه الخلفية السردية هي اجتماعية-مادية بالكامل: فهي تتكون من أشياء مادية (بما في ذلك أشخاص آخرين) تلعب دوراً معيناً في سرديتنا."
+                <div class="ref">(Dings, 2018, p. 14)</div>
+            </blockquote>
+        </section>
+
+        <hr>
+        <p style="text-align:center; color:#777;">تحليل موسع وفقاً لمتطلبات البحث: دور السردية المتجسدة في بناء الهوية المهنية لدى المراهقين المغاربة</p>
+    </div>
+
+    <!-- نافذة منبثقة للمفاهيم -->
+    <div class="modal" id="conceptModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h3 id="modalConceptTitle">المفهوم</h3>
+            <p id="modalConceptBody">تفاصيل المفهوم ستظهر هنا.</p>
+            <p id="modalExample" style="font-style:italic; background:#f4f4f4; padding:10px; border-radius:8px;"></p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        (function() {
+            // بيانات المفاهيم
+            const conceptData = {
+                "narrative-identity": {
+                    title: "الهوية السردية (Narrative Identity)",
+                    body: "الهوية تُفهم على أنها قصة ذاتية متطورة تدمج الماضي والحاضر والمستقبل، وتعطي معنى للحياة. (McAdams, Savickas)",
+                    example: "مراهق يروي قصته: 'أنا من عائلة فلاحية، لكني أريد أن أصبح طبيباً لأعالج أهل قريتي'."
+                },
+                "embodiment": {
+                    title: "التجسيد (Embodiment)",
+                    body: "الكينونة في جسد؛ الخبرة الجسدية (الحركة، الإحساس، الوضعية) تشكل الأساس الذي يُبنى عليه المعنى والإدراك.",
+                    example: "شعور الطالب بثقله وتردده عندما يرتدي معطف المختبر لأول مرة."
+                },
+                "self-programming": {
+                    title: "البرمجة الذاتية السردية (Narrative Self-Programming)",
+                    body: "آلية يستخدم فيها السرد الواعي (أهداف، خطط) لإعادة تشكيل الاستجابات الجسدية المستقبلية بحيث تصبح تلقائية ومتوافقة مع السرد.",
+                    example: "الطالب الذي يقرر أن يصبح مهندساً (سرد) فيبرمج نفسه ليشعر بالارتياح عند مسك المخططات والتفاعل مع آلات القياس."
+                },
+                "affordances": {
+                    title: "الدعوات / الإتاحات (Affordances / Solicitations)",
+                    body: "خصائص في البيئة (أشياء، أشخاص، أماكن) تدعو الفرد إلى أفعال معينة، خاصة عندما تكون مشحونة بمعنى سردي.",
+                    example: "سماعة الطبيب 'تدعو' الطالب الذي يحلم بالطب إلى وضعها في أذنه والاستماع، بينما قد تبقى مجرد أداة غريبة لغيره."
+                },
+                "narrative-background": {
+                    title: "الخلفية السردية (Narrative Background)",
+                    body: "البيئة المادية والاجتماعية التي تم تعديلها (بفعل الفرد أو المجتمع) لتعكس سرداً معيناً وتدعمه.",
+                    example: "غرفة الطالب التي يعلق فيها صوراً لأطباء، أو يرتب كتبه الطبية بشكل ظاهر."
+                },
+                "mineness": {
+                    title: "الإحساس بالملكية (Mineness)",
+                    body: "الشعور بأن الفعل أو التجربة 'لي'، وأنها تنبع من ذاتي وليست مفروضة من الخارج. يتجلى في الطلاقة والارتياح أثناء الأداء.",
+                    example: "عندما يقول الطالب بعد التمثيل: 'شعرت أنني حقاً مهندس، لم أكن أمثل'."
+                },
+                "slors": {
+                    title: "السبب البنيوي (Structuring Cause - Slors)",
+                    body: "سبب لا ينتج تأثيراً مباشراً، بل يعيد هيكلة النظام بحيث يصبح مهيئاً لاستجابات معينة في المستقبل.",
+                    example: "التدريب على لعب الأدوار يعيد هيكلة الدوائر العصبية والجسدية، فيصبح الطالب مستعداً تلقائياً لمواقف المهنة."
+                },
+                "solicitations": {
+                    title: "الدعوات (Solicitations)",
+                    body: "نوع خاص من الإتاحات (affordances) تجذب الفعل بطريقة شبه إجبارية نظراً لارتباطها باهتمامات الفرد العميقة.",
+                    example: "مضرب البيسبوب يجذب الأب (جاكوب) الذي قرر أن يكون أباً أفضل، فيترك مكتبه ليلعب مع أطفاله."
+                }
+            };
+
+            const modal = document.getElementById('conceptModal');
+            const modalTitle = document.getElementById('modalConceptTitle');
+            const modalBody = document.getElementById('modalConceptBody');
+            const modalExample = document.getElementById('modalExample');
+            const closeBtn = document.getElementById('closeModal');
+
+            document.querySelectorAll('.concept-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const key = link.dataset.concept;
+                    if (conceptData[key]) {
+                        modalTitle.textContent = conceptData[key].title;
+                        modalBody.textContent = conceptData[key].body;
+                        modalExample.textContent = "مثال: " + conceptData[key].example;
+                        modal.classList.add('active');
+                    }
+                });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.remove('active');
+            });
+
+            // ScrollSpy
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.toc a');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    if (scrollY >= sectionTop) current = section.getAttribute('id');
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+                });
+            });
+
+            mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+        })();
+    </script>
+</body>
+</html>

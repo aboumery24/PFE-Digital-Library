@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحليل الأكاديمي الموجه: سيناريوهات الحياة والهوية المهنية</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-color: #FAF9F6;
+            --text-color: #333333;
+            --primary-color: #2b3a42;
+            --accent-color: #3d84a8;
+            --danger-color: #c0392b;
+            --danger-bg: #fdf3f2;
+            --sidebar-bg: #ffffff;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            font-size: 18px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cairo', sans-serif;
+            color: var(--primary-color);
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        /* تخطيط الصفحة والقائمة الجانبية */
+        .layout-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        aside.sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding: 20px;
+            border-left: 1px solid var(--border-color);
+            box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        aside.sidebar h3 {
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        aside.sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        aside.sidebar li {
+            margin-bottom: 10px;
+        }
+
+        aside.sidebar a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95rem;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        aside.sidebar a:hover, aside.sidebar a.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        main.content {
+            flex-grow: 1;
+            max-width: 800px;
+            padding: 40px;
+            margin: 0 auto;
+        }
+
+        /* البطاقة التعريفية للعالم */
+        .profile-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .profile-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 20px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .profile-bio h3 {
+            margin: 0 0 10px 0;
+        }
+
+        .profile-bio p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* الصندوق البارز - الأطروحة المركزية */
+        .hero-box {
+            background: linear-gradient(135deg, var(--primary-color), #465f6e);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .hero-box h2 {
+            color: white;
+            margin-top: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 15px;
+        }
+
+        /* الإشكال المعرفي */
+        .problem-card {
+            border: 2px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #f4f9fc;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .problem-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .problem-title svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--accent-color);
+        }
+
+        /* القوائم والحجج */
+        ol.arguments-list {
+            padding-right: 20px;
+        }
+        
+        ol.arguments-list li {
+            margin-bottom: 20px;
+            padding-right: 10px;
+        }
+
+        /* الفرضيات الضمنية */
+        details {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        summary {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--primary-color);
+            outline: none;
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* حدود الطرح */
+        .critiques-section {
+            background-color: var(--danger-bg);
+            border-right: 5px solid var(--danger-color);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+
+        .critiques-section h2 {
+            color: var(--danger-color);
+            margin-top: 0;
+        }
+
+        /* الهندسة التطبيقية (Timeline) */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-right: 30px;
+            border-right: 3px solid var(--accent-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -39px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 3px solid white;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        /* الاقتباسات */
+        blockquote {
+            position: relative;
+            background: white;
+            margin: 40px 0;
+            padding: 30px 40px 30px 30px;
+            border-right: 5px solid var(--primary-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-style: italic;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        blockquote::before {
+            content: '\201D';
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            font-size: 150px;
+            color: rgba(43, 58, 66, 0.05);
+            font-family: Georgia, serif;
+            z-index: -1;
+            line-height: 1;
+        }
+
+        blockquote footer {
+            display: block;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #666;
+            font-family: 'Cairo', sans-serif;
+            font-style: normal;
+        }
+
+        /* التفاعلية: المفاهيم والإحالات */
+        .concept-link {
+            color: var(--accent-color);
+            font-weight: bold;
+            cursor: pointer;
+            border-bottom: 1px dashed var(--accent-color);
+            transition: all 0.2s;
+        }
+
+        .concept-link:hover {
+            background-color: rgba(61, 132, 168, 0.1);
+        }
+
+        /* النافذة المنبثقة (Modal) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            font-family: 'Amiri', serif;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--danger-color);
+        }
+
+        .modal-title {
+            font-family: 'Cairo', sans-serif;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .modal-case-study {
+            background: #f4f9fc;
+            border-right: 3px solid var(--accent-color);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+
+        /* استجابة الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .layout-container {
+                flex-direction: column;
+            }
+            aside.sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-left: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            main.content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layout-container">
+        <aside class="sidebar">
+            <h3>محتويات البحث</h3>
+            <ul id="toc-list">
+                <li><a href="#intro">التمهيد والتعريف</a></li>
+                <li><a href="#thesis">الأطروحة المركزية</a></li>
+                <li><a href="#problem">الإشكال المعرفي</a></li>
+                <li><a href="#arguments">الحجج الأساسية</a></li>
+                <li><a href="#hypotheses">الفرضيات الضمنية</a></li>
+                <li><a href="#critiques">التحليل النقدي والحدود</a></li>
+                <li><a href="#map">الخريطة المفاهيمية</a></li>
+                <li><a href="#engineering">النمذجة الإجرائية التطبيقية</a></li>
+                <li><a href="#quotes">اقتباسات مرجعية</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <header style="text-align: center; margin-bottom: 40px;">
+                <h1>التحليل الأكاديمي الموجه: توظيف نظرية "سيناريوهات الحياة" في بناء الهوية المهنية المتجسدة</h1>
+                <p style="color: #666; font-family: 'Cairo', sans-serif;">
+                    إعداد: طالب باحث في سلك الماستر، سناء المجدوبي، وهند النمري<br>
+                    إشراف: ذ. حمزة شينبو - كلية علوم التربية (2025-2026)
+                </p>
+                <p style="background: var(--accent-color); color: white; display: inline-block; padding: 5px 15px; border-radius: 20px; font-family: 'Cairo', sans-serif; font-size: 0.9em;">
+                    الفئة المستهدفة: الأطفال الأفارقة المتمدرسون بالمؤسسات المغربية
+                </p>
+            </header>
+
+            <section id="intro">
+                <div class="profile-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Blank_portrait%2C_male_%28degraded_resolution%29.svg/120px-Blank_portrait%2C_male_%28degraded_resolution%29.svg.png" alt="صورة تمثيلية للعالم جان كوترو">
+                    <div class="profile-bio">
+                        <h3>جان كوترو (Jean Cottraux)</h3>
+                        <p>عالم نفس وطبيب نفسي فرنسي، من رواد العلاج المعرفي السلوكي (CBT). في كتابه "تكرار سيناريوهات الحياة: غداً قصة أخرى" (2001)، يقدم إطاراً شمولياً لفهم التكرار القهري للأنماط السلوكية. يشكل عمله رافعة سيكولوجية أساسية في بحثنا لكسر السيناريوهات المهنية الجاهزة التي قد يتبناها المراهقون بشكل لا واعٍ (Cottraux, 2001/2010).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="thesis">
+                <div class="hero-box">
+                    <h2>الأطروحة المركزية: التحرر من السيناريو الجاهز</h2>
+                    <p>يدافع كوترو عن فكرة أن المعاناة النفسية وتكرار الفشل ليسا قدراً محتوماً، بل هما نتاج تفاعل بين ثلاثة أنواع من اللاوعي: البيولوجي (المزاج)، البيئي (التكييف)، والمعرفي (المخططات). ينتج عن هذا التفاعل <span class="concept-link" data-title="سيناريو الحياة (Life Scenario)" data-def="خطة نفسية لا واعية أو قصة مكتوبة مسبقاً توجه حياة الفرد وتحدد قراراته المصيرية، يشعر الفرد داخلها بأنه سجين أحداث تتكرر." data-details="هو وضعية فخ (situation piège) ناتجة عن إعادة بناء تاريخ الفرد وتقييمه سلبياً. في الجانب المهني، هو الميل لاختيار تخصصات تكرر مساراً غير مرغوب فيه." data-case="طفل إفريقي في المغرب قد يتبنى 'سيناريو مهني' محدود يعتقد فيه أن خياراته محصورة في مهن معينة بناءً على خلفيته. عبر التوجيه، نعيد كتابة هذا السيناريو.">سيناريوهات حياة (Scénarios de vie)</span> يسجن الأفراد أنفسهم داخلها (Cottraux, 2001). التغيير لا يحدث بمجرد الوعي، بل يتطلب الفعل المعكوس و<span class="concept-link" data-title="الفعل التصحيحي (Corrective Action)" data-def="القيام بسلوك مختلف جذرياً لكسر دائرة التكرار وتوليد استجابات جديدة." data-details="يعتمد على تقنيات المحاكاة وتغيير الأنماط عبر التجربة المباشرة." data-case="بدلاً من التحدث عن الثقة، يطلب الموجه من التلميذ أداء دور مقاول في ورشة عمل لتجربة 'الفعل' بثقة.">الفعل التصحيحي</span> من خلال تجارب واقعية جديدة تعيد كتابة القصة (Cottraux, 2001/2010).</p>
+                </div>
+            </section>
+
+            <section id="problem">
+                <div class="problem-card">
+                    <div class="problem-title">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                        <h2 style="margin: 0;">الإشكال المعرفي النظري</h2>
+                    </div>
+                    <p>يحاول الكتاب حل معضلة التكرار القهري مقابل الحرية في الاختيار (Cottraux, 2001). الإشكال يتجسد في التساؤل التالي:</p>
+                    <p style="font-weight: bold; font-size: 1.1em; text-align: center; color: var(--primary-color); margin: 20px 0;">
+                        لماذا يكرر الأفراد، وتحديداً المراهقون، نفس الأخطاء أو يختارون مسارات مهنية تعيق نموهم الشخصي رغم إدراكهم لضررها؟ وكيف يمكن تجاوز التفسيرات الأحادية نحو مقاربة شمولية؟
+                    </p>
+                </div>
+            </section>
+
+            <section id="arguments">
+                <h2>الحجج الأساسية المتكاملة</h2>
+                <ol class="arguments-list">
+                    <li>
+                        <strong>الحجة السريرية (Clinical Evidence):</strong> يقدم كوترو حالات سريرية تظهر أن المعاناة ليست من فراغ، بل هي إعادة تمثيل قهري لأنماط سلوكية وفكرية مكتسبة (Cottraux, 2001/2010).
+                    </li>
+                    <li>
+                        <strong>الحجة النظرية المتكاملة (Biopsychosocial Model):</strong> دمج ثلاث مدارس: علم النفس الحيوي (المزاج)، علم النفس البيئي والسلوكي (التكييف والصدمات)، وعلم النفس المعرفي (المخططات المعرفية التي تشوه الواقع لتأكيد السيناريو) (Cottraux, 2001/2010, p. 109).
+                    </li>
+                    <li>
+                        <strong>الحجة العلاجية (Therapeutic Argument):</strong> استخدام العلاج المعرفي لتفكيك السيناريوهات، وخصوصاً توظيف <span class="concept-link" data-title="لعب الأدوار (Role-playing)" data-def="تقنية علاجية وتربوية تهدف إلى تعديل أنماط التواصل والسلوكيات عبر تمثيل أدوار جديدة ومغايرة." data-details="تسمح للمراهق باختبار هويات مهنية وسيناريوهات بديلة في بيئة آمنة، مما يشكل صدمة إدراكية للمخطط القديم." data-case="تلميذ يتقمص دور 'الخبير التقني' أمام زملائه. هذا الأداء يُكسبه كفاءة متجسدة تكسر سيناريو 'التردد وانعدام الكفاءة'.">لعب الأدوار (Jeux de rôle)</span> لاختبار أنماط سلوكية جديدة في بيئة آمنة ونقلها للواقع (Cottraux, 2001/2010, p. 216).
+                    </li>
+                </ol>
+            </section>
+
+            <section id="hypotheses">
+                <h2>الفرضيات الإبستمولوجية الضمنية</h2>
+                
+                <details>
+                    <summary>1. الطبيعة الاجتماعية-البيولوجية-المعرفية</summary>
+                    <p>الإنسان كائن معقد لا يُختزل في بعد واحد. فهم سلوكه (ومساره المهني) يتطلب مقاربة تأخذ في الاعتبار هذا التفاعل المعقد (Cottraux, 2001).</p>
+                </details>
+                
+                <details>
+                    <summary>2. اللاوعي المتعدد المستويات (Multi-layered Unconscious)</summary>
+                    <p>تجاوز اللاوعي الفرويدي نحو لاوعي مركب (بيولوجي، بيئي، معرفي) يعمل بتلقائية، مما يفسر صعوبة تغيير المسار بمجرد القرار الواعي السطحي (Cottraux, 2001/2010).</p>
+                </details>
+
+                <details>
+                    <summary>3. أولوية التفسير (Primacy of Interpretation)</summary>
+                    <p>الأحداث لا تسبب مشاعرنا مباشرة، بل الطريقة التي نفسر بها هذه الأحداث عبر مخططاتنا المعرفية. تغيير التفسير هو مفتاح التغيير (Cottraux, 2001).</p>
+                </details>
+                
+                <details>
+                    <summary>4. المعرفة المتجسدة أسبق من الوعي اللفظي</summary>
+                    <p>يفترض أن السلوك والفعل هما من يشكلان الوعي، مما يدعم بقوة المقاربة المتجسدة (لعب الأدوار) التي نتبناها (Cottraux, 2001).</p>
+                </details>
+            </section>
+
+            <section id="critiques" class="critiques-section">
+                <h2>التحليل الميتا-معرفي: الفجوات وإعادة التركيب</h2>
+                <p>يواجه نموذج كوترو الكلاسيكي بعض المحددات عند إسقاطه على التوجيه التربوي:</p>
+                <ul>
+                    <li><strong>التركيز على المرضي الفردي:</strong> يركز الطرح على الجانب العلاجي وتفكيك السيناريوهات السلبية في إطار الاضطرابات، في حين أن التوجيه التربوي يستهدف البناء الاستباقي للأسوياء.</li>
+                    <li><strong>تغييب الضغوط الهيكلية:</strong> إغفال نسبي للضغوط الهيكلية الاجتماعية التي تفرض "السيناريو المهني" (كالسيناريو الأسري المقدس المهيمن في مجتمعنا) (التحليل الذاتي للباحث).</li>
+                    <li><strong>الفجوة البنائية (الهدم مقابل البناء):</strong> يوفر كوترو أداة لتفكيك السيناريو القديم، لكنه يحتاج إلى نموذج للبناء. هنا يتدخل دمج هذا الطرح مع <strong>نظرية بناء المسار المهني (Savickas)</strong> لتحويل لعب الأدوار إلى أداة لـ"تأليف" ذات مهنية ممكنة وإيجابية (Savickas, 2013).</li>
+                </ul>
+            </section>
+
+            <section id="map">
+                <h2>الخريطة المفاهيمية (نموذج اللاوعي الثلاثي)</h2>
+                <p>هذه الخطاطة تبين كيف تنبني المخططات المعرفية المؤدية للتكرار، وكيف يُحدث التدخل كشراً لهذه الحلقة.</p>
+                <div class="mermaid">
+                    graph TD;
+                        A[اللاوعي البيولوجي: المزاج والوراثة] --> D((اللاوعي المعرفي));
+                        B[اللاوعي البيئي: التكييف والخبرة] --> D;
+                        C[الصدمات والتعلم] --> B;
+                        D -->|يولد| E[المخططات المعرفية Cognitive Schemas];
+                        E --> F[سيناريو الحياة المهنية Life Scenario];
+                        F --> G[التكرار القهري للفشل أو الاختيار الخاطئ];
+                        
+                        H[المحاكاة السردية: لعب الأدوار] -.->|صدمة إدراكية| E;
+                        H -.->|تفكيك| F;
+                        
+                        style D fill:#2b3a42,stroke:#333,stroke-width:2px,color:#fff
+                        style E fill:#c0392b,stroke:#333,stroke-width:2px,color:#fff
+                        style H fill:#3d84a8,stroke:#333,stroke-width:2px,color:#fff
+                </div>
+            </section>
+
+            <section id="engineering">
+                <h2>النمذجة الإجرائية: مختبر السيناريوهات المضادة</h2>
+                <p>كيف نوظف تقنية لعب الأدوار لتفعيل المعرفة المتجسدة وكسر التكرار لدى الأطفال واليافعين؟</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>1. تحديد السيناريو (Baseline)</h4>
+                            <p>استكشاف السيناريو المهني التكراري المهيمن (مثل الانصياع الأعمى للسيناريو الأسري، أو عقدة الدونية) عبر مقابلات مبدئية تفكك <span class="concept-link" data-title="المخططات المعرفية (Cognitive Schemas)" data-def="هياكل معرفية ومعتقدات عميقة تنظم استقبال المعلومات، وتعمل كمرشحات تشوه الواقع ليناسب السيناريو." data-details="المخطط هو الماكينة الخفية. في التوجيه: مخطط مثل 'أنا لست ذكياً بما يكفي للهندسة' يقود حتماً للابتعاد عن المواد العلمية." data-case="تلميذ إفريقي في المغرب يعتقد أن 'العمل المستقل غير متاح له'. يتم استهداف هذا المخطط تحديداً لتفكيكه.">المخططات المعرفية</span> العميقة (Cottraux, 2001/2010).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>2. المحاكاة السردية (Role-Playing)</h4>
+                            <p>يُطلب من المراهق أداء وتمثيل "سيناريو مهني بديل" (Counter-Scenario). التمثيل لا يقتصر على التخيل، بل يشمل الفعل والحركة لترجمة المعرفة اللفظية إلى فعل متجسد (Cottraux, 2001).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>3. التفعيل المتجسد (Embodied Activation)</h4>
+                            <p>أثناء التمثيل، يحدث تفعيل لانفعالات ومشاعر الكفاءة التي تخلق تنافراً معرفياً مع المخطط القديم السلبي.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>4. نضح الهوية (Identity Bleed)</h4>
+                            <p>مع تكرار المحاكاة، تتسرب مشاعر الثقة والكفاءة من "الدور" إلى الهوية الواقعية للمراهق <span class="concept-link" data-title="نضح الهوية (Identity Bleed)" data-def="عملية تتسرب فيها سمات وكفاءات ومشاعر الدور الذي يتم تمثيله لتصبح جزءاً من الهوية الحقيقية للفرد." data-details="يحدث عندما تتولد علامات جسدية إيجابية متكررة أثناء اللعب، فتنصهر الذات الممكنة في الذات الواقعية." data-case="بعد أداء دور طبيب ناجح في ورشة التوجيه، يعود التلميذ إلى فصله بشعور حقيقي وجسدي بالثقة، مما يؤثر إيجاباً على نتائجه الدراسية.">نضح الهوية</span>، مما يسمح له بأن يصبح مؤلفاً لقصته المهنية المتفردة بدلاً من مجرد مؤدٍ لسيناريو موروث (Savickas, 2013).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quotes">
+                <h2>اقتباسات تأسيسية من المرجع</h2>
+                
+                <blockquote>
+                    <p>سيناريو الحياة هو وضعية فخ يتخبط فيها الفرد دون أن يستطيع الخروج منها، وتتكرر. وهو أيضا نتاج نشاط عقلي يعيد من خلاله الفرد بناء تاريخه وينسب إليه قيمة سلبية، مع الإحساس بأنه سجين أحداث تتكرر على حسابه.</p>
+                    <footer>&mdash; (Cottraux, 2001/2010, p. 23)</footer>
+                </blockquote>
+
+                <blockquote>
+                    <p>من أجل التغيير، لا يكفي الفهم، بل يجب القيام بفعل مختلف.</p>
+                    <footer>&mdash; (Cottraux, 2001, p. 10)</footer>
+                </blockquote>
+
+                <blockquote>
+                    <p>يتكون اللاوعي من مخططات معرفية موجودة في الذاكرة طويلة المدى. يمكن للأداء الدماغي والبيولوجيا أن يفسرا أداء اللاوعي، الذي هو أيضًا مستودع التعلمات الاجتماعية الناتجة عن إجراءات التكييف المختلفة.</p>
+                    <footer>&mdash; (Cottraux, 2001/2010, p. 109)</footer>
+                </blockquote>
+            </section>
+
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="conceptModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h3 class="modal-title" id="modalTitle">اسم المفهوم</h3>
+            <p><strong>التعريف الأكاديمي:</strong> <span id="modalDef">...</span></p>
+            <p><strong>الامتداد النظري:</strong> <span id="modalDetails">...</span></p>
+            <div class="modal-case-study">
+                <strong>💡 حالة تطبيقية (التوجيه والممارسة السيكولوجية):</strong>
+                <p id="modalCase" style="margin-bottom: 0;">...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تهيئة مكتبة Mermaid
+        mermaid.initialize({ startOnLoad: true, theme: 'default', fontFamily: 'Cairo' });
+
+        // تفاعلية القائمة الجانبية (ScrollSpy)
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('#toc-list a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // نظام النوافذ المنبثقة (Modals)
+            const conceptLinks = document.querySelectorAll('.concept-link');
+            const modal = document.getElementById('conceptModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDef = document.getElementById('modalDef');
+            const modalDetails = document.getElementById('modalDetails');
+            const modalCase = document.getElementById('modalCase');
+
+            conceptLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalTitle.textContent = link.getAttribute('data-title');
+                    modalDef.textContent = link.getAttribute('data-def');
+                    modalDetails.textContent = link.getAttribute('data-details');
+                    modalCase.textContent = link.getAttribute('data-case');
+                    
+                    modal.classList.add('active');
+                });
+            });
+
+            // إغلاق النافذة
+            closeModalBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            // إغلاق عند النقر خارج المحتوى
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

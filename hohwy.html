@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإطار النظري: الدماغ التنبؤي والتوجيه المهني</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FAF9F6;
+            color: #333333;
+            font-family: 'Tajawal', 'Cairo', serif;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: row;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        /* ===== القائمة الجانبية الثابتة ===== */
+        .toc-sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: #ffffff;
+            border-left: 2px solid #d9c5b0;   /* حدود واضحة */
+            padding: 2rem 1rem;
+            overflow-y: auto;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.05);
+            z-index: 1000;                     /* عالي جداً */
+            font-family: 'Cairo', sans-serif;
+            transition: width 0.2s ease;
+        }
+
+        .toc-sidebar h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #8B4513;
+            border-bottom: 2px solid #f0e0d0;
+            padding-bottom: 0.5rem;
+        }
+
+        .toc-sidebar ul {
+            list-style: none;
+        }
+
+        .toc-sidebar li {
+            margin-bottom: 0.7rem;
+        }
+
+        .toc-sidebar a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 30px;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .toc-sidebar a:hover {
+            background-color: #f8f0e8;
+            color: #8B4513;
+            padding-right: 1.2rem;
+        }
+
+        .toc-sidebar .active {
+            background-color: #e6d5c0;
+            color: #4a2c1a;
+            font-weight: 700;
+        }
+
+        /* المحتوى الرئيسي مع هوامش متجاوبة مع القائمة */
+        .main-content {
+            flex: 1;
+            margin-right: 300px;   /* مساحة للقائمة (280px + 20px) */
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem 1.5rem 4rem;
+            width: calc(100% - 300px);
+            background-color: #FAF9F6;
+            position: relative;
+            z-index: 2;
+            min-width: 0;
+            overflow-wrap: break-word;
+        }
+
+        /* تحسينات للشاشات متوسطة الصغر */
+        @media (max-width: 1200px) {
+            .toc-sidebar {
+                width: 240px;
+            }
+            .main-content {
+                margin-right: 260px;
+                width: calc(100% - 260px);
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .toc-sidebar {
+                width: 200px;
+                font-size: 0.9rem;
+            }
+            .toc-sidebar a {
+                font-size: 0.85rem;
+                padding: 0.3rem 0.6rem;
+            }
+            .main-content {
+                margin-right: 220px;
+                width: calc(100% - 220px);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .toc-sidebar {
+                width: 150px;
+                padding: 1.5rem 0.5rem;
+            }
+            .toc-sidebar h3 {
+                font-size: 1rem;
+            }
+            .toc-sidebar a {
+                font-size: 0.75rem;
+                padding: 0.2rem 0.4rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .main-content {
+                margin-right: 170px;
+                width: calc(100% - 170px);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .toc-sidebar {
+                width: 100px;
+            }
+            .toc-sidebar a span {
+                display: none; /* نخفي النص الطويل ونعرض الرقم فقط */
+            }
+            .toc-sidebar a::before {
+                content: attr(data-short);
+                font-weight: bold;
+            }
+            .main-content {
+                margin-right: 120px;
+                width: calc(100% - 120px);
+            }
+        }
+
+        /* ===== باقي الأنماط (كما هي) ===== */
+        h1, h2, h3, h4 {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            color: #1e3c5c;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-right: 6px solid #8B4513;
+            padding-right: 1rem;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            color: #2a4d6e;
+        }
+
+        p, li, blockquote {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-box {
+            background: linear-gradient(145deg, #1e3c5c, #153045);
+            color: #f9f3e9;
+            padding: 2.5rem 2rem;
+            border-radius: 30px 10px 30px 10px;
+            margin: 2rem 0;
+            box-shadow: 0 15px 25px rgba(0,20,30,0.2);
+        }
+
+        .hero-box p {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .profile-card {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: white;
+            padding: 1.8rem 2rem;
+            border-radius: 60px 20px 60px 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e8e0d5;
+            margin-top: 1rem;
+        }
+
+        .profile-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #d4b59e;
+            background: #ddd;
+        }
+
+        .profile-card .profile-text p {
+            margin-bottom: 0.3rem;
+        }
+
+        .profile-card .name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e3c5c;
+        }
+
+        .profile-card .title {
+            font-size: 1.2rem;
+            color: #6b4f3a;
+        }
+
+        .problem-box {
+            background-color: #fff7f0;
+            border: 1px solid #ffdab9;
+            border-radius: 30px;
+            padding: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin: 2rem 0;
+        }
+
+        .problem-icon svg {
+            width: 60px;
+            height: 60px;
+            fill: #cc7f4b;
+            flex-shrink: 0;
+        }
+
+        .arguments-list {
+            background-color: #faf4ec;
+            padding: 2rem 2.5rem;
+            border-radius: 30px;
+        }
+
+        .arguments-list ol {
+            list-style-type: arabic-indic;
+            padding-right: 2rem;
+        }
+
+        .arguments-list li {
+            line-height: 1.9;
+            margin-bottom: 1.2rem;
+            font-weight: 500;
+        }
+
+        .assumptions details {
+            background-color: white;
+            border: 1px solid #eedac8;
+            border-radius: 50px;
+            padding: 1.2rem 1.8rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s;
+        }
+
+        .assumptions summary {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #3e2b1b;
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+        }
+
+        .assumptions summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .assumptions summary::before {
+            content: "◀";
+            margin-left: 10px;
+            font-size: 1rem;
+            color: #b37b58;
+            transition: transform 0.2s;
+        }
+
+        .assumptions details[open] summary::before {
+            transform: rotate(-90deg);
+        }
+
+        .limits-section {
+            background-color: #fff4f0;
+            padding: 2rem;
+            border-radius: 30px;
+            border: 1px solid #fcd5c0;
+            margin: 2rem 0;
+        }
+
+        .quotes-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        blockquote {
+            background: white;
+            padding: 2rem 2.5rem;
+            border-radius: 80px 20px 80px 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            position: relative;
+            border: 1px solid #e8d9cc;
+            transition: 0.2s;
+        }
+
+        blockquote::before {
+            content: "“";
+            font-size: 10rem;
+            position: absolute;
+            top: -40px;
+            right: 10px;
+            color: #f0e0d0;
+            font-family: serif;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        blockquote p {
+            position: relative;
+            z-index: 2;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        blockquote footer {
+            text-align: left;
+            font-size: 0.95rem;
+            color: #6b5e54;
+            border-top: 1px dashed #ddd;
+            padding-top: 0.8rem;
+        }
+
+        .ref-tooltip {
+            position: relative;
+            border-bottom: 1px dotted #8B4513;
+            cursor: help;
+            display: inline-block;
+        }
+
+        .ref-tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 150%;
+            right: 0;
+            background: #1e3c5c;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 2000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .mermaid-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 30px;
+            margin: 2rem 0;
+            overflow-x: auto;
+            border: 1px solid #e0d6cc;
+            direction: ltr;
+            text-align: center;
+        }
+
+        .mermaid {
+            font-family: 'Cairo', sans-serif;
+            width: 100%;
+            min-width: 600px;
+        }
+
+        .steps-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            background: white;
+            padding: 1.2rem 2rem;
+            border-radius: 100px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            border: 1px solid #eae0d7;
+        }
+
+        .step-number {
+            background: #1e3c5c;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        section {
+            scroll-margin-top: 20px;
+        }
+
+        a {
+            color: #1e3c5c;
+        }
+
+        /* أرقام مختصرة للشاشات الصغيرة */
+        [data-short] {
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- القائمة الجانبية (تظهر دائماً) -->
+<nav class="toc-sidebar" id="toc">
+    <h3>📚 فهرس المحاور</h3>
+    <ul>
+        <li><a href="#section1" class="toc-link" data-short="1"><span>1. تعريف بالعالم</span></a></li>
+        <li><a href="#section2" class="toc-link" data-short="2"><span>2. الأطروحة المركزية</span></a></li>
+        <li><a href="#section3" class="toc-link" data-short="3"><span>3. الإشكال المعرفي</span></a></li>
+        <li><a href="#section4" class="toc-link" data-short="4"><span>4. الحجج الأساسية</span></a></li>
+        <li><a href="#section5" class="toc-link" data-short="5"><span>5. الفرضيات الضمنية</span></a></li>
+        <li><a href="#section6" class="toc-link" data-short="6"><span>6. حدود الطرح</span></a></li>
+        <li><a href="#section7" class="toc-link" data-short="7"><span>7. الخريطة المفاهيمية</span></a></li>
+        <li><a href="#section8" class="toc-link" data-short="8"><span>8. الهندسة التطبيقية</span></a></li>
+        <li><a href="#section9" class="toc-link" data-short="9"><span>9. الاقتباسات</span></a></li>
+    </ul>
+</nav>
+
+<main class="main-content">
+
+    <section id="section1">
+        <h2>🧑‍🏫 تعريف بالعالم: جاكوب هاوي (Jakob Hohwy)</h2>
+        <div class="profile-card">
+            <img src="https://via.placeholder.com/200/8B4513/ffffff?text=Hohwy" alt="صورة جاكوب هاوي">
+            <div class="profile-text">
+                <div class="name">جاكوب هاوي</div>
+                <div class="title">أستاذ فلسفة العقل والعلوم المعرفية – جامعة موناش</div>
+                <p>مؤلف كتاب <span class="ref-tooltip" data-tooltip="Hohwy, J. (2013). The predictive mind. Oxford University Press.">“The Predictive Mind” (2013)</span> وأحد أبرز مؤسسي نظرية “الدماغ التنبؤي”. يدمج فلسفة العقل مع علم الأعصاب الحسابي.</p>
+                <p><strong>علاقته بالبحث:</strong> نظريته حول تقليل خطأ التنبؤ والاستدلال النشط تشرح آلية تأثير السيكودراما على التلميذ: المحفزات المفاجئة (Triggers) تولد “خطأ تنبؤ”، والجسد يستجيب بـ “استدلال نشط” يمكن ملاحظته وقياسه (نضح الهوية / مقاومة).</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="section2">
+        <h2>🎯 الأطروحة المركزية: الدماغ التنبؤي</h2>
+        <div class="hero-box">
+            <p>🧠 <strong>“الدماغ البشري ليس جهازاً سلبياً، بل آلة تنبؤية استباقية. هدفه الوحيد: تقليل خطأ التنبؤ (Prediction Error) بين التوقعات الداخلية والإشارات الحسية.”</strong> الإدراك هو “هلوسة مسيطر عليها”.</p>
+            <p style="font-size:1.2rem; margin-top:1rem;">⚡ في بحثك: التلميذ يصعد للمسرح بتنبوءات مسبقة عن المهنة. المحفزات (Triggers) تخلق خطأ تنبؤ حاد، فيستجيب الجسد بـ”استدلال نشط” (اندماج أو انسحاب).</p>
+        </div>
+    </section>
+
+    <section id="section3">
+        <h2>❓ الإشكال المعرفي: مشكلة الاستدلال في عالم غامض</h2>
+        <div class="problem-box">
+            <div class="problem-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2-7h-2v-2h2v2zm-4 0H9v-2h2v2z"/></svg>
+            </div>
+            <div class="problem-text">
+                <p><span class="ref-tooltip" data-tooltip="Hohwy, 2013, chapter 11">هاوي (2013)</span> يطرح إشكالية: الدماغ محبوس داخل الجمجمة، لا يعرف العالم إلا عبر نبضات كهربائية. كيف يستدل على الأسباب؟ الحل: <strong>الاستدلال البايزي</strong> (المعتقدات القبلية + الإشارات الحسية).</p>
+                <p>🔎 <strong>التوظيف:</strong> سوق العمل “عالم غامض”. الاستبيانات تعطي يقيناً زائفاً، بينما السيكودراما تولد “لايقيناً إيكولوجياً” يجبر الدماغ على الاستدلال النشط.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="section4">
+        <h2>🧩 الحجج الأساسية (آليات الدماغ التنبؤي)</h2>
+        <div class="arguments-list">
+            <ol>
+                <li><strong>أخطاء التنبؤ (Prediction Errors):</strong> الدماغ يقارن التوقعات (Top-down) مع الإشارات الحسية (Bottom-up). الفجوة = خطأ تنبؤ. التعلم والانتباه يحدثان عند وجود خطأ. (الـ Triggers في بحثك تخلق أخطاء متعمدة).</li>
+                <li><strong>الاستدلال النشط (Active Inference):</strong> لتقليل الخطأ، إما نغير التوقعات (بطيء) أو نغير العالم/الجسد عبر الفعل. في المسرح: التلميذ إما يندمج (يغير الموقف) أو ينسحب (يغير علاقته بالبيئة). هذا ما تسجله شبكة الملاحظة.</li>
+                <li><strong>وزن الدقة (Precision Weighting):</strong> ليست كل الأخطاء متساوية. الانتباه = إعطاء وزن أكبر لبعض الإشارات. التلميذ المهتم بمهنة الطب سيعطي دقة عالية لمحفز الطوارئ. هذا يفسر شدة التفاعل.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="section5">
+        <h2>🔍 الفرضيات الضمنية (ما يسكت عنه هاوي)</h2>
+        <div class="assumptions">
+            <details>
+                <summary>مشكلة الغرفة المظلمة (Dark Room Problem)</summary>
+                <p>إذا كان الدماغ يبحث عن تقليل المفاجآت، فلماذا لا نبقى في غرفة مظلمة؟ لماذا نختار مهناً صعبة؟ <strong>النقد:</strong> البشر يبحثون عن “مفاجآت يمكن السيطرة عليها” وليس غيابها. السيكودراما تقدم مسرحاً آمناً للتدرب على اللايقين.</p>
+            </details>
+            <details>
+                <summary>المركزية العصبية (Neurocentrism)</summary>
+                <p>هاوي يجعل الدماغ بطلاً مطلقاً والجسد مجرد أداة. خلافاً لغالاغر (الإدراك المجسد). بحثك يتجاوز ذلك: الجسد له صوت عبر MAIA وشبكة الملاحظة.</p>
+            </details>
+            <details>
+                <summary>المثالية البايزية (Bayesian Optimality)</summary>
+                <p>يفترض أن الدماغ يحسب كحاسوب مثالي، متجاهلاً الفوضى الهرمونية والتحيزات المعرفية للمراهق. التكامل مع سافيكاس يضيف البعد السردي والثقافي.</p>
+            </details>
+        </div>
+    </section>
+
+    <section id="section6">
+        <h2>⚠️ حدود الطرح ونقاط الضعف</h2>
+        <div class="limits-section">
+            <p><strong>العمى الدلالي (Semantic Blindness):</strong> يشرح “كيف” تتفاعل الأدمغة، لكنه لا يفسر “ماذا يعني” ذلك للمهنة. مثلاً: ارتباك التلميذ قد يعني خوفاً أو شغفاً. هنا نحتاج نظرية سافيكاس السردية.</p>
+            <p><strong>العودة للانعزالية:</strong> رغم الاستدلال النشط، يبقى الدماغ منغلقاً على نفسه (seclusion). بحثك يدمج الجسد الفاعل (Gallagher) والبيئة الثقافية المغربية.</p>
+            <p><strong>تعميم التجارب المخبرية:</strong> إيهام اليد المطاطية etc. في الحياة الواقعية، الهوية المهنية أكثر مقاومة. السيكودراما تخلط بين المختبر والواقع.</p>
+            <p>✨ <strong>التوليفة:</strong> نأخذ آليات هاوي الدقيقة ونغلفها بالسردية المهنية (Savickas) والجسد الفاعل (Gallagher) لنفهم “نضح الهوية” في السياق المغربي.</p>
+        </div>
+    </section>
+
+    <section id="section7">
+        <h2>🗺️ الخريطة المفاهيمية التكاملية</h2>
+        <div class="mermaid-container">
+            <pre class="mermaid" style="direction: ltr;">
+            graph TD
+                A[الدماغ التنبؤي – Hohwy] --> B(خطأ التنبؤ)
+                A --> C(الاستدلال النشط)
+                A --> D(وزن الدقة)
+                B --> E[محفزات السيكودراما Triggers]
+                C --> F[الاستجابة الجسدية: اندماج / مقاومة]
+                D --> G[شدة الانتباه و الصلة بالمهنة]
+                F --> H[نضح الهوية (Identity Bleed)]
+                F --> I[هشاشة التكيف]
+                H --> J[قياس CAAS (Savickas)]
+                I --> J
+                G --> K[مقياس الوعي الجسدي MAIA]
+                K --> J
+                style A fill:#1e3c5c,color:#fff
+                style J fill:#8B4513,color:#fff
+            </pre>
+        </div>
+    </section>
+
+    <section id="section8">
+        <h2>⚙️ الهندسة التطبيقية: من المحاكاة إلى القياس</h2>
+        <div class="steps-timeline">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-text"><strong>قياس قبلي:</strong> CAAS (التكيف المهني) + MAIA (الوعي الجسدي).</div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-text"><strong>بناء سيناريو مهني</strong> محاكي لواقع مغربي (طبيب، مهندس، تاجر...).</div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-text"><strong>إطلاق المحفزات (Triggers):</strong> مواقف ضاغطة ومفاجئة (صراخ، قرار عاجل...).</div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-text"><strong>رصد الاستدلال النشط:</strong> شبكة ملاحظة تسجل اندماجاً/انسحاباً، ونضح الهوية.</div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">5</div>
+                <div class="step-text"><strong>قياس بعدي وتحليل:</strong> مقارنة CAAS وMAIA، وربطها بالملاحظات لاختبار تحول الهوية المهنية.</div>
+            </div>
+        </div>
+        <p style="margin-top:1rem">🔁 النموذج يدمج <span class="ref-tooltip" data-tooltip="Hohwy, 2013">التنبؤ العصبي</span> مع <span class="ref-tooltip" data-tooltip="Savickas, 2005">السرد المهني</span> والتجسيد.</p>
+    </section>
+
+    <section id="section9">
+        <h2>📜 الاقتباسات الممكنة (لبناء المسار التفسيري)</h2>
+        <div class="quotes-grid">
+            <blockquote>
+                <p>“المعالجة الآنية للمعلومات متعددة الحواس المرتبطة بالجسد في الدماغ هي أقرب إلى حل أحجية مستمر، حيث أن الإحساس الطبيعي بموقع الذات المتجسدة ما هو إلا حل هش ومؤقت فقط.”</p>
+                <footer>— Schwabe & Blanke, 2008 (نقلاً عن هاوي، 2013، ص. 226)</footer>
+            </blockquote>
+            <blockquote>
+                <p>“يستطيع الناس، بدرجات متفاوتة، توليد تجارب متوقعة تتوافق مع أهدافهم، استجابة للإيحاءات التخيلية. هذه القدرة تُعرف بالتحكم الظاهراتي.”</p>
+                <footer>— Lush, Dienes & Seth, 2024, ص. 47</footer>
+            </blockquote>
+            <blockquote>
+                <p>“إن التكامل بين ‘الجسد الفاعل’ لغالاغر و’الدماغ التنبؤي’ لهاوي في خدمة ‘نظرية البناء المهني’ لسافيكاس يشكل العمود الفقري المنهجي لهذه الدراسة… فنحن لا نستخدم ركح المحاكاة للعب، بل نستخدمه كمختبر إيكولوجي لاستفزاز أخطاء التنبؤ الجسدية.”</p>
+                <footer>— من صياغة الباحث (التوليفة الشاملة)</footer>
+            </blockquote>
+        </div>
+    </section>
+
+    <footer style="margin-top: 4rem; border-top:1px solid #ddd; padding:2rem 0; text-align:center; color:#666;">
+        <p>🖌️ الإطار النظري مبني على تحليل Jakob Hohwy, 2013 ; Lush et al. 2024 ; Savickas, 2005 ; Gallagher.</p>
+        <p>تم تصميم الوثيقة وفق منهجية التحليل الإبستمولوجي والمتطلبات الرقمية.</p>
+    </footer>
+</main>
+
+<script>
+    (function() {
+        // تهيئة Mermaid مع دعم العربية
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'neutral',
+            fontFamily: 'Cairo, sans-serif',
+            securityLevel: 'loose',
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+        });
+
+        // إعادة رسم Mermaid بعد التحميل
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                try {
+                    mermaid.init(undefined, '.mermaid');
+                } catch (e) {}
+            }, 300);
+        });
+
+        // ScrollSpy لتحديد الرابط النشط
+        const sections = document.querySelectorAll("section");
+        const tocLinks = document.querySelectorAll(".toc-link");
+
+        function updateActiveLink() {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove("active");
+                const href = link.getAttribute("href").substring(1);
+                if (href === current) {
+                    link.classList.add("active");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", updateActiveLink);
+        window.addEventListener("load", updateActiveLink);
+
+        // تمرير سلس عند النقر على الروابط
+        tocLinks.forEach(link => {
+            link.addEventListener("click", (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute("href").substring(1);
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) {
+                    window.scrollTo({
+                        top: targetEl.offsetTop - 20,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+    })();
+</script>
+</body>
+</html>

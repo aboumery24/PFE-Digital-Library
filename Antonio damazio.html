@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أطروحة دامازيو: العقل المجسد والتوجيه التربوي والمهني</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #FAF9F6;
+            --text-color: #333333;
+            --primary: #2C3E50;
+            --accent: #E74C3C;
+            --highlight: #F39C12;
+            --limitation-bg: #FDF2F2;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: var(--primary);
+            margin-top: 1.5em;
+        }
+
+        /* القائمة الجانبية (Sticky TOC) */
+        .sidebar {
+            width: 250px;
+            min-width: 250px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 30px 20px;
+            background: #fff;
+            border-left: 1px solid #ddd;
+            box-sizing: border-box;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.02);
+        }
+
+        .sidebar h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 12px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #555;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            display: block;
+            border-right: 3px solid transparent;
+            padding-right: 10px;
+        }
+
+        .sidebar a:hover {
+            color: var(--accent);
+            background: #fdf5f5;
+        }
+
+        .sidebar a.active {
+            color: var(--accent);
+            font-weight: bold;
+            border-right-color: var(--accent);
+            background: #fdf5f5;
+        }
+
+        /* المحتوى الرئيسي */
+        .content {
+            flex: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* المفاهيم التفاعلية */
+        .concept-link {
+            color: var(--accent);
+            border-bottom: 1px dashed var(--accent);
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            padding: 0 2px;
+        }
+
+        .concept-link:hover {
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+
+        /* التوثيق الأكاديمي الدقيق */
+        .citation {
+            font-size: 0.85em;
+            color: var(--highlight);
+            cursor: help;
+            position: relative;
+            font-weight: bold;
+            font-family: sans-serif;
+            margin: 0 4px;
+        }
+
+        .citation::after {
+            content: attr(data-ref);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2C3E50;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            white-space: normal;
+            min-width: 250px;
+            text-align: right;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            pointer-events: none;
+        }
+
+        .citation::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: #2C3E50 transparent transparent transparent;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+        }
+
+        .citation:hover::after, .citation:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* بطاقة تعريف العالم */
+        .profile-card {
+            display: flex;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+            padding: 25px;
+            margin-bottom: 50px;
+            align-items: flex-start;
+            gap: 25px;
+            border-top: 5px solid var(--primary);
+        }
+
+        .profile-card img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-color);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .profile-info h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .profile-info p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        /* صندوق الأطروحة المركزية (Hero Box) */
+        .hero-box {
+            background: linear-gradient(135deg, var(--primary), #34495E);
+            color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 50px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(44, 62, 80, 0.2);
+        }
+
+        .hero-box h2 {
+            color: #fff;
+            margin-top: 0;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .hero-box p {
+            font-size: 1.1em;
+            line-height: 1.9;
+        }
+
+        /* بطاقة الإشكال المعرفي */
+        .problem-card {
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 50px;
+            background: #fff;
+            position: relative;
+        }
+
+        .problem-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 0;
+        }
+
+        .problem-card svg {
+            color: var(--highlight);
+        }
+
+        .problem-card ul {
+            padding-right: 20px;
+        }
+
+        /* القوائم المرقمة (الحجج) */
+        ol.arguments-list {
+            padding-right: 25px;
+            margin-bottom: 50px;
+        }
+
+        ol.arguments-list > li {
+            margin-bottom: 25px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border-right: 4px solid var(--highlight);
+        }
+
+        ol.arguments-list h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* الفرضيات الضمنية */
+        .hypotheses details {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+        }
+
+        .hypotheses details[open] {
+            border-color: var(--primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .hypotheses summary {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--primary);
+            outline: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .hypotheses summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .hypotheses summary::before {
+            content: '+';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            background: var(--bg-color);
+            border-radius: 50%;
+            margin-left: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .hypotheses details[open] summary::before {
+            content: '-';
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* حدود الطرح */
+        .limitations {
+            background-color: var(--limitation-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 50px;
+        }
+
+        .limitations h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+
+        /* الهندسة التطبيقية (Timeline) */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: -37px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--highlight);
+            border: 4px solid var(--bg-color);
+        }
+
+        .timeline-item h4 {
+            margin-top: 0;
+        }
+
+        /* الاقتباسات */
+        blockquote {
+            position: relative;
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin: 50px 0;
+            font-style: italic;
+            font-size: 1.1em;
+            line-height: 1.9;
+        }
+
+        blockquote::before {
+            content: "«";
+            position: absolute;
+            right: 15px;
+            top: -20px;
+            font-size: 100px;
+            color: rgba(44, 62, 80, 0.08);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .quote-ref {
+            display: block;
+            text-align: left;
+            font-size: 0.85em;
+            font-style: normal;
+            color: #7f8c8d;
+            margin-top: 15px;
+            font-family: sans-serif;
+        }
+
+        /* النوافذ المنبثقة (Modals) */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(3px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 550px;
+            width: 90%;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            cursor: pointer;
+            font-size: 28px;
+            border: none;
+            background: none;
+            color: #999;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--accent);
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 10px;
+        }
+
+        .modal-label {
+            font-family: sans-serif;
+            font-weight: bold;
+            color: var(--accent);
+            display: block;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        /* التصميم المتجاوب */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-left: none;
+                border-bottom: 1px solid #ddd;
+            }
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h3>محتويات الورقة</h3>
+        <nav>
+            <ul>
+                <li><a href="#profile" class="active">تعريف بالباحث</a></li>
+                <li><a href="#thesis">الأطروحة المركزية</a></li>
+                <li><a href="#problem">الإشكال المعرفي</a></li>
+                <li><a href="#arguments">الحجج الأساسية</a></li>
+                <li><a href="#hypotheses">الفرضيات الضمنية</a></li>
+                <li><a href="#limitations">حدود الطرح المعرفي</a></li>
+                <li><a href="#map">الخريطة المفاهيمية</a></li>
+                <li><a href="#timeline">الهندسة التطبيقية</a></li>
+                <li><a href="#quotes">اقتباسات مرجعية</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="content">
+
+        <section id="profile">
+            <div class="profile-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Antonio_Damasio_%282009%29.jpg/220px-Antonio_Damasio_%282009%29.jpg" alt="صورة العالم أنطونيو دامازيو">
+                <div class="profile-info">
+                    <h2>أنطونيو دامازيو (Antonio R. Damasio)</h2>
+                    <p>
+                        عالم أعصاب وطبيب وباحث بارز في مجال العلوم المعرفية. اشتهر عالمياً بنقده الراديكالي للنماذج العقلانية المجردة من خلال كتابه الشهير "خطأ ديكارت" (1994). 
+                        يُعد عمله الجسر الفسيولوجي والإبستيمولوجي الضروري لفهم الممارسات السيكولوجية التربوية. حيث يوفر الإطار العصبي الذي يفسر كيف أن العاطفة والجسد ليسا عائقين أمام القرار المهني، بل هما "الوقود العاطفي" الذي يمنح القيمة المعرفية لاختيارات المتعلم في سيرورة التوجيه التربوي.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="thesis">
+            <div class="hero-box">
+                <h2>الأطروحة المركزية: <span class="concept-link">العقل المجسد</span> (The Embodied Mind)</h2>
+                <p>
+                    يدافع دامازيو عن أطروحة ثورية مفادها أن العقل ليس وظيفة منطقية مجردة تعمل في فراغ، بل هو نتاج تفاعل مستمر وحيوي بين الدماغ والجسد. في هذا النسق، لم ينشأ العقل ليفكر في الرياضيات أو الفلسفة أولاً، بل كأداة بيولوجية متطورة لخدمة <span class="concept-link">الاستتباب</span> (الحفاظ على توازن الحياة). العواطف ليست "أعداء" للعقلانية، بل هي الأساس الذي تقوم عليه، مما يحول مركز الثقل الفلسفي من "أنا أفكر إذن أنا موجود" إلى "أنا موجود كجسد إذن أنا قادر على التفكير والشعور".
+                    <span class="citation" data-ref="Damasio, A. R. (1994). Descartes' Error: Emotion, Reason, and the Human Brain, Odile Jacob.">[1]</span>
+                </p>
+            </div>
+        </section>
+
+        <section id="problem">
+            <div class="problem-card">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    الإشكال المعرفي: تفكيك <span class="concept-link">الثنائية الديكارتية</span>
+                </h3>
+                <p>
+                    يحاول دامازيو حل أزمة معرفية كبرى سيطرت على الفكر الغربي لقرون، والتي فصلت بشكل حاد بين "الجوهر المفكر" (العقل) و"الجوهر الممتد" (الجسد). هذا الإشكال ليس مجرد ترف فلسفي، بل هو مأزق بيولوجي قاتل يتجلى في التساؤلات التالية:
+                </p>
+                <ul>
+                    <li>لماذا يفشل الأشخاص ذوو الذكاء المنطقي السليم تماماً في اتخاذ قرارات بسيطة في حياتهم الشخصية والاجتماعية بعد إصابة دماغية محددة (تلف القشرة الجبهية الحجاجية)؟</li>
+                    <li>كيف نرد الاعتبار للجسد الانفعالي في تفسير "أسطورة العقلانية المحضة" التي افترضت خطأً أن القرار السليم يتم بدم بارد وإقصاء تام للمشاعر؟</li>
+                    <li>كيف تتحول النبضات الفيزيولوجية و"خرائط الجسد" إلى تجربة ذاتية ووعي بيولوجي يوجه مسار الاختيارات الإنسانية؟</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="arguments">
+            <h3>الحجج الأساسية في نسق دامازيو</h3>
+            <ol class="arguments-list">
+                <li>
+                    <h4>حجة <span class="concept-link">الوسم الجسدي</span> (Somatic Marker Hypothesis)</h4>
+                    <p>
+                        يثبت دامازيو أن الدماغ يستخدم علامات أو وسوماً جسدية (كتسارع النبض، انقباض الصدر، فراشة المعدة) كإشارات إنذار أو تشجيع لاختصار وتوجيه عملية اتخاذ القرار المعقدة. 
+                        <strong>مثال توضيحي:</strong> عندما يواجه التلميذ حيرة بين مهنتين تتقاربان منطقياً، فإن الاستجابة الجسدية (ضيق أو ارتياح) عند تخيل ممارسة المهنة توفر بوصلة بيولوجية أسرع وأدق من جداول المقارنة الباردة.
+                        <span class="citation" data-ref="Damasio, A. R. (1994). L'erreur de Descartes, p. 240-243.">[2]</span>
+                    </p>
+                </li>
+                <li>
+                    <h4>الأدلة السريرية والإكلينيكية (حالة فينياس غيج والمريض إيليوت)</h4>
+                    <p>
+                        قدمت الحالات السريرية برهاناً داحضاً؛ مرضى يتمتعون بذكاء منطقي متقدم وذاكرة سليمة، لكنهم دمروا حياتهم المهنية والاجتماعية لعجزهم عن اتخاذ القرارات نتيجة فقدانهم لقدرة الربط الانفعالي (بسبب تلف عصبي محدد). هذا يثبت أن العقلانية تتعطل تماماً إذا فُصلت عن العاطفة.
+                    </p>
+                </li>
+                <li>
+                    <h4>التسلسل النشوئي للذات (من البيولوجيا إلى السرد)</h4>
+                    <p>
+                        يرى دامازيو أن الوعي يتطور عبر مستويات متراتبة: يبدأ من "البروتو-ذات" (خرائط عصبية عفوية للحالة الجسدية الخام)، مروراً بـ "الذات المحورية" (الشعور بالوجود هنا والآن أثناء التفاعل مع المثير)، وصولاً إلى <span class="concept-link">الهوية السردية</span> أو السير-ذاتية (المعتمدة على الذاكرة والمستقبل). لا يمكن بلوغ الأخيرة بمعزل عن الإحساس الجسدي القاعدي.
+                    </p>
+                </li>
+            </ol>
+        </section>
+
+        <section id="hypotheses" class="hypotheses">
+            <h3>الفرضيات الإبستمولوجية الضمنية</h3>
+            <p>يتبنى دامازيو في بنائه النظري عدة مسلمات خفية تعمل كبديهيات موجهة:</p>
+            
+            <details>
+                <summary>فرضية النزعة الطبيعية (Naturalism)</summary>
+                <p>يفترض ضمناً أن كل ظاهرة سيكولوجية، مهما بلغ تعقيدها (كالضمير الأخلاقي، الوعي، أو القرار المهني)، تمتلك بالضرورة مكافئاً فيزيائياً حتمياً في الدماغ والجسد، رافضاً أي تفسير ميتافيزيقي للوعي.</p>
+            </details>
+            
+            <details>
+                <summary>فرضية الاستمرارية الحيوية (Biological Continuity)</summary>
+                <p>يوجد خيط متصل يبدأ من ذكاء الخلية الواحدة استجابةً للخطر، وصولاً إلى الوعي البشري المعقد. الفارق بين ارتباك تلميذ عند اختيار مسار دراسي وانغلاق محارة عند الخطر هو فارق في "درجة التعقيد" وليس في "النوع".</p>
+            </details>
+
+            <details>
+                <summary>فرضية الدماغ كرسام خرائط (The Brain as Map-maker)</summary>
+                <p>الوظيفة المركزية للدماغ هي الرصد المستمر ورسم خرائط ديناميكية لكل عضلة، غدة، وانفعال داخل الجسد. الوعي ينبثق كناتج لعملية التفاعل بين هذه الخريطة الجسدية والموضوع الخارجي.</p>
+            </details>
+        </section>
+
+        <section id="limitations" class="limitations">
+            <h3>حدود الطرح ونقاط ضعفه (التحليل النقدي)</h3>
+            <p>
+                رغم الثورة المعرفية التي أحدثها النموذج الدامازيوي، تواجه أطروحته بعض المآزق الإبستيمولوجية التي يجب استحضارها وتجاوزها بيداغوجياً:
+            </p>
+            <ul>
+                <li><strong>"الفجوة التفسيرية" (The Explanatory Gap):</strong> برع دامازيو في وصف الميكانيزمات العصبية (كيف تُبنى الخرائط)، لكنه لم يقدم تفسيراً حاسماً لسؤال "كيف ولماذا تتحول المادة العصبية إلى ماهية الإحساس والتجربة الذاتية الحية (Qualia)؟".</li>
+                <li><strong>الاختزال البيولوجي:</strong> قد يوحي طرحه أحياناً باختزال الإنسان والقرار الأخلاقي في حتمية الاستجابات الكيميائية والهرمونية، مما يُنذر بإضعاف مفاهيم الإرادة الحرة والمسؤولية الواعية، ليصبح الفرد أشبه بـ "طيار آلي" جسدي.</li>
+                <li><strong>إهمال البعد السوسيو-ثقافي:</strong> تركيزه المفرط على "الداخل" البيولوجي قد يُغفل دور السياق، اللغة، والتفاعل الاجتماعي كمنتجين أصيلين للهوية المهنية وليسوا مجرد ملحقات. فالمراهق المغربي مثلاً قد يُنتج وسماً جسدياً "إيجابياً" استجابةً لضغوط "إرضاء الوالدين" وليس لميوله الذاتية العميقة.</li>
+            </ul>
+        </section>
+
+        <section id="map">
+            <h3>الخريطة المفاهيمية البصرية</h3>
+            <p>توضح هذه الخريطة الديناميكية تقاطعات نموذج دامازيو مع مفاهيم التوجيه المهني المعاصر:</p>
+            <div class="mermaid" style="text-align: center; margin: 30px 0;">
+                graph TD
+                A[الإدراك المتجسد - Embodied Cognition] --> B(التنظيم الحيوي/الاستتباب)
+                B --> C{إنتاج الانفعالات}
+                C --> D[الوسم الجسدي - Somatic Marker]
+                C --> E[الذات المحورية - Core Self]
+                D --> F(توجيه اتخاذ القرار)
+                E --> G(بناء المسار المهني)
+                F --> H[التكيف المهني]
+                G --> I[الهوية السردية]
+                H --> I
+                style A fill:#2C3E50,stroke:#333,stroke-width:2px,color:#fff
+                style D fill:#E74C3C,stroke:#333,stroke-width:2px,color:#fff
+                style I fill:#F39C12,stroke:#333,stroke-width:2px,color:#fff
+            </div>
+        </section>
+
+        <section id="timeline">
+            <h3>الهندسة التطبيقية: نقل المعرفة من الدماغ إلى الممارسة</h3>
+            <p>لتطبيق "تصحيح خطأ ديكارت" في الممارسة التربوية (عبر تقنيات مثل السيكودراما ولعب الأدوار)، نتبع المسار المنهجي التالي:</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>الخطوة 1: المحفز الخارجي (Trigger) الموقف الضاغط</h4>
+                    <p>وضع التلميذ في موقف محاكاة مهنية صريح (مثلاً إسناد دور مهندس يواجه مشكلة موقع). الهدف ليس المعالجة الرمزية المكتوبة بل تفعيل "حلقة المحاكاة" العصبية لاستدعاء الجسد.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>الخطوة 2: استدعاء <span class="concept-link">الوسم الجسدي</span></h4>
+                    <p>رصد التغيرات الفسيولوجية العفوية (ارتباك الحركة، وتيرة التنفس). الدماغ يقوم بمطابقة خريطة حالة الجسد الآنية مع متطلبات الدور المهني لفرز قيمة عاطفية (إشارة إنذار أو تشجيع).</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>الخطوة 3: الوعي بالحس الداخلي (Interoceptive Awareness)</h4>
+                    <p>استخدام أدوات مساعدة (مثل مقياس MAIA) لتدريب التلميذ على إدراك وفهم لغة انفعالاته الجسدية، ليتحول التفاعل البيولوجي اللاواعي إلى معرفة إبستيمولوجية واعية.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>الخطوة 4: <span class="concept-link">التكيف المهني</span> وتثبيت القرار</h4>
+                    <p>دمج هذا الشعور "الحي" ضمن السردية الذاتية للمتعلم. الفرد هنا يختار مساره ليس لأنه فكر فيه منطقياً فحسب، بل لأنه استشعره حيوياً في جسده (استتباب مهني).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quotes">
+            <h3>اقتباسات مرجعية داعمة</h3>
+            <blockquote>
+                عندما تقترن علامة جسدية سالبة بنتيجة متوقعة معينة، فإنها تؤدي دور إشارة إنذار. أما عندما يتعلق هذا الاقتران بعلامة جسدية موجبة، فإنها تصبح على العكس من ذلك إشارة تشجيع، تضيق مسارات الاستدلال المنطقي وتوجهه بشكل حاسم.
+                <span class="quote-ref">— أنطونيو دامازيو، خطأ ديكارت (النسخة الفرنسية)، 1994، ص. 240.</span>
+            </blockquote>
+            <p>
+                <strong>مكان التوظيف الأكاديمي:</strong> يُستخدم هذا الاقتباس كمبرر عصبي-معرفي أساسي لاستخدام تقنيات لعب الأدوار كمحاكاة سردية متجسدة لتجاوز المقابلات اللفظية الجافة في التوجيه المهني.
+            </p>
+        </section>
+
+    </main>
+
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h3 id="modal-title">عنوان المفهوم</h3>
+            
+            <span class="modal-label">التعريف الدقيق:</span>
+            <p id="modal-def"></p>
+            
+            <span class="modal-label">تفاصيل أبستيمولوجية:</span>
+            <p id="modal-details"></p>
+            
+            <span class="modal-label">مثال تطبيقي (الممارسة السيكولوجية):</span>
+            <p id="modal-example"></p>
+        </div>
+    </div>
+
+    <script>
+        // تفعيل مكتبة Mermaid للرسوم البيانية
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+
+        // قاعدة بيانات المفاهيم التفاعلية
+        const conceptData = {
+            "العقل المجسد": {
+                def: "نموذج نظري يقر بأن العقل والوعي لا ينبثقان من فراغ مجرد، بل هما نتاج تفاعل مستمر وعضوي بين الدماغ والجسد بكامل أعضائه.",
+                details: "يقف هذا المفهوم على النقيض من النظريات الحسابية الكلاسيكية. الوعي فيه عملية ديناميكية تبدأ من التنظيم الحيوي الخلوي وصولاً إلى الوعي الثقافي.",
+                example: "في التوجيه التربوي، المتعلم لا يختار تخصصه كحاسوب يعالج بيانات النقط، بل ككائن حي يسعى للحفاظ على توازنه النفسي والجسدي في بيئة المدرسة."
+            },
+            "الوسم الجسدي": {
+                def: "آلية سببية-وظيفية يعتمدها الدماغ لربط صوة ذهنية (سيناريو مستقبلي أو قرار) بحالة جسدية أو شعور (إيجابي أو سلبي) لتوجيه الاستدلال.",
+                details: "تعمل الوسوم كإشارات مساعدة للذاكرة العاملة والمنطق، حيث تقوم بفلترة الخيارات المتاحة وتقليصها لحماية الفرد من الغرق في التحليل اللامتناهي.",
+                example: "عند تخيل المتعلم نفسه في مقابلة عمل، قد يشعر بتعرق يديه وانقباض معدته؛ هذا الوسم الجسدي يخبر العقل فوراً بمدى ملاءمة هذا المسار لهويته العميقة."
+            },
+            "الثنائية الديكارتية": {
+                def: "مأزق فلسفي ومعرفي أسسه رينيه ديكارت يفصل تماماً بين المادة (الجسد) والعقل (الروح)، معتبراً القرار السليم نتاج إقصاء تام للعواطف.",
+                details: "أثبتت الأعصاب الحديثة أن هذا الفصل هو 'خطأ بيولوجي'؛ حيث أظهرت الحالات السريرية أن الإنسان الذي يفقد عواطفه (تلف جبهي) يعجز عن اتخاذ أبسط القرارات رغم سلامة ذكائه.",
+                example: "الاعتماد المفرط على 'الروائز الورقية' الباردة في المدارس دون الاكتراث للتجربة العاطفية للمتعلم هو إعادة إنتاج لخطأ ديكارت في حقل التربية."
+            },
+            "الاستتباب": {
+                def: "الآلية البيولوجية الفطرية (Homeostasis) التي تهدف للحفاظ على توازن الحياة واستقرار الوظائف داخل الكائن الحي في مواجهة البيئة.",
+                details: "في فلسفة دامازيو، العقل نفسه تطور ليكون خادماً للاستتباب. كل قرار أخلاقي، اجتماعي أو إبداعي يصب في عمقه نحو حماية توازن الفرد واستمراريته.",
+                example: "قد يعاني المراهق من تمزق استتبابي: اختيار يميل له جسده ونفسه، مقابل اختيار يفرضه المجتمع لإرضاء الوالدين (استتباب اجتماعي خارجي)."
+            },
+            "الهوية السردية": {
+                def: "بناء مستمر للمعنى الذاتي عبر الزمن، حيث ينسج الفرد تجاربه الماضية وتوقعاته المستقبلية في قصة متماسكة تعبر عن كينونته.",
+                details: "يربط دامازيو هذا المستوى بـ 'الذات السير-ذاتية'، مؤكداً أنها أعلى مستويات الوعي، ولا يمكن بناؤها بصلابة دون المرور بسلامة الأساس الجسدي العاطفي.",
+                example: "حينما يحكي المتعلم مساره الدراسي في مقابلة توجيه، هو لا يسرد وقائع بل يخلق هوية مهنية، وهذه السردية لا تقنع أحداً إن لم تدعمها 'تمثيلات جسدية' متسقة."
+            },
+            "التكيف المهني": {
+                def: "قدرة الفرد على إيجاد انسجام ديناميكي بين ميوله وقيمه الذاتية من جهة، ومتطلبات وتحديات المحيط المهني من جهة أخرى.",
+                details: "لا يعتبر التكيف هنا مجرد قبول عقلي بأمر واقع، بل يشمل تكيفاً 'حيوياً' (استتباب مهني) يضمن تقليل التوتر الانفعالي.",
+                example: "نجاح استشارة التوجيه لا تقاس بتوزيع التلميذ على شعبة مطلوبة في السوق، بل بمدى انسجام استجاباته العفوية الانفعالية مع الطموح الذي يصرح به."
+            }
+        };
+
+        // إدارة النوافذ المنبثقة
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalClose = document.getElementById('modal-close');
+        
+        document.querySelectorAll('.concept-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const conceptStr = e.target.textContent.trim();
+                const data = conceptData[conceptStr];
+                
+                if (data) {
+                    document.getElementById('modal-title').textContent = conceptStr;
+                    document.getElementById('modal-def').textContent = data.def;
+                    document.getElementById('modal-details').textContent = data.details;
+                    document.getElementById('modal-example').textContent = data.example;
+                    modalOverlay.classList.add('active');
+                }
+            });
+        });
+
+        // إغلاق النافذة
+        const closeModal = () => modalOverlay.classList.remove('active');
+        
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+
+        // القائمة الجانبية الديناميكية (ScrollSpy)
+        const sections = document.querySelectorAll('main section');
+        const navLinks = document.querySelectorAll('.sidebar a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100; // مسافة تعويضية للتمرير
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (current && link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

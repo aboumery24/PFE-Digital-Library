@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أطروحة ماك آدامز: الهوية السردية والتوجيه المهني</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #FAF9F6;
+            --text-color: #333333;
+            --primary: #2C3E50;
+            --accent: #E74C3C;
+            --highlight: #27AE60;
+            --limitation-bg: #FDF2F2;
+            --sidebar-width: 280px;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: var(--primary);
+            margin-top: 1.5em;
+        }
+
+        /* القائمة الجانبية (Sticky TOC) */
+        .sidebar {
+            width: var(--sidebar-width);
+            min-width: var(--sidebar-width);
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 30px 20px;
+            background: #fff;
+            border-left: 1px solid #ddd;
+            box-sizing: border-box;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.02);
+            z-index: 100;
+        }
+
+        .sidebar h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 12px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #555;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            display: block;
+            border-right: 3px solid transparent;
+            padding-right: 10px;
+        }
+
+        .sidebar a:hover, .sidebar a.active {
+            color: var(--accent);
+            background: #fdf5f5;
+            border-right-color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* المحتوى الرئيسي */
+        .content {
+            flex: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            margin-right: calc(var(--sidebar-width) + 40px); /* لمنع تداخل القائمة الجانبية مع النص */
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        /* المفاهيم التفاعلية */
+        .concept-link {
+            color: var(--accent);
+            border-bottom: 1px dashed var(--accent);
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            padding: 0 2px;
+            background: rgba(231, 76, 60, 0.05);
+            border-radius: 3px;
+        }
+
+        .concept-link:hover {
+            background-color: rgba(231, 76, 60, 0.15);
+        }
+
+        /* التوثيق الأكاديمي الدقيق */
+        .citation {
+            font-size: 0.85em;
+            color: var(--highlight);
+            cursor: help;
+            position: relative;
+            font-weight: bold;
+            font-family: sans-serif;
+            margin: 0 4px;
+        }
+
+        .citation::after {
+            content: attr(data-ref);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2C3E50;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 6px;
+            white-space: normal;
+            min-width: 250px;
+            text-align: right;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            pointer-events: none;
+        }
+
+        .citation::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: #2C3E50 transparent transparent transparent;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+        }
+
+        .citation:hover::after, .citation:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* بطاقة تعريف العالم */
+        .profile-card {
+            display: flex;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+            padding: 25px;
+            margin-bottom: 50px;
+            align-items: flex-start;
+            gap: 25px;
+            border-top: 5px solid var(--primary);
+        }
+
+        .profile-card img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-color);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .profile-info h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .profile-info p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        /* صندوق الأطروحة المركزية (Hero Box) */
+        .hero-box {
+            background: linear-gradient(135deg, var(--primary), #34495E);
+            color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 50px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(44, 62, 80, 0.2);
+        }
+
+        .hero-box h2 {
+            color: #fff;
+            margin-top: 0;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .hero-box p {
+            font-size: 1.1em;
+            line-height: 1.9;
+        }
+
+        /* بطاقة الإشكال المعرفي */
+        .problem-card {
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 50px;
+            background: #fff;
+            position: relative;
+        }
+
+        .problem-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 0;
+        }
+
+        .problem-card svg {
+            color: var(--highlight);
+        }
+
+        .problem-card ul {
+            padding-right: 20px;
+        }
+
+        /* القوائم المرقمة (الحجج) */
+        ol.arguments-list {
+            padding-right: 25px;
+            margin-bottom: 50px;
+        }
+
+        ol.arguments-list > li {
+            margin-bottom: 25px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border-right: 4px solid var(--highlight);
+        }
+
+        ol.arguments-list h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* الفرضيات الضمنية */
+        .hypotheses details {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+        }
+
+        .hypotheses details[open] {
+            border-color: var(--primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .hypotheses summary {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--primary);
+            outline: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .hypotheses summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .hypotheses summary::before {
+            content: '+';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            background: var(--bg-color);
+            border-radius: 50%;
+            margin-left: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .hypotheses details[open] summary::before {
+            content: '-';
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* حدود الطرح */
+        .limitations {
+            background-color: var(--limitation-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border-right: 5px solid var(--accent);
+            margin-bottom: 50px;
+        }
+
+        .limitations h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+
+        /* الهندسة التطبيقية (Timeline) */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: -37px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--highlight);
+            border: 4px solid var(--bg-color);
+        }
+
+        .timeline-item h4 {
+            margin-top: 0;
+        }
+
+        /* الاقتباسات */
+        blockquote {
+            position: relative;
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin: 50px 0;
+            font-style: italic;
+            font-size: 1.1em;
+            line-height: 1.9;
+            border-right: 6px solid var(--primary);
+        }
+
+        blockquote::before {
+            content: "«";
+            position: absolute;
+            right: 15px;
+            top: -10px;
+            font-size: 80px;
+            color: rgba(44, 62, 80, 0.08);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .quote-ref {
+            display: block;
+            text-align: left;
+            font-size: 0.85em;
+            font-style: normal;
+            color: #7f8c8d;
+            margin-top: 15px;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+
+        /* النوافذ المنبثقة (Modals) */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 550px;
+            width: 90%;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            cursor: pointer;
+            font-size: 28px;
+            border: none;
+            background: none;
+            color: #999;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--accent);
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 10px;
+        }
+
+        .modal-label {
+            font-family: sans-serif;
+            font-weight: bold;
+            color: var(--accent);
+            display: block;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        /* التصميم المتجاوب */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-left: none;
+                border-bottom: 1px solid #ddd;
+                padding: 15px;
+            }
+            .content {
+                margin-right: 0;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h3>محتويات الورقة</h3>
+        <nav>
+            <ul>
+                <li><a href="#profile" class="active">تعريف بالباحث</a></li>
+                <li><a href="#thesis">الأطروحة المركزية</a></li>
+                <li><a href="#problem">الإشكال المعرفي</a></li>
+                <li><a href="#arguments">الحجج الأساسية</a></li>
+                <li><a href="#hypotheses">الفرضيات الضمنية</a></li>
+                <li><a href="#limitations">حدود الطرح (التحليل النقدي)</a></li>
+                <li><a href="#map">الخريطة المفاهيمية البصرية</a></li>
+                <li><a href="#timeline">الهندسة التطبيقية والمحاكاة</a></li>
+                <li><a href="#quotes">اقتباسات مرجعية داعمة</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="content">
+
+        <section id="profile">
+            <div class="profile-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Dan_P._McAdams.jpg/220px-Dan_P._McAdams.jpg" alt="صورة العالم دان ماك آدامز">
+                <div class="profile-info">
+                    <h2>دان ب. ماك آدامز (Dan P. McAdams)</h2>
+                    <p>
+                        أستاذ علم النفس ودراسات التنمية البشرية. يُعد من الرواد المؤسسين للمقاربة السردية في علم نفس الشخصية. يركز عمله على فهم كيفية بناء الأفراد للمعنى والغاية في حياتهم عبر صياغة "قصص حياة" متماسكة. 
+                        يُشكل كتابه "الهوية والقصة" (2006) مرجعاً إبستيمولوجياً حاسماً لتفسير انتقال التوجيه المهني من مرحلة "التشخيص الثابت" (الروائز) إلى مرحلة "البناء الديناميكي"، حيث يُصبح المتعلم مؤلفاً نشطاً لمساره من خلال <span class="concept-link">الهوية السردية</span>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="thesis">
+            <div class="hero-box">
+                <h2>الأطروحة المركزية: <span class="concept-link">الهوية السردية</span> و "القصص التي نعيش بها"</h2>
+                <p>
+                    يدافع ماك آدامز عن أطروحة مفادها أن الهوية الإنسانية في العصر الحديث ليست جوهراً داخلياً ثابتاً يمكن استخراجه أو قياسه ببساطة، بل هي بناء سردي مستمر. الأفراد يؤلفون هويتهم بشكل فاعل من خلال دمج ماضيهم المعاد بناؤه، وحاضرهم المُختبر، ومستقبلهم المتخيل في قصة حياة ذات معنى. هذه السرديات ليست مجرد وصف للحياة، بل هي "القصص التي نعيش بها"، والتي تشكل الموجه الأساسي للمسار المهني والشخصي.
+                    <span class="citation" data-ref="McAdams, D. P. (1993). The stories we live by: Personal myths and the making of the self. William Morrow & Co.">[1]</span>
+                </p>
+            </div>
+        </section>
+
+        <section id="problem">
+            <div class="problem-card">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    </svg>
+                    الإشكال المعرفي: أزمة التماسك في عالم مفتت
+                </h3>
+                <p>
+                    يحاول ماك آدامز الإجابة عن مأزق إبستيمولوجي ونفسي في عصر ما بعد الحداثة:
+                </p>
+                <ul>
+                    <li>كيف يمكن للفرد أن يحقق إحساساً بالوحدة، الاستمرارية، والهدف في عالم يتسم بالتعددية السائلة والتناقض المستمر؟</li>
+                    <li>كيف نوفق بين حاجتنا النفسية العميقة للتماسك الداخلي (Coherence) والواقع الاجتماعي المعقد الذي يفرض علينا أدواراً وهويات مهنية وشخصية متعارضة؟</li>
+                    <li>كيف يمكن للمراهق أن يبني هوية مهنية واضحة بينما تتجاذبه أصوات مجتمعية وأسرية متنافرة؟</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="arguments">
+            <h3>الحجج الأساسية الموجهة للطرح السردي</h3>
+            <ol class="arguments-list">
+                <li>
+                    <h4>الحجة التطورية (Developmental Argument)</h4>
+                    <p>
+                        يبدأ بناء الهوية السردية فعلياً في مرحلة المراهقة والرشد المبكر. في هذه المرحلة المتقدمة معرفياً، يكتسب الفرد القدرة على الإجابة عن سؤال "من أنا؟" عبر تأليف قصة تدمج أبعاد الزمن (الماضي، الحاضر، المستقبل). 
+                        <strong>مثال:</strong> توافق هذه المرحلة فترة "بناء المسار المهني" لدى التلميذ، حيث لا يختار مهنة كفعل لحظي، بل كفصل قادم في قصة حياته.
+                    </p>
+                </li>
+                <li>
+                    <h4>الحجة السوسيو-ثقافية (Socio-cultural Argument)</h4>
+                    <p>
+                        الهوية السردية لا تنمو في فراغ معزول، بل في تفاعل جدلي مع <span class="concept-link">النص السائد</span> (Master Narrative). تتأثر القصص الشخصية بعمق بالسياق الثقافي.
+                        <strong>مثال:</strong> كيف يؤطر المجتمع مفاهيم مثل "النجاح المهني" (كالحصول على وظيفة حكومية)، مما يضطر الفرد للتفاوض سردياً مع هذه النصوص.
+                        <span class="citation" data-ref="Cohler, B. J., & Hammack, P. L. (2006). Making a gay identity: Life story and the cultural politics of sexual identity.">[2]</span>
+                    </p>
+                </li>
+                <li>
+                    <h4>الحجة البنيوية-التحليلية: <span class="concept-link">الذات الحوارية</span> (Dialogical Self)</h4>
+                    <p>
+                        بالاستناد إلى الفيلسوف باختين، يُطرح نموذج الذات كـ"محادثة" أو "صراع" بين عدة "مواقع للأنا" (I-positions). التماسك لا يعني التطابق، بل القدرة على إدارة هذا الحوار الداخلي بين أصوات قد تكون متناقضة (مثل صوت التلميذ المبدع مقابل التلميذ المطيع للأسرة).
+                        <span class="citation" data-ref="Raggatt, P. (2006). Multiplicity and conflict in the dialogical self: A life-narrative approach.">[3]</span>
+                    </p>
+                </li>
+                <li>
+                    <h4>الحجة الإجرائية (Procedural Argument)</h4>
+                    <p>
+                        تُبنى الهوية من خلال التفاعلات اليومية المستمرة (القصص الصغيرة - Small Stories) وليس فقط عبر المقابلات السريرية الطويلة. المستمع يساهم بفاعلية في تعديل القصة بناءً على ردود أفعاله اللفظية وغير اللفظية.
+                    </p>
+                </li>
+            </ol>
+        </section>
+
+        <section id="hypotheses" class="hypotheses">
+            <h3>الفرضيات الإبستمولوجية الضمنية</h3>
+            <p>يستند النموذج السردي على مسلمات فلسفية ومنهجية عميقة، منها:</p>
+            
+            <details>
+                <summary>البنائية الاجتماعية (Social Constructionism)</summary>
+                <p>تفهم الهوية على أنها بناء اجتماعي وسردي تفاعلي، وليست كينونة سيكولوجية داخلية محضة تنتظر من يكتشفها بالروائز الكلاسيكية.</p>
+            </details>
+            
+            <details>
+                <summary>المقاربة الهرمينوطيقية (Hermeneutics)</summary>
+                <p>فهم الهوية المهنية للمتعلم يتطلب تأويلاً وتفسيراً للنصوص السردية التي يرويها، مع الأخذ بالاعتبار السياق الذي قيلت فيه وقصد الراوي الخفي والمعلن.</p>
+            </details>
+
+            <details>
+                <summary>الاستمرارية الزمنية والتكاملية</summary>
+                <p>الهوية مشروع زمني ممتد يحقق التكامل (Integration). رغم التناقضات وصدمات الإخفاق المدرسي، تسعى السردية إلى إيجاد نسق يمنح الحياة معنى مفهوماً، عبر آليات مثل الروابط السببية.</p>
+            </details>
+        </section>
+
+        <section id="limitations" class="limitations">
+            <h3>حدود الطرح السردي (الفجوات الإبستيمولوجية)</h3>
+            <p>
+                رغم الثراء البيداغوجي لنموذج ماك آدامز، فإنه يواجه مجموعة من القصور المنهجي الذي يستلزم التدخل والتعديل، خاصة عند تطبيقه في مجتمعات غير غربية:
+            </p>
+            <ul>
+                <li><strong>إهمال الجسد (The Missing Body):</strong> يركز النموذج بشدة على اللغة والنص، مغفلاً أن "الأنا" متجذرة في وجود فيزيولوجي. القصة اللفظية لا تكفي لتوليد يقين مهني ما لم تقترن بشعور متجسد. (وهذا ما يستدعي التكامل مع نظرية دامازيو لتفسير كيف يتحول السرد إلى واقع عبر <span class="concept-link">العلامات الجسدية</span>).</li>
+                <li><strong>الافتقار إلى السببية الصارمة:</strong> النموذج التفسيري يصف "كيف" تبنى الهوية، لكنه يضعف في تفسير "لماذا" تؤدي قصة معينة إلى سلوك واقعي في اتخاذ القرار.</li>
+                <li><strong>التحيز الثقافي المفرط:</strong> النموذج مصمم وفق الثقافة الغربية الفردية. في السياق الجماعي المغربي، الذات الحوارية تتأثر بشدة بأصوات المجتمع (الأسرة، التوقعات السائدة)، مما يجعل "القصة المروية" في أحيان كثيرة صدى لـ "النص السائد" أكثر من كونها بناءً فردياً مستقلاً.</li>
+            </ul>
+        </section>
+
+        <section id="map">
+            <h3>الخريطة المفاهيمية البصرية (التوليف بين السرد والتجسد)</h3>
+            <p>توضح هذه الخريطة كيف تتقاطع الهوية السردية مع المحاكاة ولعب الأدوار لتشكيل مسار التوجيه:</p>
+            <div class="mermaid" style="text-align: center; margin: 30px 0;">
+                graph TD
+                A[النصوص الثقافية السائدة] --> B(الذات الحوارية: أصوات متعددة)
+                B --> C{لعب الأدوار: محاكاة سردية وتفاعلية}
+                C --> D[نضح الهوية - Identity Bleed]
+                C --> E[العلامات الجسدية - Somatic Markers]
+                D --> F((الهوية السردية المهنية المتجسدة))
+                E --> F
+                style C fill:#E74C3C,stroke:#333,stroke-width:2px,color:#fff
+                style F fill:#2C3E50,stroke:#333,stroke-width:2px,color:#fff
+            </div>
+        </section>
+
+        <section id="timeline">
+            <h3>الهندسة التطبيقية: من المقابلة إلى المحاكاة السردية</h3>
+            <p>بناءً على التكامل بين السردية والتشخيص المتجسد، نقترح منهجية تطبيقية تعتمد على تقنية لعب الأدوار لتوجيه المتعلمين:</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>1. التحفيز السردي التفاعلي (Stimulus)</h4>
+                    <p>بدلاً من الأسئلة الجافة، يُطلب من المراهق الانخراط في سيناريو يحاكي بيئة مهنية مستقبلية (مثلاً مقابلة عمل، أو حل مشكلة تقنية) بمشاركة باحث أو قرين، مما يخلق سياقاً تفاعلياً مباشراً لتبادل المعاني.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2. تنشيط <span class="concept-link">الذات الحوارية</span></h4>
+                    <p>هذا الموقف التفاعلي يستدعي تنشيط "موقع الأنا" المهني (صوت المهندس، أو الطبيب) داخل المتعلم. هذا التنشيط لا يتم بالكلمات فقط، بل باستحضار وقفة الجسد والنبرة الانفعالية.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>3. <span class="concept-link">المحاكاة المتجسدة</span> وتوليد العلامات</h4>
+                    <p>من خلال "حلقات المحاكاة" العصبية، تولد الأفعال التمثيلية علامات جسدية تعطي للمتعلم إحساساً عميقاً بمدى "ملاءمة" الدور الممثل لهويته الحقيقية (شعور بالراحة والتدفق، أو التنافر والتوتر).</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>4. السرد التالي ونضح الهوية (Post-Simulation)</h4>
+                    <p>يُطلب من المتعلم إعادة رواية قصته المهنية. هنا نحلل حدوث <span class="concept-link">التحول السردي</span> وتسرب ملامح الدور الممثل إلى قصته الخاصة، وهو ما يُعرف بنضح الهوية، ليتحول الخيال إلى قناعة واقعية موجهة للسلوك.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quotes">
+            <h3>اقتباسات مرجعية داعمة</h3>
+            <blockquote>
+                "في هذا التصور، تمتلك 'الأنا' إمكانية الانتقال من موقع مكاني إلى آخر وفقاً للتغيرات في الموقف والزمن. 'الأنا' تتأرجح بين مواقع مختلفة بل ومتعارضة، وتمتلك القدرة على إضفاء صوت على كل موقع من خلال الخيال، بحيث يمكن إقامة علاقات حوارية بين الأصوات... مما ينتج ذاتاً معقدة البناء سردياً."
+                <span class="quote-ref">— Hermans, via Raggatt, 2006, p. 18.</span>
+            </blockquote>
+            <p>
+                <strong>الاستثمار الأكاديمي:</strong> يُستخدم هذا الاقتباس كدعامة صلبة لتبرير تقنية "لعب الأدوار"؛ فالمحاكاة المهنية ليست سوى استدعاء لموقع "أنا" جديد ومنحه صوتاً ليتحاور مع الأصوات المجتمعية المعيقة، مما يكسر جمود الخيارات المهنية.
+            </p>
+            
+            <blockquote>
+                "نستخدم مصطلح الهوية السردية للإشارة إلى القصص التي يبنيها الناس ويروونها عن أنفسهم ليحددوا لأنفسهم وللآخرين من هم. بدءاً من مرحلة المراهقة والرشد المبكر، تصبح هوياتنا السردية هي القصص التي نعيش بها."
+                <span class="quote-ref">— McAdams, Josselson, & Lieblich, 2006, p. 4.</span>
+            </blockquote>
+        </section>
+
+    </main>
+
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h3 id="modal-title">عنوان المفهوم</h3>
+            
+            <span class="modal-label">التعريف الدقيق:</span>
+            <p id="modal-def"></p>
+            
+            <span class="modal-label">العمق الإبستيمولوجي والتفاصيل:</span>
+            <p id="modal-details"></p>
+            
+            <span class="modal-label">مثال في الممارسة (التوجيه المهني):</span>
+            <p id="modal-example"></p>
+        </div>
+    </div>
+
+    <script>
+        // تفعيل مكتبة Mermaid للرسوم البيانية
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+
+        // قاعدة بيانات المفاهيم التفاعلية
+        const conceptData = {
+            "الهوية السردية": {
+                def: "القصص المتماسكة التي يبنيها الأفراد ويروونها عن أنفسهم لتحديد كينونتهم، وهي تدمج الذاكرة الذاتية، التجربة الحالية، والتوقعات المستقبلية.",
+                details: "تقف الهوية السردية كبديل للنظريات الجوهرانية الثابتة؛ فالإنسان ليس لديه 'نوع شخصية' مجرد، بل هو مؤلف لقصة حياته التي يعيد تشكيلها باستمرار.",
+                example: "في التوجيه، المتعلم الذي يقول 'لطالما أحببت تفكيك الأجهزة منذ صغري، لذلك سأصبح مهندساً' هو لا يعطي معلومة، بل يبني هوية سردية تربط ماضيه بهدف مستقبلي."
+            },
+            "النص السائد": {
+                def: "القصص والأنماط الثقافية المهيمنة في مجتمع معين حول مواضيع كبرى مثل النجاح، الجنسانية، المهنة، والتي تؤطر حدود الممكن في السرد الشخصي.",
+                details: "العلاقة بين النص السائد والسرد الفردي هي علاقة قيد/إمكانية؛ فالمجتمع يفرض مسارات سردية 'مقبولة' يصعب على الفرد الخروج عنها دون مواجهة أزمات هوية.",
+                example: "في سياقنا، يعتبر 'النص السائد' أن النجاح يقترن بمهن محددة (كالطب أو الهندسة). التلميذ الذي يختار مهنة فنية يضطر للدخول في حوار صدامي مع هذا النص لتبرير هويته المهنية."
+            },
+            "الذات الحوارية": {
+                def: "نموذج يرى الذات كفضاء تتعدد فيه 'مواقع الأنا' (I-positions) المستقلة والمتحاورة، بدلاً من كونها وحدة متجانسة.",
+                details: "مستوحى من فلسفة ميخائيل باختين. هذا المفهوم يفسر كيف يحمل المراهق تناقضاته بسلام؛ حيث يتنقل بين موقع 'الابن المطيع' وموقع 'الشب الفوضوي' حسب السياق.",
+                example: "أثناء محاكاة مقابلة عمل، التلميذ يستدعي موقع 'الأنا المهني المحترف' ويدعه يتحدث، مما قد يقنعه بقدراته التي كانت مقموعة بسبب هيمنة صوت 'أنا الطالب الضعيف'."
+            },
+            "التحول السردي": {
+                def: "نمط من السرد (Redemption Sequence) يؤطر فيه الفرد الأحداث السلبية أو الصادمة كنقطة انطلاق أو حافز لنمو إيجابي وتغيير بناء في الذات.",
+                details: "يتم تحليل الروابط السببية في القصة لمعرفة ما إذا كان الراوي يعترف بالألم ولكنه يحوله إلى دافع لاكتشاف معنى جديد، بدلاً من الاستسلام للسرد التلوثي (Contamination).",
+                example: "متعلم رسب في التوجيه الأولي، فيعيد صياغة هذه التجربة السلبية في سرديته قائلاً: 'رسوبي جعلني أكتشف ميولي الحقيقية نحو التكوين المهني، لقد كان نقطة انطلاق'."
+            },
+            "المحاكاة المتجسدة": {
+                def: "توظيف الفعل الحركي، الجسدي، والانفعالي لمحاكاة وضعية مستقبلية بهدف استثارة تقييم حقيقي وفوري يتجاوز التحليل الذهني الجاف.",
+                details: "وهي الجسر بين نظرية ماك آدامز اللغوية ونظرية دامازيو العصبية؛ السرد لا يحقق اليقين ما لم يمر عبر الجسد ويُنتج وسماً فسيولوجياً.",
+                example: "لعب الدور كمهندس أمام الزملاء يجعل المتعلم يختبر إيقاع التنفس وحركة الجسد المرتبطة بالقيادة، مما يحول الفكرة المجردة إلى إحساس بيولوجي بالملاءمة."
+            },
+            "العلامات الجسدية": {
+                def: "إشارات فسيولوجية وعصبية (نبضات، انقباضات) يولدها الدماغ لتقييم سيناريو مستقبلي كإشارة إنذار أو تشجيع، مسهلة اتخاذ القرار.",
+                details: "تقوم هذه العلامات باختزال الخيارات المعقدة بفضل ارتباطها الانفعالي بالذاكرة الجسدية للفرد، وتعوض النقص في المعالجة المنطقية البحتة.",
+                example: "أثناء سرد التلميذ لاختياره شعبة الرياضيات، قد يلاحظ المستشار التربوي حركات التوتر اللاإرادية لديه، هذه العلامات تناقض السرد اللفظي وتكشف حقيقة الهوية."
+            }
+        };
+
+        // إدارة النوافذ المنبثقة
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalClose = document.getElementById('modal-close');
+        
+        document.querySelectorAll('.concept-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const conceptStr = e.target.textContent.trim();
+                const data = conceptData[conceptStr];
+                
+                if (data) {
+                    document.getElementById('modal-title').textContent = conceptStr;
+                    document.getElementById('modal-def').textContent = data.def;
+                    document.getElementById('modal-details').textContent = data.details;
+                    document.getElementById('modal-example').textContent = data.example;
+                    modalOverlay.classList.add('active');
+                }
+            });
+        });
+
+        // إغلاق النافذة
+        const closeModal = () => modalOverlay.classList.remove('active');
+        
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+
+        // القائمة الجانبية الديناميكية (ScrollSpy)
+        const sections = document.querySelectorAll('main section');
+        const navLinks = document.querySelectorAll('.sidebar a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 150; // مسافة تعويضية للتمرير
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (current && link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
