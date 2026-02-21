@@ -3,38 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>التحليل الإبستيمولوجي: الذاكرة الجسدية والصدمة - بيسيل فان دير كولك</title>
+    <title>الذاكرة الجسدية والصدمة - بيسيل فان دير كولك</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 
     <style>
-        /* المتغيرات التصميمية الأساسية */
+        /* المتغيرات التصميمية */
         :root {
             --bg-color: #FAF9F6;
             --text-main: #333333;
-            --text-light: #555555;
-            --primary: #2C3E50;
-            --secondary: #E67E22;
-            --accent: #2980B9;
-            --danger-bg: #FDF2F2;
-            --danger-border: #E74C3C;
-            --quote-bg: #F8F9FA;
+            --primary-color: #2c3e50;
+            --secondary-color: #d35400;
+            --accent-color: #2980b9;
+            --weakness-bg: #fdf2f2;
+            --weakness-border: #e74c3c;
+            --quote-bg: #f8f9fa;
             --font-serif: 'Amiri', serif;
-            --font-sans: 'Cairo', sans-serif;
+            --font-sans: 'Tajawal', sans-serif;
             --sidebar-width: 280px;
-            --content-max-width: 800px;
+            --content-max: 800px;
         }
 
-        /* الإعدادات العامة */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        /* الإعدادات الأساسية */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: var(--font-serif);
@@ -47,55 +42,51 @@
 
         h1, h2, h3, h4, h5 {
             font-family: var(--font-sans);
-            color: var(--primary);
-            margin-bottom: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            margin-top: 30px;
         }
 
-        /* هندسة الصفحة: Flexbox لمنع التداخل بين القائمة والنص */
-        .layout-wrapper {
+        /* الهيكلة المنطقية (Flexbox) لمنع التداخل */
+        .page-container {
             display: flex;
-            max-width: 1250px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
             gap: 40px;
             align-items: flex-start;
         }
 
-        /* 1. القائمة الجانبية العائمة (Sticky TOC) */
+        /* 1. القائمة الجانبية (Sticky TOC) */
         .sidebar {
             width: var(--sidebar-width);
             flex-shrink: 0;
             position: sticky;
             top: 40px;
-            background: #ffffff;
+            background: #fff;
             padding: 25px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid #EAEAEA;
+            border: 1px solid #eaeaea;
         }
 
         .sidebar h3 {
+            margin-top: 0;
             font-size: 1.3rem;
-            border-bottom: 2px solid var(--secondary);
+            border-bottom: 2px solid var(--secondary-color);
             padding-bottom: 10px;
-            margin-bottom: 20px;
         }
 
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar li {
-            margin-bottom: 12px;
-        }
-
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 12px; }
+        
         .sidebar a {
             text-decoration: none;
-            color: var(--text-light);
+            color: #666;
             font-family: var(--font-sans);
             font-size: 0.95rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            transition: all 0.3s;
             display: block;
             padding: 8px 12px;
             border-radius: 6px;
@@ -103,16 +94,17 @@
         }
 
         .sidebar a:hover, .sidebar a.active {
-            background-color: rgba(41, 128, 185, 0.08);
-            color: var(--accent);
-            border-right-color: var(--accent);
-            font-weight: 800;
+            background-color: rgba(41, 128, 185, 0.05);
+            color: var(--accent-color);
+            border-right-color: var(--accent-color);
+            font-weight: 700;
         }
 
         /* 2. المحتوى الرئيسي */
         .main-content {
             flex-grow: 1;
-            max-width: var(--content-max-width);
+            max-width: var(--content-max);
+            width: 100%;
         }
 
         section {
@@ -120,16 +112,17 @@
             scroll-margin-top: 60px;
         }
 
-        /* بطاقة التعريف (Profile Card) */
+        /* بطاقة التعريف بالعالم */
         .profile-card {
             display: flex;
-            background: #ffffff;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-            gap: 30px;
             align-items: center;
-            border-right: 6px solid var(--primary);
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            gap: 30px;
+            border-right: 6px solid var(--primary-color);
+            margin-top: 0;
         }
 
         .profile-image {
@@ -137,9 +130,9 @@
             height: 130px;
             border-radius: 50%;
             border: 4px solid #fff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             overflow: hidden;
+            flex-shrink: 0;
             background-color: #eee;
         }
 
@@ -151,41 +144,44 @@
 
         .profile-info h1 {
             font-size: 2rem;
+            margin-top: 0;
             margin-bottom: 10px;
         }
 
         .profile-info p {
             margin-bottom: 0;
+            color: #555;
+            text-align: justify;
         }
 
-        /* الصندوق البارز (Hero Box) */
+        /* الأطروحة المركزية (Hero Box) */
         .hero-box {
-            background: linear-gradient(135deg, var(--primary) 0%, #34495E 100%);
-            color: #ffffff;
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: #fff;
             padding: 40px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(44, 62, 80, 0.2);
+            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.2);
             position: relative;
         }
 
         .hero-box h2 {
-            color: #F1C40F;
+            color: #f1c40f;
             font-size: 2.2rem;
-            margin-bottom: 20px;
+            margin-top: 0;
         }
 
         .hero-box p {
             font-size: 1.25rem;
             line-height: 1.9;
+            margin-bottom: 0;
             opacity: 0.95;
-            margin: 0;
         }
 
         /* الإشكال المعرفي */
         .problem-card {
-            background: #ffffff;
-            border: 2px dashed var(--accent);
+            background: #fff;
+            border: 2px dashed var(--accent-color);
             padding: 30px;
             border-radius: 12px;
         }
@@ -200,43 +196,39 @@
         .problem-header svg {
             width: 40px;
             height: 40px;
-            fill: var(--accent);
+            fill: var(--accent-color);
         }
 
-        .problem-questions {
+        .problem-header h2 { margin: 0; }
+
+        .sub-questions {
             background: rgba(41, 128, 185, 0.05);
-            padding: 20px 25px 20px 20px;
+            padding: 20px 25px;
             border-radius: 8px;
             margin-top: 20px;
-            border-right: 4px solid var(--accent);
+            border-right: 4px solid var(--accent-color);
         }
 
-        .problem-questions ul {
-            padding-right: 15px;
-            margin: 0;
-        }
+        .sub-questions ul { padding-right: 15px; margin: 0; }
+        .sub-questions li { margin-bottom: 10px; color: #444; }
 
-        .problem-questions li {
-            margin-bottom: 10px;
-        }
-
-        /* الحجج الأساسية */
+        /* الحجج الأساسية (قوائم مرقمة) */
         .arguments-list {
             padding-right: 20px;
         }
 
         .arguments-list li {
             margin-bottom: 30px;
-            background: #ffffff;
+            background: #fff;
             padding: 25px;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-            border: 1px solid #EAEAEA;
+            border: 1px solid #eaeaea;
         }
 
-        .arguments-list li strong {
+        .arguments-list li strong.arg-title {
             font-family: var(--font-sans);
-            color: var(--primary);
+            color: var(--primary-color);
             font-size: 1.3rem;
             display: block;
             margin-bottom: 12px;
@@ -245,24 +237,23 @@
         .arg-example {
             margin-top: 20px;
             padding: 15px 20px;
-            background: #FDF8E3;
-            border-right: 4px solid #F1C40F;
+            background: #fdf8e3;
+            border-right: 4px solid #f1c40f;
             border-radius: 6px;
             font-size: 1rem;
-            color: #8A6D3B;
+            color: #8a6d3b;
         }
 
-        .arg-example strong {
-            display: inline !important;
-            font-size: 1rem !important;
-            color: #D35400 !important;
-            margin-bottom: 0 !important;
+        .arg-example span.label {
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-family: var(--font-sans);
         }
 
         /* الفرضيات الضمنية */
         details {
-            background: #ffffff;
-            border: 1px solid #EAEAEA;
+            background: #fff;
+            border: 1px solid #eaeaea;
             border-radius: 8px;
             margin-bottom: 15px;
             padding: 15px 20px;
@@ -271,14 +262,14 @@
 
         details[open] {
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-color: var(--secondary);
+            border-color: var(--secondary-color);
         }
 
         summary {
             font-family: var(--font-sans);
             font-weight: 700;
             font-size: 1.2rem;
-            color: var(--primary);
+            color: var(--primary-color);
             cursor: pointer;
             outline: none;
             list-style: none;
@@ -286,9 +277,7 @@
             padding-right: 30px;
         }
 
-        summary::-webkit-details-marker {
-            display: none;
-        }
+        summary::-webkit-details-marker { display: none; }
 
         summary::before {
             content: '+';
@@ -296,47 +285,36 @@
             right: 0;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--secondary);
+            color: var(--secondary-color);
             font-size: 1.5rem;
             transition: transform 0.3s;
         }
 
-        details[open] summary::before {
-            content: '−';
-        }
+        details[open] summary::before { content: '−'; }
 
         details p {
             margin-top: 15px;
             padding-top: 15px;
-            border-top: 1px dashed #EAEAEA;
-            color: var(--text-light);
+            border-top: 1px dashed #eaeaea;
+            color: #555;
             margin-bottom: 0;
         }
 
-        /* حدود الطرح (التحليل النقدي) */
+        /* حدود الطرح */
         .limitations {
-            background-color: var(--danger-bg);
-            border-right: 5px solid var(--danger-border);
+            background-color: var(--weakness-bg);
+            border-right: 5px solid var(--weakness-border);
             padding: 30px;
             border-radius: 12px;
         }
 
-        .limitations h2 {
-            color: var(--danger-border);
-        }
-
-        .limitations ul {
-            padding-right: 20px;
-            margin-top: 15px;
-        }
-
-        .limitations li {
-            margin-bottom: 10px;
-        }
+        .limitations h2 { color: var(--weakness-border); margin-top: 0; }
+        .limitations ul { padding-right: 20px; margin-top: 15px; }
+        .limitations li { margin-bottom: 10px; }
 
         /* الخريطة المفاهيمية */
         .mermaid-container {
-            background: #ffffff;
+            background: #fff;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -358,40 +336,41 @@
             top: 0;
             height: 100%;
             width: 4px;
-            background: var(--accent);
+            background: var(--accent-color);
             border-radius: 2px;
         }
 
-        .timeline-item {
+        .timeline-step {
             position: relative;
             margin-bottom: 30px;
-            background: #ffffff;
+            background: #fff;
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-            border: 1px solid #EAEAEA;
+            border: 1px solid #eaeaea;
         }
 
-        .timeline-item::before {
+        .timeline-step::before {
             content: '';
             position: absolute;
             right: -38px;
             top: 25px;
             width: 20px;
             height: 20px;
-            background: #ffffff;
-            border: 4px solid var(--secondary);
+            background: #fff;
+            border: 4px solid var(--secondary-color);
             border-radius: 50%;
             z-index: 2;
         }
 
-        .timeline-item h4 {
-            color: var(--accent);
+        .timeline-step h4 {
+            color: var(--accent-color);
+            margin-top: 0;
             margin-bottom: 10px;
             font-size: 1.3rem;
         }
 
-        /* الاقتباسات الأكاديمية */
+        /* الاقتباسات (Blockquote) */
         .academic-quote {
             position: relative;
             background: var(--quote-bg);
@@ -399,15 +378,16 @@
             border-radius: 15px;
             margin: 40px 0;
             z-index: 1;
-            border: 1px solid #EAEAEA;
+            border: 1px solid #eaeaea;
+            overflow: hidden;
         }
 
         .academic-quote::before {
             content: '”';
             position: absolute;
-            top: -30px;
+            top: -40px;
             right: 20px;
-            font-size: 14rem;
+            font-size: 15rem;
             color: rgba(44, 62, 80, 0.04);
             font-family: serif;
             line-height: 1;
@@ -417,42 +397,41 @@
         .academic-quote p {
             font-size: 1.3rem;
             font-style: italic;
-            color: var(--primary);
+            color: var(--primary-color);
             text-align: justify;
             margin-bottom: 0;
         }
 
-        .citation-bottom {
+        .quote-ref {
             display: block;
-            margin-top: 25px;
+            margin-top: 20px;
             font-family: var(--font-sans);
             font-size: 0.95rem;
-            color: var(--secondary);
+            color: var(--secondary-color);
             font-weight: 800;
         }
 
-        /* ================= التفاعلية: الروابط، التوثيق، والنوافذ ================= */
+        /* ================= التفاعلية: الروابط والتوثيق ================= */
         
-        /* الروابط المفاهيمية (Interactive Concepts) */
+        /* 1. المفاهيم التفاعلية */
         .concept-link {
-            color: var(--accent);
+            color: var(--accent-color);
             font-weight: 700;
-            border-bottom: 2px dotted var(--accent);
+            border-bottom: 2px dotted var(--accent-color);
             cursor: pointer;
             transition: all 0.2s;
             padding: 0 4px;
-            position: relative;
         }
 
         .concept-link:hover {
             background-color: rgba(41, 128, 185, 0.1);
-            color: var(--primary);
+            color: var(--primary-color);
             border-bottom-style: solid;
         }
 
-        /* التوثيق الأكاديمي (Hover Tooltip) */
-        .citation {
-            color: var(--secondary);
+        /* 2. التوثيق الأكاديمي (Hover Tooltip) */
+        .citation-tooltip {
+            color: var(--secondary-color);
             font-family: var(--font-sans);
             font-size: 0.9rem;
             font-weight: 800;
@@ -462,15 +441,15 @@
             margin: 0 4px;
         }
 
-        .citation::after {
+        .citation-tooltip::after {
             content: attr(data-ref);
             position: absolute;
             bottom: 130%;
             left: 50%;
             transform: translateX(-50%);
             width: 320px;
-            background-color: var(--primary);
-            color: #ffffff;
+            background-color: var(--primary-color);
+            color: #fff;
             text-align: right;
             padding: 12px 15px;
             border-radius: 8px;
@@ -486,7 +465,7 @@
             line-height: 1.5;
         }
 
-        .citation::before {
+        .citation-tooltip::before {
             content: '';
             position: absolute;
             bottom: 110%;
@@ -494,19 +473,19 @@
             transform: translateX(-50%);
             border-width: 8px;
             border-style: solid;
-            border-color: var(--primary) transparent transparent transparent;
+            border-color: var(--primary-color) transparent transparent transparent;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s;
             z-index: 100;
         }
 
-        .citation:hover::after, .citation:hover::before {
+        .citation-tooltip:hover::after, .citation-tooltip:hover::before {
             opacity: 1;
             visibility: visible;
         }
 
-        /* النافذة المنبثقة (Modal) */
+        /* 3. النافذة المنبثقة (Modal) للمفاهيم */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -527,7 +506,7 @@
         }
 
         .modal-box {
-            background: #ffffff;
+            background: #fff;
             width: 90%;
             max-width: 650px;
             border-radius: 15px;
@@ -537,68 +516,59 @@
             overflow: hidden;
         }
 
-        .modal-overlay.active .modal-box {
-            transform: translateY(0);
-        }
+        .modal-overlay.active .modal-box { transform: translateY(0); }
 
         .modal-header {
-            background: var(--primary);
-            color: #ffffff;
+            background: var(--primary-color);
+            color: #fff;
             padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .modal-header h3 {
-            margin: 0;
-            color: #ffffff;
-            font-size: 1.5rem;
-        }
+        .modal-header h3 { margin: 0; font-family: var(--font-sans); font-size: 1.5rem; }
 
         .btn-close {
             background: transparent;
             border: none;
-            color: #ffffff;
+            color: #fff;
             font-size: 1.8rem;
             cursor: pointer;
             transition: color 0.2s;
             line-height: 1;
         }
 
-        .btn-close:hover {
-            color: var(--secondary);
-        }
+        .btn-close:hover { color: var(--secondary-color); }
 
-        .modal-body {
-            padding: 30px;
-        }
+        .modal-body { padding: 30px; }
 
-        .modal-body .definition {
+        .modal-def {
             font-size: 1.2rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--primary-color);
             margin-bottom: 15px;
-            border-right: 4px solid var(--accent);
+            border-right: 4px solid var(--accent-color);
             padding-right: 15px;
         }
 
-        .modal-body .details {
-            color: var(--text-light);
+        .modal-details {
+            color: #555;
             margin-bottom: 25px;
             font-size: 1.05rem;
+            text-align: justify;
         }
 
-        .modal-body .example {
-            background: #F4F7F9;
+        .modal-example {
+            background: #f4f7f9;
             padding: 20px;
             border-radius: 8px;
-            border: 1px solid #EAEAEA;
+            border: 1px solid #eaeaea;
             font-size: 1rem;
         }
 
-        .modal-body .example strong {
-            color: var(--secondary);
+        .modal-example strong {
+            color: var(--secondary-color);
             font-family: var(--font-sans);
             display: block;
             margin-bottom: 8px;
@@ -607,35 +577,27 @@
 
         /* التجاوب (Responsive) */
         @media (max-width: 992px) {
-            .layout-wrapper {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-                position: static;
-                margin-bottom: 10px;
-            }
-            .main-content {
-                max-width: 100%;
-            }
+            .page-container { flex-direction: column; }
+            .sidebar { width: 100%; position: static; margin-bottom: 10px; }
+            .main-content { max-width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="layout-wrapper">
+    <div class="page-container">
         
         <aside class="sidebar">
             <h3 class="sans-font">البنية الإبستيمولوجية</h3>
             <ul id="toc-list">
-                <li><a href="#section-profile" class="active">1. بيسيل فان دير كولك والأطروحة</a></li>
+                <li><a href="#section-profile" class="active">1. تعريف بالعالم وأطروحته</a></li>
                 <li><a href="#section-hero">2. الأطروحة المركزية</a></li>
                 <li><a href="#section-problem">3. الإشكال المعرفي والتربوي</a></li>
                 <li><a href="#section-arguments">4. الحجج العصبية والمقاربات</a></li>
                 <li><a href="#section-hypotheses">5. الفرضيات الضمنية للتوجيه</a></li>
-                <li><a href="#section-limits">6. القصور المنهجي وحدود الطرح</a></li>
-                <li><a href="#section-map">7. خريطة الإدراك المتجسد</a></li>
-                <li><a href="#section-applied">8. الهندسة التطبيقية والمحاكاة</a></li>
+                <li><a href="#section-limits">6. حدود الطرح والتحليل النقدي</a></li>
+                <li><a href="#section-map">7. الخريطة المفاهيمية للتدخل</a></li>
+                <li><a href="#section-applied">8. الهندسة التطبيقية الميدانية</a></li>
                 <li><a href="#section-quotes">9. اقتباسات داعمة للبحث</a></li>
             </ul>
         </aside>
@@ -645,12 +607,12 @@
             <section id="section-profile">
                 <div class="profile-card">
                     <div class="profile-image">
-                        <img src="Bessel Van Der Kolk.png" alt="صورة بيسيل فان دير كولك">
+                        <img src="Bessel Van Der Kolk.png" alt="صورة العالم بيسيل فان دير كولك">
                     </div>
                     <div class="profile-info">
                         <h1 class="sans-font">بيسيل فان دير كولك (Bessel van der Kolk)</h1>
                         <p>
-                            طبيب نفسي هولندي-أمريكي رائد في أبحاث الصدمة النفسية وعلم الأعصاب، ومؤلف الكتاب المرجعي والتاريخي "The Body Keeps the Score". تكمن الأهمية البالغة لطرحه في مجال <strong>التوجيه المهني وعلم النفس التربوي</strong> في تفكيكه لأسطورة "المركزية اللغوية". فهو يثبت إكلينيكياً وعصبياً أن الخبرات المؤلمة (بما فيها الإخفاقات الأكاديمية المتكررة، التنمر، أو القلق المهني الحاد) لا تُخزن كقصص لفظية فحسب، بل تُحفر في <span class="concept-link" data-concept="somatic-memory">الذاكرة الجسدية</span>. هذا الارتباط يبرر علمياً للموجه التربوي ضرورة الانتقال من "التوجيه المكتبي الكلاسيكي" المبني على الكلام، إلى ورشات المحاكاة المتجسدة.
+                            طبيب نفسي وباحث رائد عالمياً في مجال علم الأعصاب والصدمة النفسية. في كتابه المرجعي والتاريخي "The Body Keeps the Score"، يُحدث ثورة إبستمولوجية عبر تفكيك أسطورة "المركزية اللغوية" في العلاج. بالنسبة لبحثنا في <strong>علم النفس التربوي والتوجيه المهني</strong>، تكمن قوة طرحه في إثباته علمياً أن الإخفاقات المدرسية، القلق المهني، أو ضغط التوقعات، لا تُخزن كقصص لفظية يمكن تعديلها بالكلام فحسب، بل تُحفر كبصمات فسيولوجية داخل <span class="concept-link" data-concept="somatic-memory">الذاكرة الجسدية</span>. هذا الارتباط يبرر علمياً ضرورة انتقال الموجه التربوي من "المقابلة المكتبية الباردة" إلى ورشات المحاكاة المتجسدة.
                         </p>
                     </div>
                 </div>
@@ -660,7 +622,7 @@
                 <div class="hero-box">
                     <h2 class="sans-font">الأطروحة المركزية: الجسد يحفظ السجل</h2>
                     <p>
-                        الصدمة النفسية، وكذلك القلق المهني الوجودي المعيق لدى المراهق، ليست مجرد سرديات أو ذكريات من الماضي يمكن محوها أو تغييرها بالكلام والتحليل المنطقي فقط؛ بل هي <strong>بصمة فسيولوجية (Imprint)</strong> تعيد تنظيم طريقة عمل الدماغ والجهاز العصبي بشكل جوهري. إن الجسد يتذكر بصدق ما يعجز العقل عن النطق به، مما يفرض على الممارسة التربوية نموذجاً جديداً يعتمد على تنظيم الجسد، الحركة، والمحاكاة لاستعادة الشعور بالأمان قبل محاولة إعادة بناء الهوية المهنية.
+                        الصدمة النفسية والقلق المهني الوجودي ليسا مجرد سرديات من الماضي يمكن محوها بالتحليل المنطقي؛ بل هما <strong>بصمة فسيولوجية (Imprint)</strong> تعيد تنظيم الدماغ والجهاز العصبي بشكل جذري. الجسد يتذكر بصدق ما يعجز العقل عن النطق به، مما يفرض نموذجاً جديداً يعتمد على تنظيم الجسد والحركة لاستعادة الأمان قبل إعادة بناء الهوية المهنية.
                     </p>
                 </div>
             </section>
@@ -671,15 +633,15 @@
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11 15H13V17H11V15ZM11 7H13V13H11V7ZM11.99 2C6.47 2 2 6.48 2 12S6.47 22 11.99 22C17.52 22 22 17.52 22 12S17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12S7.58 4 12 4 20 7.58 20 12 20 16.42 12 20Z"/>
                         </svg>
-                        <h2 class="sans-font" style="margin:0;">الإشكال المعرفي والتربوي</h2>
+                        <h2 class="sans-font">الإشكال المعرفي والتربوي</h2>
                     </div>
                     <p>
-                        ينطلق العمل من مفارقة عميقة تتقاطع بين الطب النفسي والتوجيه التربوي: <strong>لماذا يفشل "العلاج بالكلام" (Talk Therapy) أو الإرشاد المكتبي التقليدي في إحداث تغيير جذري في قناعات وسلوك المراهق الخائف من المستقبل أو المصدوم أكاديمياً؟</strong>
+                        ينطلق العمل من مفارقة عميقة تتقاطع بين الطب النفسي والتوجيه التربوي: <strong>لماذا يفشل "العلاج بالكلام" (Talk Therapy) أو المقابلة الإرشادية التقليدية في إحداث تغيير سلوكي حقيقي لدى المتعلم المصدوم أكاديمياً أو الخائف من مستقبله؟</strong>
                     </p>
-                    <div class="problem-questions">
+                    <div class="sub-questions">
                         <ul>
-                            <li>إذا كان المتعلم قادراً على سرد <span class="concept-link" data-concept="narrative-memory">ذاكرته السردية</span> حول مخاوفه المهنية بشكل منطقي أمام الموجه، فلماذا يستمر جسده في إبداء أعراض التوتر والانسحاب والاحتراق عند أول محك حقيقي؟</li>
-                            <li>كيف يمكن للموجه التربوي اختراق دفاعات الجهاز العصبي الذاتي وإعادة برمجته خارج نطاق اللغة اللفظية الكلاسيكية؟</li>
+                            <li>إذا كان المتعلم قادراً على سرد <span class="concept-link" data-concept="narrative-memory">ذاكرته السردية</span> حول مخاوفه المهنية بشكل منطقي، فلماذا يستمر جسده في إبداء أعراض التوتر والانسحاب عند أول محك حقيقي (كالامتحانات أو المقابلات)؟</li>
+                            <li>كيف يمكن للموجه التربوي اختراق دفاعات الجهاز العصبي الذاتي للمراهق وإعادة برمجته خارج نطاق اللغة اللفظية الكلاسيكية؟</li>
                         </ul>
                     </div>
                 </div>
@@ -689,24 +651,24 @@
                 <h2 class="sans-font">الحجج العصبية والمقاربات الميدانية</h2>
                 <ol class="arguments-list">
                     <li>
-                        <strong>قصور منطقة بروكا (Broca's Area) أثناء التوتر</strong>
-                        أثبتت أبحاث التصوير العصبي الوظيفي التي أجراها الباحث أن استرجاع تجربة صادمة أو التواجد في موقف ضاغط يؤدي إلى انخفاض حاد في نشاط "منطقة بروكا" المسؤولة عن إنتاج اللغة وصياغة المعنى، بينما تلتهب "اللوزة الدماغية" (Amygdala) المسؤولة عن استشعار الخطر <span class="citation" data-ref="van der Kolk, B. A. (2014). The body keeps the score: Brain, mind, and body in the healing of trauma. Viking. (pp. 43-45)">(van der Kolk, 2014)</span>.
+                        <strong class="arg-title">قصور "منطقة بروكا" (Broca's Area) أثناء التوتر</strong>
+                        أثبتت أبحاث التصوير العصبي الوظيفي أن التواجد في موقف ضاغط أو تذكر إخفاق سابق يؤدي إلى انخفاض حاد في نشاط منطقة بروكا (المسؤولة عن إنتاج اللغة وصياغة المعنى)، بينما تلتهب اللوزة الدماغية (المسؤولة عن الإنذار بالخطر) <span class="citation-tooltip" data-ref="van der Kolk, B. A. (2014). The body keeps the score: Brain, mind, and body in the healing of trauma. Viking.">(van der Kolk, 2014, p. 43)</span>.
                         <div class="arg-example">
-                            <strong>مثال في التوجيه:</strong> المراهق الذي يعاني من "فوبيا التقييم أو المقابلات" قد يتلعثم ويصمت تماماً في مقابلة توجيه حاسمة، ليس لجهله بمساره، بل لأن دماغه أغلق فعلياً مناطق اللغة استجابةً لتهديد متجسد. الإرشاد اللغوي هنا يفقد فاعليته.
+                            <span class="label">مثال توضيحي:</span> تلميذ يعاني من "فوبيا المقابلات" يتلعثم ويصمت تماماً أمام المستشار، ليس لجهله بمساره، بل لأن دماغه أغلق مناطق اللغة استجابةً لتهديد متجسد. الإرشاد اللغوي هنا يفقد فاعليته تماماً.
                         </div>
                     </li>
                     <li>
-                        <strong>حتمية التكامل بين التنظيم من أسفل ومن أعلى</strong>
-                        لا يرفض الكاتب <span class="concept-link" data-concept="top-down">التنظيم من أعلى (Top-down)</span> (الذي يستهدف تغيير المعتقدات عبر العقل)، ولكنه يثبت استحالة نجاحه ودوامه دون البدء بـ <span class="concept-link" data-concept="bottom-up">التنظيم من أسفل (Bottom-up)</span>، أي التعامل المباشر مع الجهاز العصبي الذاتي لتبديد حالة (القتال أو الهروب) وإرساء الأمان الفسيولوجي <span class="citation" data-ref="van der Kolk, 2014, p. 64-65">(van der Kolk, 2014)</span>.
+                        <strong class="arg-title">حتمية التكامل بين التنظيم من أسفل ومن أعلى</strong>
+                        لا يرفض الكاتب <span class="concept-link" data-concept="top-down">التنظيم من أعلى (Top-down)</span> (المعتمد على تغيير الأفكار بالمنطق)، ولكنه يثبت استحالة دوام نجاحه دون البدء بـ <span class="concept-link" data-concept="bottom-up">التنظيم من أسفل (Bottom-up)</span>، أي التعامل المباشر مع الجهاز العصبي لتبديد حالة (القتال أو الهروب) وإرساء الأمان الفسيولوجي <span class="citation-tooltip" data-ref="van der Kolk, B. A. (2014). The body keeps the score. Viking.">(van der Kolk, 2014, pp. 64-65)</span>.
                         <div class="arg-example">
-                            <strong>حالة دراسية:</strong> لا يمكنك إقناع تلميذ منطقياً بأنه قادر على ولوج مدرسة المهندسين (من أعلى) إذا كان جسده يتخذ وضعية الانكماش الدفاعية. يجب أولاً إشراكه في نشاط حركي وتمثيلي (من أسفل) يغير وضعية جسده ويحفز إفراز هرمونات الثقة والوكالة.
+                            <span class="label">مثال توضيحي:</span> لا يمكنك إقناع متعلم (من أعلى) بأنه مؤهل للقيادة إذا كان جسده يتخذ وضعية الانكماش الدفاعي. يجب أولاً إشراكه في نشاط مسرحي (من أسفل) يغير وضعية جسده ويفرز هرمونات الثقة.
                         </div>
                     </li>
                     <li>
-                        <strong>فقدان القدرة على العيش في الحاضر</strong>
-                        الاستجابة المستمرة للضغط تجعل الفرد أسيراً، إما في حالة تأهب مفرط (Hypervigilance) أو خدر وانغلاق (Numbing). هذا الفقدان للاتصال باللحظة الحالية يعيق "المرونة العصبية" اللازمة لاستكشاف وتخيل ذوات ممكنة جديدة في المستقبل.
+                        <strong class="arg-title">فقدان القدرة على العيش في الحاضر</strong>
+                        الاستجابة للضغط المستمر تجعل الفرد أسيراً في حالة تأهب مفرط أو خدر عاطفي. هذا الانفصال عن الحاضر يعيق "المرونة العصبية" اللازمة لاكتشاف ذوات ممكنة جديدة وبناء تخطيط مهني سليم.
                         <div class="arg-example">
-                            <strong>الاستدلال بيداغوجياً:</strong> لكي يتمكن التلميذ من استكشاف مسار مهني جديد، يجب سحبه بقوة من قلق الماضي أو رعب المستقبل إلى "هنا والآن" عبر الإدراك المتجسد وتقنيات التمركز المتضمنة في المسرح ولعب الأدوار.
+                            <span class="label">مثال توضيحي:</span> لتمكين التلميذ من التخطيط لمسار جديد، يجب سحبه من قلق الماضي أو رعب المستقبل إلى "هنا والآن" عبر الإدراك المتجسد وتقنيات التمركز المتضمنة في لعب الأدوار.
                         </div>
                     </li>
                 </ol>
@@ -718,14 +680,14 @@
                 <details>
                     <summary>الجسد كوعاء للإخفاق الأكاديمي والضغط السوسيو-مهني</summary>
                     <p>
-                        يفترض هذا التحليل ضمنياً أن الإخفاقات المدرسية المتكررة، التنمر، ضغط التوقعات العائلية العالية، وسرديات البطالة، تشكل جميعها "صدمات صغرى" (Micro-traumas) تتراكم بشكل لا واعي في جسد المراهق. وبالتالي، فإن بناء المشروع المهني لا يمكن أن يكون مجرد نشاط ذهني بحت، بل هو مسار "شفاء وتكيف" يتطلب تدخلات بيداغوجية متجسدة لتفريغ هذا الضغط.
+                        يفترض هذا التحليل ضمنياً أن الإخفاقات المدرسية، التنمر، وضغط التوقعات العائلية تشكل "صدمات صغرى" (Micro-traumas) تتراكم في جسد المراهق. بالتالي، بناء المشروع المهني ليس مجرد تمرين فكري لكتابة أهداف، بل هو مسار "شفاء وتكيف" يتطلب تدخلات بيداغوجية متجسدة لتفريغ هذا الضغط وبناء الثقة العضوية.
                     </p>
                 </details>
 
                 <details>
                     <summary>لعب الأدوار (السيكودراما) كآلية تنظيم بيولوجية متكاملة</summary>
                     <p>
-                        تقنية <span class="concept-link" data-concept="psychodrama">السيكودراما</span> ولعب الأدوار لا تُعتبر في هذا الإطار مجرد أداة لتنمية المهارات الناعمة (Soft skills)، بل هي واجهة تطبيقية سريرية مثالية؛ لأنها تجمع بشكل متزامن بين "التنظيم من أسفل" (عبر حركة الجسد الحرة على المسرح والتنفس العضوي) وبين "التنظيم من أعلى" (عبر صياغة سيناريو القصة والتفكير المعرفي)، مما يسهل عملية استيعاب الهوية المهنية الجديدة بسلام.
+                        تُعد <span class="concept-link" data-concept="psychodrama">السيكودراما</span> في هذا الإطار أكثر من مجرد أداة لتنمية المهارات؛ إنها واجهة تطبيقية سريرية مثالية تجمع بشكل متزامن بين "التنظيم من أسفل" (عبر الحركة العفوية والتنفس) و"التنظيم من أعلى" (عبر صياغة السيناريو السردي)، مما يسمح بدمج الهوية المهنية المكتسبة في النسيج العصبي للمتعلم.
                     </p>
                 </details>
             </section>
@@ -733,12 +695,10 @@
             <section id="section-limits">
                 <div class="limitations">
                     <h2 class="sans-font">التحليل النقدي: حدود الطرح ونقاط ضعفه</h2>
-                    <p>
-                        رغم القوة التفسيرية الجبارة لنموذج (فان دير كولك)، فإن استنساخه حرفياً في بيئة التوجيه المدرسي البيداغوجي يواجه بعض الحدود الإبستيمولوجية والعملية التي يجب الحذر منها:
-                    </p>
+                    <p>رغم القوة التفسيرية لنموذج (فان دير كولك)، فإن استنساخه حرفياً في بيئة التوجيه المدرسي يواجه حدوداً إبستيمولوجية وتطبيقية:</p>
                     <ul>
-                        <li><strong>الاختزال البيولوجي (Biological Reductionism):</strong> المبالغة في التركيز على الآليات العصبية والفسيولوجية قد تدفع الباحث لتهميش العوامل السوسيو-اقتصادية والثقافية (السياق المغربي مثلاً) التي تسبب ضغطاً مهنياً هيكلياً ومستمراً، والذي لا يمكن حله بمجرد "التنظيم الجسدي" الفردي للتلميذ.</li>
-                        <li><strong>مخاطر الفيضان الوجداني (Emotional Flooding):</strong> استخدام التقنيات "من أسفل" (مثل لعب أدوار استبطانية عميقة) في سياق مدرسي غير علاجي قد يحفز دون قصد ذكريات صادمة مدفونة لدى التلميذ دون وجود بيئة سريرية مؤهلة لاحتوائها، مما يستدعي هندسة دقيقة لسيناريوهات المحاكاة لتظل ضمن إطار الاستكشاف المهني الآمن.</li>
+                        <li><strong>الاختزال البيولوجي (Biological Reductionism):</strong> المبالغة في التركيز على الآليات الفسيولوجية قد تدفع الباحث لتهميش العوامل السوسيو-اقتصادية والثقافية (السياق المغربي) التي تسبب ضغطاً مهنياً هيكلياً لا يُحل بمجرد "التنظيم الجسدي" الفردي للتلميذ.</li>
+                        <li><strong>مخاطر الفيضان الوجداني (Emotional Flooding):</strong> استخدام تقنيات "من أسفل" (كالمسرح الاستبطاني العميق) في سياق مدرسي غير علاجي قد يحفز ذكريات صادمة مدفونة دون وجود بيئة سريرية لاحتوائها، مما يستدعي هندسة دقيقة وآمنة لسيناريوهات المحاكاة المهنية.</li>
                     </ul>
                 </div>
             </section>
@@ -750,15 +710,15 @@
                         graph TD
                         A[الضغط المهني / الإخفاق المدرسي] -->|يغلق منطقة بروكا| B(تعطل الذاكرة اللفظية والسردية)
                         A -->|ينشط اللوزة الدماغية| C(تأهب الذاكرة الجسدية الضمنية)
-                        C -->|يتطلب تدخلاً جسدياً| D[التنظيم من أسفل: السيكودراما ولعب الأدوار]
-                        B -->|يستدعي لاحقاً| E[التنظيم من أعلى: المقابلة السردية والمعرفية]
+                        C -->|يتطلب تدخلاً جسدياً| D[التنظيم من أسفل: السيكودراما والمحاكاة]
+                        B -->|يستدعي لاحقاً| E[التنظيم من أعلى: المقابلة السردية والتأمل]
                         D -->|استعادة الأمان الجسدي والوكالة| F[اندماج الهوية المهنية والتكيف]
                         E -->|بناء المعنى السردي| F
                         
-                        style A fill:#E74C3C,stroke:#C0392B,stroke-width:2px,color:#FFF
-                        style D fill:#2980B9,stroke:#2471A3,stroke-width:2px,color:#FFF
-                        style E fill:#E67E22,stroke:#D35400,stroke-width:2px,color:#FFF
-                        style F fill:#27AE60,stroke:#1E8449,stroke-width:2px,color:#FFF
+                        style A fill:#e74c3c,stroke:#c0392b,stroke-width:2px,color:#fff
+                        style D fill:#2980b9,stroke:#2471a3,stroke-width:2px,color:#fff
+                        style E fill:#e67e22,stroke:#d35400,stroke-width:2px,color:#fff
+                        style F fill:#27ae60,stroke:#1e8449,stroke-width:2px,color:#fff
                     </div>
                 </div>
             </section>
@@ -766,17 +726,17 @@
             <section id="section-applied">
                 <h2 class="sans-font">الهندسة التطبيقية: مسار التدخل المتجسد في التوجيه</h2>
                 <div class="timeline">
-                    <div class="timeline-item">
+                    <div class="timeline-step">
                         <h4 class="sans-font">المرحلة الأولى: إرساء الأمان الجسدي والتمركز (Grounding)</h4>
-                        <p>تبدأ جلسة التوجيه أو ورشة المحاكاة بتمارين بسيطة للإدراك المكاني والتنفس، لإيقاف تفعيل اللوزة الدماغية وإشعار التلميذ بالاستقرار "هنا والآن"، مما يخلق مساحة آمنة قبل الخوض في أي حديث ضاغط عن خيارات المستقبل.</p>
+                        <p>تبدأ الورشة بتمارين بسيطة للإدراك المكاني والتنفس (كسر الجليد الحركي) لإيقاف تفعيل اللوزة الدماغية وإشعار التلميذ بالاستقرار "هنا والآن"، مما يخلق مساحة آمنة قبل الخوض في خيارات المستقبل.</p>
                     </div>
-                    <div class="timeline-item">
+                    <div class="timeline-step">
                         <h4 class="sans-font">المرحلة الثانية: التنشيط من أسفل (Bottom-up Activation)</h4>
-                        <p>استخدام تقنيات المحاكاة المتجسدة ولعب الأدوار المهنية. التركيز هنا ليس على "صحة المعلومات" بل على التجربة الحركية: نبرة الصوت، التواصل البصري، وضعية الجسد، لبرمجة إحساس "القدرة والوكالة" فسيولوجياً في الجهاز العصبي للمراهق.</p>
+                        <p>استخدام تقنيات المحاكاة المتجسدة ولعب الأدوار المهنية. التركيز ليس على صحة المعلومات بل على التجربة الحركية: نبرة الصوت، التواصل البصري، وضعية الجسد، لبرمجة إحساس "القدرة والوكالة" فسيولوجياً.</p>
                     </div>
-                    <div class="timeline-item">
+                    <div class="timeline-step">
                         <h4 class="sans-font">المرحلة الثالثة: التكامل السردي (Top-down Integration)</h4>
-                        <p>بعد نجاح المحاكاة الجسدية واختبار المشاعر الإيجابية للنجاح المهني الوهمي، تتدخل المقابلة المعرفية (توجيه الأسئلة البنائية كما يقترح سافيكاس). هنا يتم مساعدة التلميذ على ربط تجربته الجسدية القوية بالكلمات، لتشكيل هوية سردية مهنية متماسكة وقابلة للتنفيذ الواقعي.</p>
+                        <p>بعد نجاح المحاكاة الجسدية واختبار المشاعر الإيجابية، تتدخل المقابلة المعرفية. هنا تتم مساعدة التلميذ على ربط تجربته الجسدية بالكلمات والمعاني، لتشكيل هوية سردية مهنية متماسكة.</p>
                     </div>
                 </div>
             </section>
@@ -786,7 +746,7 @@
                     <p>
                         "إن الصدمة لا تُختزن فقط كقصة محزنة يمكن تذكرها وتجاوزها بالكلام، بل كتغييرات حقيقية في الأجهزة البيولوجية التي تُبقينا على قيد الحياة. إن العقل المصدوم لا يمكن الوصول إليه بالكلمات وحدها؛ يجب أن نُشرك الجسد الذي يحمل الإرث الحقيقي للتهديد، لنعلمه بشكل ملموس بأن الخطر قد زال وأن مساحات جديدة من الذات أصبحت آمنة وممكنة."
                     </p>
-                    <span class="citation-bottom">— بناءً على المعالجة الإبستيمولوجية لطرح (van der Kolk, 2014, pp. 64-69).</span>
+                    <span class="quote-ref">— بناءً على المعالجة الإبستيمولوجية لطرح فان دير كولك (2014).</span>
                 </div>
             </section>
 
@@ -796,15 +756,15 @@
     <div class="modal-overlay" id="conceptModal">
         <div class="modal-box">
             <div class="modal-header">
-                <h3 id="modal-title" class="sans-font">عنوان المفهوم</h3>
-                <button class="btn-close" id="close-modal">&times;</button>
+                <h3 id="modalTitle" class="sans-font">عنوان المفهوم</h3>
+                <button class="btn-close" id="closeModal">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="definition" id="modal-def">تعريف المفهوم هنا.</div>
-                <div class="details" id="modal-details">تفاصيل إضافية.</div>
-                <div class="example">
-                    <strong class="sans-font">مثال تطبيقي:</strong>
-                    <span id="modal-example">نص المثال.</span>
+                <div class="modal-def" id="modalDef">تعريف المفهوم هنا.</div>
+                <div class="modal-details" id="modalDetails">تفاصيل إضافية.</div>
+                <div class="modal-example">
+                    <strong class="sans-font">حالة دراسية توضيحية:</strong>
+                    <span id="modalExample">نص المثال.</span>
                 </div>
             </div>
         </div>
@@ -813,55 +773,52 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // 1. قاعدة بيانات المفاهيم (Database for Interactive Modals)
+            // 1. قاعدة بيانات المفاهيم (للنوافذ المنبثقة)
             const conceptsDB = {
                 "somatic-memory": {
                     title: "الذاكرة الجسدية (Somatic Memory)",
-                    def: "بصمة تتركها التجارب (الصادمة أو الضاغطة) على العقل والدماغ والجسد، حيث تُختزن في العضلات والجهاز العصبي الذاتي والأحشاء بدلاً من الذاكرة اللفظية الواعية الواضحة.",
-                    details: "تؤدي هذه الذاكرة إلى استمرار تفعيل أنظمة الإنذار الفيزيولوجية (كإفراز الكورتيزول والتوتر العضلي) حتى بعد زوال الحدث المهدد، مما يجعل الفرد يعيش في حالة تأهب دائم أو انغلاق عاطفي يعيقه عن التعلم والمبادرة.",
-                    example: "تلميذ يعاني من تعرق مفرط وتسارع في نبضات القلب بمجرد وقوفه للتحدث عن مشروعه المهني أمام زملائه. هذا يحدث نتيجة لتجربة إخفاق أو تنمر سابقة (محفورة في جسده)، وليس لأنه لا يملك طموحاً أو معرفة."
+                    def: "بصمة تتركها التجارب الضاغطة وتُختزن في العضلات والجهاز العصبي الذاتي بدلاً من الذاكرة اللفظية الواعية.",
+                    details: "تؤدي هذه الذاكرة إلى استمرار تفعيل أنظمة الإنذار (كإفراز الكورتيزول) حتى بعد زوال الحدث المهدد، مما يعيق المتعلم عن التفكير المرن والمبادرة المهنية.",
+                    example: "تلميذ يعاني من تعرق وتسارع نبض بمجرد التحدث عن مشروعه المهني أمام زملائه، وذلك نتيجة لتجربة تنمر سابقة (محفورة في جسده)، وليس انعداماً للطموح."
                 },
                 "narrative-memory": {
                     title: "الذاكرة السردية (Narrative Memory)",
-                    def: "القدرة المعرفية الواعية على تذكر أحداث الماضي وصياغتها في قصة منطقية متسلسلة باستخدام اللغة.",
-                    details: "في حالات الصدمة أو الضغط المدرسي الشديد، تنفصل الذاكرة السردية عن الذاكرة الجسدية. قد يسرد المراهق قصة إخفاقه ببرود ظاهري ومنطقية تامة، بينما يعيش جسده رعباً داخلياً، مما يؤكد قصور (العلاج بالكلام) وحده في بناء تكيف سليم.",
-                    example: "خلال مقابلة التوجيه، يذكر التلميذ للمستشار أنه (غيّر رأيه بخصوص دراسة الهندسة) مبرراً ذلك بقصة سردية منطقية، بينما السبب الحقيقي والعميق هو رعب جسدي غير معالج تجاه الفشل في الرياضيات."
+                    def: "القدرة المعرفية الواعية على تذكر أحداث الماضي وصياغتها في قصة منطقية باستخدام اللغة.",
+                    details: "في حالات الضغط الشديد، تنفصل الذاكرة السردية عن الذاكرة الجسدية. قد يسرد المراهق إخفاقه ببرود ومنطقية، بينما يعيش جسده رعباً داخلياً.",
+                    example: "خلال المقابلة، يذكر التلميذ أنه (غيّر رأيه بخصوص دراسة الهندسة) مبرراً ذلك بقصة منطقية، بينما السبب الحقيقي هو رعب جسدي غير معالج تجاه الرياضيات."
                 },
                 "bottom-up": {
                     title: "التنظيم من أسفل (Bottom-up Regulation)",
-                    def: "مقاربة علاجية وتدريبية تتعامل بشكل مباشر مع الجهاز العصبي الذاتي (الجذع الدماغي والجهاز الحوفي) بدلاً من استهداف القشرة الدماغية (الأفكار واللغة).",
-                    details: "تعتمد على تقنيات تتجاوز اللغة المنطقية مثل التنفس العميق، الإيقاع، الحركة الجسدية الواعية، واللمس، وتمثيل الأدوار. الهدف هو استعادة الشعور بالأمان البيولوجي كشرط أساسي مسبق لأي تعلم أو بناء معرفي جديد.",
-                    example: "إشراك التلاميذ في ورشة لعب أدوار (مسرح مهني) تعتمد على الارتجال الحركي العفوي لتفريغ التوتر وبناء الثقة الجسدية، قبل مطالبتهم بالجلوس وكتابة مشروعهم المهني الشخصي."
+                    def: "مقاربة بيداغوجية/علاجية تتعامل مباشرة مع الجهاز العصبي الذاتي لاستعادة الشعور بالأمان البيولوجي.",
+                    details: "تعتمد على تقنيات تتجاوز اللغة المنطقية كالتنفس، الحركة الجسدية الواعية، وتمثيل الأدوار، وتعد شرطاً أساسياً لنجاح التعلم المعرفي اللاحق.",
+                    example: "إشراك التلاميذ في ورشة لعب أدوار (مسرح مهني) تعتمد على الارتجال لتفريغ التوتر وبناء الثقة الجسدية، قبل مطالبتهم بكتابة مشروعهم الشخصي."
                 },
                 "top-down": {
                     title: "التنظيم من أعلى (Top-down Regulation)",
-                    def: "مقاربة كلاسيكية تعتمد على استهداف القشرة الدماغية الحديثة (Neocortex) لتغيير السلوك والمشاعر من خلال تعديل الأفكار والمعتقدات واللغة.",
-                    details: "يشمل هذا المسار العلاج المعرفي السلوكي (CBT)، التحليل النفسي، والمقابلات الإرشادية التقليدية في التوجيه. يكون فاعلاً فقط عندما يكون الجهاز العصبي للمتعلم في حالة أمان واسترخاء، ولكنه يعجز تماماً عن العمل إذا كان الجسد محتجزاً في وضعية (القتال أو الهروب).",
-                    example: "نقاش المستشار التربوي مع التلميذ حول مزايا وعيوب مهنة المحاماة ومحاولة تصحيح معتقداته الخاطئة والمقيدة حول صعوبة دراسة القانون."
+                    def: "مقاربة تعتمد على استهداف القشرة الدماغية الحديثة لتغيير السلوك عبر تعديل الأفكار واللغة.",
+                    details: "تشمل المقابلات الإرشادية والنقاشات المنطقية. تكون فاعلة فقط عندما يكون الجهاز العصبي في حالة أمان، وتعجز تماماً إذا كان الجسد محتجزاً في وضعية دفاعية.",
+                    example: "نقاش المستشار التربوي مع التلميذ حول المزايا والشروط الموضوعية لمهنة الطب ومحاولة تصحيح معتقداته الخاطئة والمقيدة."
                 },
                 "psychodrama": {
-                    title: "السيكودراما (Psychodrama)",
-                    def: "تقنية علاجية وإرشادية قوية تعتمد على تمثيل مسرحي وحركي عفوي للأحداث والمخاوف والصراعات الداخلية، لتمكين الفرد من معايشتها وإعادة بنائها جسدياً ولفظياً.",
-                    details: "تُعتبر من منظور (فان دير كولك) أداة تكاملية نادرة وفعالة؛ لأنها تدمج بعبقرية بين (التنظيم من أسفل) عبر حرية الحركة المسرحية العفوية، وبين (التنظيم من أعلى) عبر التفكير في صياغة المشهد السردي وإيجاد حلول معرفية جديدة للأزمات.",
-                    example: "أن يطلب الموجه من تلميذين أداء مشهد يمثل صراعاً حقيقياً بين (طموح التلميذ في دراسة الفنون) و(رفض الأب القاطع). هذا التجسيد يحرر الانفعالات المكبوتة (أسفل) ويفتح مسارات عصبية لتقبل حلول مهنية وسطية والتفاوض (أعلى)."
+                    title: "السيكودراما (Psychodrama) في التوجيه",
+                    def: "تقنية تعتمد على تمثيل مسرحي وحركي للصراعات والتطلعات لتمكين الفرد من معايشتها وإعادة بنائها جسدياً.",
+                    details: "تُعتبر أداة بيداغوجية تكاملية لأنها تدمج بين (التنظيم من أسفل) عبر حرية الحركة والتعبير، و(التنظيم من أعلى) عبر التفكير في صياغة سيناريو وحلول جديدة.",
+                    example: "تجسيد صراع بين (طموح التلميذ في الفنون) و(رفض العائلة). هذا التجسيد يحرر الانفعالات المكبوتة جسدياً ويفتح مسارات لقبول حلول التفاوض معرفياً."
                 }
             };
 
-            // 2. تفعيل التتبع الجانبي (ScrollSpy)
+            // 2. نظام ScrollSpy للقائمة الجانبية
             const sections = document.querySelectorAll('main section');
             const navLinks = document.querySelectorAll('.sidebar a');
 
             window.addEventListener('scroll', () => {
                 let current = '';
-                
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    // إضافة مسافة تعويضية لحساب دقيق أثناء التمرير
                     if (window.scrollY >= (sectionTop - 150)) {
                         current = section.getAttribute('id');
                     }
                 });
-
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === `#${current}`) {
@@ -870,57 +827,49 @@
                 });
             });
 
-            // 3. إدارة النوافذ المنبثقة (Modal System)
+            // 3. النوافذ المنبثقة (Modal)
             const modal = document.getElementById('conceptModal');
             const conceptLinks = document.querySelectorAll('.concept-link');
-            const closeModal = document.getElementById('close-modal');
+            const closeModal = document.getElementById('closeModal');
 
-            const mTitle = document.getElementById('modal-title');
-            const mDef = document.getElementById('modal-def');
-            const mDetails = document.getElementById('modal-details');
-            const mExample = document.getElementById('modal-example');
+            const mTitle = document.getElementById('modalTitle');
+            const mDef = document.getElementById('modalDef');
+            const mDetails = document.getElementById('modalDetails');
+            const mExample = document.getElementById('modalExample');
 
-            // فتح النافذة وحقن البيانات
             conceptLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const conceptKey = link.getAttribute('data-concept');
                     const data = conceptsDB[conceptKey];
-                    
                     if (data) {
                         mTitle.textContent = data.title;
                         mDef.textContent = data.def;
                         mDetails.textContent = data.details;
                         mExample.textContent = data.example;
-                        
                         modal.classList.add('active');
                     }
                 });
             });
 
-            // إغلاق النافذة من علامة X
-            closeModal.addEventListener('click', () => {
-                modal.classList.remove('active');
-            });
+            closeModal.addEventListener('click', () => modal.classList.remove('active'));
+            modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) modal.classList.remove('active'); });
 
-            // إغلاق النافذة عند النقر خارج الصندوق (Overlay)
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                }
-            });
-
-            // إغلاق النافذة باستخدام زر ESC في لوحة المفاتيح
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.classList.contains('active')) {
-                    modal.classList.remove('active');
-                }
-            });
-
-            // 4. تهيئة الخريطة المفاهيمية (Mermaid)
+            // 4. تهيئة الخريطة المفاهيمية
             mermaid.initialize({ startOnLoad: true, theme: 'default' });
-
         });
     </script>
 </body>
 </html>
+          
+      
+        
+           
+        
+    
+          
+                 
+
+  
+
